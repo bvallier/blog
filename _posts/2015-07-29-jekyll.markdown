@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Jekyll themes that knock it out of the park"
+author: Brice
+summary: Here are some awesome Jekyll blogs I came across while building my own Jekyll blog.
+date:   2015-07-29 13:57:19
+categories: [resource]
+tags: [jekyll, themes]
+---
+
+Here are some very decent Jekyll blog themes I came across while building my own Jekyll blog. If you are interested in this particular 
+custom design, I will be pushing this theme to github in the near future. Feel free to add your email to my list and I'll let you know 
+when it's up. Thanks.
+
+{% include mailchimp.html %} 
+
+{{% if page.comments %}}
+  {% include disqus.html %} 
+{{% endif %}}
