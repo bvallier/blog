@@ -98,8 +98,8 @@ $('form#mc-embedded-subscribe-form').submit(function(e) {
               $( "#mce-error-response" ).html(data.msg.replace('0 -',''));
               $('form#mc-embedded-subscribe-form')[0].reset();
           } else {
-              $( "#mce-success-response" ).html('Welcome! Please check your email.');
-              $('form#mc-embedded-subscribe-form')[0].reset();
+              $( "#mce-success-response" ).html(data.msg.replace('0 -',''));
+              $('#mce-error-response')[0].reset();
           }
       }
   });
