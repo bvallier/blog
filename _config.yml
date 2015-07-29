@@ -3,7 +3,7 @@ title: bvallieres
 email: Brice.Vallieres@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   God please help me find purpose...but until then, let me help others.
-baseurl: "/blog" # the subpath of your site, e.g. /blog/
+baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://bvallieres.com" # the base hostname & protocol for your site
 twitter_username: wireblitz
 github_username:  bvallier
