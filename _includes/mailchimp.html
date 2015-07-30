@@ -95,6 +95,7 @@ $('form#mc-embedded-subscribe-form').submit(function(e) {
               $( "#mce-success-response" ).html("Thanks! Check your email for confirmation.");
           } else {
               $( "#mce-error-response" ).html(data.msg.replace('0 -',''));
+              $('form#mc-embedded-subscribe-form')[0].reset();
               
               
               

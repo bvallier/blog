@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="home">
-  <h2 class="header-heading"><a href="{{ site.url }}"><img src="{{ site.images }}/logo.png"></a>
+  <h2 class="header-heading"><a href="{{ site.baseurl }}"><img src="{{ site.images }}/logo.png"></a>
   <div class = "tag-line">{{ site.tagline }}</div>
   </h2>
   
@@ -13,7 +13,7 @@ layout: default
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.url }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
         <div class = "summary">
           <p>{{ post.summary }}</p>
