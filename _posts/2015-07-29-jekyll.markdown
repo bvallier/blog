@@ -1,19 +1,56 @@
 ---
 layout: post
-title:  "Jekyll themes that knock it out of the park"
-author: Brice
-summary: Here are some awesome Jekyll blogs I came across while building my own Jekyll blog.
+title:  "Jekyll themes i am compelled to share"
+author: Brice V.
+summary: Very recently, i've decided to build a blog. Here are some themes i thought were interesting.
 date:   2015-07-29 13:57:19
 categories: [resource]
-tags: [jekyll, themes]
+tags: [jekyll, themes, bootstrap]
 ---
 
-Here are some very decent Jekyll blog themes I came across while building my own Jekyll blog. If you are interested in this particular 
-custom design, I will be pushing this theme to github in the near future. Feel free to add your email to my list and I'll let you know 
-when it's up. Thanks.
+Very recently, I've decided to build a blog. I was deciding on a couple of different platforms (e.g. wordpress) and decided that 
+i wanted something simple, expressive and static. I had previously used [Stacey][stacey] and fell in love with her, but more recently i
+have been building things in ruby on rails, and wanted a tool i could switch to easily in my vagrant box, when i felt like "blogging".
+
+At any rate, i was looking for some themes i could "borrow", but none quite met my design-backward ways. I thought it would be nice to
+provide some here, in one fancy fucking listicle.
+
+Without further ado, my listicle of great jekyll blogs:
+
+- [http://brick.im/](http://brick.im/)
+- [http://mmistakes.github.io/minimal-mistakes/](http://mmistakes.github.io/minimal-mistakes/)
+- [http://excentris.net/compass/](http://excentris.net/compass/)
+- [http://gayan.me/harmony/](http://gayan.me/harmony/)
+- [http://the-development.github.io/flex/posts/2013/12/09/example-post.html](http://the-development.github.io/flex/posts/2013/12/09/example-post.html)
+- [https://github.com/rosario/kasper](https://github.com/rosario/kasper)
+- [http://tybenz.com/exemplar/](http://tybenz.com/exemplar/)
+- [http://hyde.getpoole.com/](http://hyde.getpoole.com/)
+- [https://github.com/poole/lanyon](https://github.com/poole/lanyon)
+- [http://pixyll.com/](http://pixyll.com/)
+- [http://scribble.muan.co/2013/05/06/scribble-the-jekyll-theme/](http://scribble.muan.co/2013/05/06/scribble-the-jekyll-theme/)
+- [https://github.com/swanson/lagom](https://github.com/swanson/lagom)
+- [http://www.mdswanson.com/](http://www.mdswanson.com/)
+- [https://github.com/SamWhited/typo](https://github.com/SamWhited/typo)
+
+Jekyll bootstrap-specific themes:
+
+- [http://startbootstrap.com/template-overviews/clean-blog/](http://startbootstrap.com/template-overviews/clean-blog/)
+- [http://dbtek.github.io/dbyll/](http://dbtek.github.io/dbyll/)
+- [https://github.com/nhoss2/jekyll-bootstrap](https://github.com/nhoss2/jekyll-bootstrap)
+- [https://github.com/jekyllbootstrap/theme-the-program](https://github.com/jekyllbootstrap/theme-the-program)
+
+Big list of jekyll themes (although some don't appear to be functional / actually jekyll):
+
+- [https://github.com/jekyll/jekyll/wiki/sites](https://github.com/jekyll/jekyll/wiki/sites)
+
+**If you are interested in this particular jekyll theme, i will be pushing this theme to github in the near future. Feel free to add 
+your email to my list and I'll let you know when it's up. Thanks.**
+
+[stacey]: http://staceyapp.com
 
 {% include mailchimp.html %} 
 
 {{% if page.comments %}}
   {% include disqus.html %} 
 {{% endif %}}
+
