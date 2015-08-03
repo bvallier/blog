@@ -6,7 +6,7 @@ permalink: /data.html
 
 Data for sale
 
-<form action="http://requestb.in/11lpwsw1" method="POST">
+<form action="http://requestb.in/1iveosk1" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_Pn1zmm2b4NoYM43lDZMM6cJr"
