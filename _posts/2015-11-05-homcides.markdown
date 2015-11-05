@@ -16,6 +16,7 @@ The following is a look at violent crimes, sentences and executions from 1930 to
 </div>
 
 {% include highcharts.html %}
+{% include highcharts_exporting.html %}
 
 <script>
 
