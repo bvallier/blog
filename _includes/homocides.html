@@ -1,27 +1,3 @@
----
-layout: post
-title:  "Death Penalty as a Deterrence"
-author: Brice V.
-summary: Looking at you, Captial Punishment
-date:   2015-11-05 13:57:19
-categories: [data, analysis]
-tags: [homocides, dc, capital punishment, death penalty]
----
-
-Lately I have been interested in our country's evolution of capital punishment. I spoke with my good friend Lesley O'Neill, over at UGA law school about the topic recently. This past summer, Lesley spent time with inmates on death row and she remarked on the staggering complication of these peoples lives - lost fathers, unfaithful partners, mental issues and of course, murder. I've always been muted about capital punishment and whether or not it serves as a useful deterrent to violent crimes but after speaking with Lesley, I had an urge to understand more - was it possilble that capital punishment served as an effective deterrent?
-
-The following is a look at violent crimes, sentences and executions from 1930 to 2012, where data was readily available. If data was not available, I plotted a 0 (that's not entirely accurate, but sufficient for now). 
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
-</script>
-<script src="http://code.highcharts.com/highcharts.js">
-</script>
-<script src="http://code.highcharts.com/modules/exporting.js">
-</script>
-
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto">
-</div>
-
 <script type="text/javascript">
 
 $(function () {
@@ -129,22 +105,3 @@ $(function () {
     });
 });
 </script>
-<br />
-
-Interestingly, violent crimes appear to grow pretty consistently and then dip back down in 1992. Sentences also seem to decrease shortly thereafter, however, executions in this timeframe appear to increase from 31 executions in 1992 to 98 executions in 1998. The chart is interactive, so if you are having trouble visualizing the executions, just click on the data series in the legend. Also, you won't see any executions from 1960 - 1976 or so, since the supreme court decided that the dealth penalty was considered cruel and unsual punishment, and therefore unconstitutional of the eighth amendment. This was obviously revisited.
-
-Of course, we have more meta information that could make this information more usefule. This includes population growth, by state (which could be interesting based on where capital punishment is legal) and type of violent crime. We also have meta information on method of execution from hanging, to firing squad to gas chamber (all earlier methods, naturally). If this is of interest, I'd be happy to take a deeper look. I'd be interested in understanding what people make of these trends (if you folks are clamoring for a regression, we can talk). Comments, as always are welcome.
-
-
-<br />
-<br />
-
-
-**Sign up for my emailing list below**
-
-
-{% include mailchimp.html %} 
-
-{{% if page.comments %}}
-  {% include disqus.html %} 
-{{% endif %}}
