@@ -1,7 +1,9 @@
 ---
 layout: default
 ---
-
+<style>
+  #pill li  {margin: 2.5px;}
+</style>
 <div class="home">
   <h2 class="header-heading"><a href="{{ site.baseurl }}"><img src="{{ site.images }}/logo.PNG"></a>
   <div class = "tag-line">{{ site.tagline }}</div>
@@ -20,7 +22,7 @@ layout: default
         </div>
         <ul class="tags">
          {% for tag in post.tags %}
-            <li>{{ tag }}</li>
+            <li id="pill">{{ tag }}</li>
          {% endfor %}
         </ul>
       </li>

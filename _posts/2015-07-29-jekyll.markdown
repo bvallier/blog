@@ -13,7 +13,7 @@ i wanted something simple, expressive and static. I had previously used [Stacey]
 have been building things in ruby on rails, and wanted a tool i could switch to easily in my vagrant box, when i felt like "blogging".
 
 At any rate, i was looking for some themes i could "borrow", but none quite met my design-backward ways. I thought it would be nice to
-provide some here, in one fancy fucking listicle.
+provide some here, in one fancy listicle.
 
 Without further ado, my listicle of great jekyll blogs:
 
