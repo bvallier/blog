@@ -3,7 +3,7 @@ layout: post
 title: "Octopage"
 author: Brice V.
 summary: Blogging from my iphone via Octopage
-date: 2015-05-16 13:57:19
+date: 2016-05-16 13:57:19
 categories: [blog, development]
 tags: [octopage, blogging, web]
 ---
