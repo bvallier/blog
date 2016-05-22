@@ -1,0 +1,69 @@
+---
+layout: post
+title: "Montana - Day One"
+author: Brice V.
+summary: Visiting the big sky state with dudes in tow
+date: 2016-05-21 13:57:19
+categories: [personal, travel]
+tags: [Montana, tsa ]
+---
+
+IT'S HERE. My bachelor party has arrived. after months of giddy anticipation, the day has finally come to jetset to ✈️Missoula 🚘 Glacier National Park 🚘 Bozeman ✈️. it's a lineup that I have been dreaming of since I read/watched a river runs through it. sure Brad Pitt dies at the end of the movie, but they did get some pretty amazing fishing in. Note: I'm not a gambler.
+
+**Day 1**
+=======
+
+_goal: make 8:07 flight out of bwi, get to Missoula_
+
+captains log:  
+4:25 am - alarm buzzer, snooze it cause it's the fourth hour.  
+4:35 am - I should get up, panic as a result of flight fomo.  
+4:55 am - my pack is way too large. last minute reshuffle, out the door by 5:05 to pick up my best friend from home, none other than the William Loy.   
+5:09 am - waiting on will outside his apt in my car. listening to James Blake's new album.   
+5:15 am - little dark for James Blake at this hour, switching to illmatic. Nas is hitting the spot, but just as dark. weird.  
+5:25 am - bueller?  
+5:30 am - will jumps in car, visibly upset.  
+5:45 am - we talk after some silence and I discover that this GUY. has. no. ID. he left it in a car-2-go the night before. he's for sure screwed but I'm being optimistic. he's havin' a week.  
+6:23 am - meet up with Dan and Brian. holy crap, the line at the concourse is legit the biggest line I've ever seen and all the travelers seem oddly competitive. "excuse me mam, how long have you been waiting in line?". "[insert guttural sound from lady here:]. I can't even tell you." whatever.   
+7:23 am - will has pepco bill, birth certificate, and voided previous license in hand. he will make a case for citizenship shortly.  or whatever creds you need to fly.  
+7:30ish - I'm in, Dan is in, brian is in. will looks pretty sketchy in his Nats hat (although not a bad play). he is stalled out. they need to bring in a supervisor and do some serious groping on his body.   
+7:52am - I ask the tsa agent if they can hold the plane. they don't do this, apparently.  will makes it through the scanner miraculously. tsa agent gives me side eye via association with will. Feeling nervous, i jet towards gate as boarding has closed 1 minute ago. will continues to be groped, I assume.  
+7:55 am - I sprint to gate with tent in hand and play friendly with gate staff. they love me and might hold the door for this dude behind me.  
+8:00 am - on the plane with Brian and Dan. will is still a big question mark.   
+8:03 am - it's will!!! he's made it. I applause and cheer and guy next to me is unimpressed. kinda agree with him. will comments that he dropped all his documentation on the sprint over and did not bother to pick it up. he is now on the plane without any documentation to get him back to DC. 
+  
+  
+stay tuned....
+
+Will Loy folks:  
+
+<img src = "https://www.dropbox.com/s/xi9k3jin0lcoal9/Willloyfolks.jpg?raw=1" />
+  
+  
+update - we've made it to Missoula, good night.
+   
+<img src = "https://www.dropbox.com/s/prkih3c5cctrpun/Missoula.jpg?raw=1" />
+
+  
+we spend next 6 hours driving for reasons I cannot quite explain, but mostly because we're enthralled with this state. it feels expanse, untouched and a tad unforgiving - we are clearly not from here and people know it.
+
+I give Philip, my other younger brother, a call to make sure he is set to rendezvous. he's at work so it's unclear if my message to be early is clear. slightly worried about this, but sure he won't have problems.
+
+later that night we meet up with Matt and nick. their trip in from Seattle was long. nick gets a ticket for speeding. nick didn't like the cop, despite the cop's many recommendations for things to do in Montana. Matt likes him - and is pretty chill about the interaction - an ancillary benefit from being pretty white; since the speed limit was 80, matt felt like 91 was, ya know "whatever". he tells cop this rationale, cop is not into matts LAttitude. whether or not cop is in fact cool, nick is down $$. both agree to disagree on cops coolness factor.
+
+Matt and nick bring some pretty solid beer and we drink. feels good to have a drink with these guys while we catch up and while will assembles his weapons on the dining room table. he has a high tension bow, several knives, and other weapons from mortal kombat; which we ironically ended up playing at a local za spot, pie hole. Brian is claimed overall champion after two wins. he's pretty good. 
+  
+
+since will has no id, getting into a bar is not likely. we are prepared to leave him alone. despite this, we walk into one next door, straight past the bouncers and have no problem. Matt asked the bartender if they have pitchers and he gets assaulted. apparently that was a rude question. in similar fashion, nick orders well tequila and the bartender upsells a repesado. we take it, total amount is nice. small town vibes. weirdly we see two bachelorette parties that night. we tried to hang with one of them, but they were confused as to why half of us were already married. seems normal to me?
+  
+I'm blurry on the rest, but hopped to another bar, walked home and I wrestled will on the couch. I tapped out pretty quickly give state of being, but I will surprise attach him in the morning.
+  
+  
+**Sign up for my emailing list below**
+
+
+{% include mailchimp.html %} 
+
+{{% if page.comments %}}
+  {% include disqus.html %} 
+{{% endif }}
