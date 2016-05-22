@@ -56,7 +56,7 @@ Matt and nick bring some pretty solid beer and we drink. feels good to have a dr
 
 since will has no id, getting into a bar is not likely. we are prepared to leave him alone. despite this, we walk into one next door, straight past the bouncers and have no problem. Matt asked the bartender if they have pitchers and he gets assaulted. apparently that was a rude question. in similar fashion, nick orders well tequila and the bartender upsells a repesado. we take it, total amount is nice. small town vibes. weirdly we see two bachelorette parties that night. we tried to hang with one of them, but they were confused as to why half of us were already married. seems normal to me?
   
-I'm blurry on the rest, but hopped to another bar, walked home and I wrestled will on the couch. I tapped out pretty quickly give state of being, but I will surprise attach him in the morning.
+I'm blurry on the rest, but hopped to another bar, walked home and then wrestled will on the couch. I tapped out pretty quickly given my current state of being, but I will surprise attack him in the morning.
   
   
 **Sign up for my emailing list below**
