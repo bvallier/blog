@@ -40,7 +40,7 @@ Will Loy folks:
 <img src = "https://www.dropbox.com/s/xi9k3jin0lcoal9/Willloyfolks.jpg?raw=1" />
   
   
-update - we've made it to Missoula, good night.
+update - we've made it to Missoula.
    
 <img src = "https://www.dropbox.com/s/prkih3c5cctrpun/Missoula.jpg?raw=1" />
 
