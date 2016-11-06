@@ -4,18 +4,19 @@ title: About
 permalink: /about.html
 ---
 
-My name is brice. i've been developing on the web for 10+ years and everyday i am inspired by the potential of web tech,
-hardware hacks, software design principles, humble people, and those who actually post and answer questions on stack overflow. 
-Thanks, btw. 
+Brice Vallieres
 
-I spend my spare time (ermmm, all my time) consulting for pharma, med device and healthcare companies, mainly implementing web 
-and data-centered solutions and analytics to solve their funnest problems.
+I am a web and data analytics consultant living in Washington, DC. I've been developing on the web for 12+ years and have provided professional consulting services for 7 of those years. My interests to-date have focused on de-risking pharmaceutical and medical device manufacturers by creating data-driven software and analytical solutions to target risk signals for my clients.
+
+My current focus is to develop software and analytical solutions for GREAT clients looking to solve specific, socially-conscious, hard-to-reach problems. I am interested in working with people who have well-framed concepts, and just need a little assistance in executing an idea or automating a process. I am big into productivity!
+
+Thanks for hearing me out. Here are some ways to get in touch:
  
 I like good twitter followers: [https://twitter.com/wireblitz](https://twitter.com/wireblitz)
 
 You can find the source code for my Jekyll theme here: [https://github.com/bvallier/blog](https://github.com/bvallier/blog)
 
-And lastly, here is a sign up link to my blog for when new stuff comes out and you want to know:
+Lastly, here's my newsletter.
 
 {% include mailchimp.html %} 
 
