@@ -19,4 +19,3 @@ You can find the source code for my Jekyll theme here: [https://github.com/bvall
 Lastly, here's my newsletter.
 
 {% include mailchimp.html %} 
-
