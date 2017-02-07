@@ -11,6 +11,11 @@ layout: default
     <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • by {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}
     </p>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-count="false">Follow Me!</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <div class="break">
+      <div class="fb-like" data-href={{ site.url }}{{ page.url }} data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+    </div>
   </header>
 
   <article class="post-content">
