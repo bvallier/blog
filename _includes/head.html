@@ -7,7 +7,7 @@
     <meta property="og:url"           content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="{{ page.title }}" />
-    <meta property="og:image"         content="" />
+    <meta property="og:image"         content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
     <meta property="og:description"   content="{{ page.description }}" />
     <meta property="fb:app_id"   content="1405428132863318" />
 
