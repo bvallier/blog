@@ -1,6 +1,12 @@
 ---
 layout: default
 ---
+<meta property="og:url"           content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{ page.title }}" />
+<meta property="og:description"   content="{{ page.description }}" />
+<meta property="og:image"         content="#" />
+
 <div class="post">
   <h2 class="header-heading">
   <!--<a href="/"><img src="{{ site.images }}/bvallieres.svg" height="50" width="50"></a>
