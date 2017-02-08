@@ -3,6 +3,7 @@ layout: post
 title:  "Action Cable in Rails 5"
 author: Brice V.
 summary: Rails 5 real-time fun
+image: https://www.dropbox.com/s/9xibhdb0lw2fz08/rails5.jpg?raw=1
 date:   2015-12-28 13:57:19
 categories: [web, development]
 tags: [rails 5, web sockets, actioncable, DHH]

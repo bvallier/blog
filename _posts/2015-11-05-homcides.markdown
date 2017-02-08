@@ -3,6 +3,7 @@ layout: post
 title:  "Death Penalty as a Deterrence"
 author: Brice V.
 summary: Looking at you, Captial Punishment
+image: https://www.dropbox.com/s/2ewau14rqlebzyl/deathpenalty.jpg?raw=1
 date:   2015-11-05 13:57:19
 categories: [data, analysis]
 tags: [homocides, dc, capital punishment, death penalty]

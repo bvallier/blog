@@ -3,6 +3,7 @@ layout: post
 title: "Octopage"
 author: Brice V.
 summary: Dude. The other day I got a sushi burrito and it felt like we as a human race have finally made a significant advance in our evolution...also blogging from my iphone via Octopage
+image: https://www.dropbox.com/s/0a85k5uajr8tc26/octopage.jpg?raw=1
 date: 2016-05-16 13:57:19
 categories: [blog, development]
 tags: [octopage, blogging, web, burritos]
