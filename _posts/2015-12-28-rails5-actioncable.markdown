@@ -3,7 +3,7 @@ layout: post
 title:  "Action Cable in Rails 5"
 author: Brice V.
 summary: Rails 5 real-time fun
-image: https://www.dropbox.com/s/9xibhdb0lw2fz08/rails5.jpg?raw=1
+image: '/images/rails5.jpg'
 date:   2015-12-28 13:57:19
 categories: [web, development]
 tags: [rails 5, web sockets, actioncable, DHH]
@@ -238,13 +238,10 @@ If you have any thoughts, please leave them below. Always looking to improve the
 <br />
 <br />
 
-**Sign up for my emailing list below**
-
 [dhh-tutorial]: https://www.youtube.com/watch?v=n0WUjGkDFS0
 [actioncable]: https://github.com/rails/rails/tree/master/actioncable
 [redis]: https://github.com/redis-store/redis-rails
 
-{% include mailchimp.html %} 
 
 {{% if page.comments %}}
   {% include disqus.html %} 

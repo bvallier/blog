@@ -3,7 +3,7 @@ layout: post
 title: "Octopage"
 author: Brice V.
 summary: Dude. The other day I got a sushi burrito and it felt like we as a human race have finally made a significant advance in our evolution...also blogging from my iphone via Octopage
-image: https://www.dropbox.com/s/0a85k5uajr8tc26/octopage.jpg?raw=1
+image: 'images/hank.jpeg'
 date: 2016-05-16 13:57:19
 categories: [blog, development]
 tags: [octopage, blogging, web, burritos]
@@ -17,13 +17,11 @@ Dude. The other day I got a sushi burrito and it felt like we as a human race ha
 
 The other day I discovered this great iPhone app, called Octopage, which allows you to create and publish posts directly to your Jekyll blog / github page. Great right? I'll hit this app up for short posts and pushing pics on the run. For example, my next post will be all about my bachelor trip to Montana (I'm getting married in July ;). I'll try and use this iphone workflow to post some pics about my travels in a singular, continually updated post, while simaltaneously letting loved ones (e.g. Aliza) know that I have not become the main character in the revenant. Here is a picture I took from my Patagonia hiking excursion with Aliza. We were on a catamaran traveling across Pehoe Lake. Look closely and you will see a mountain man. That will be me in Montana.
 
-<img src = "https://www.dropbox.com/s/1zvtwb4caass4ya/patagonia.jpg?raw=1" />
+<img class="img-responsive post-img" src = "/../images/patagonia.jpg" />
 
 
-**Sign up for my accidental butt dial below**
-
-
-{% include mailchimp.html %} 
+<br />
+<br />
 
 {{% if page.comments %}}
   {% include disqus.html %} 

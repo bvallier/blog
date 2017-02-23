@@ -1,13 +1,5 @@
-a {
-	text-decoration: none;
-	color:#67C8FF;
+
+.blog-post {
+	border-radius: 5px; border-width: 2px;
 }
 
-.trigger {
-	text-decoration: none;
-	color:#67C8FF;
-}
-
-.break {
-	clear: both;
-}

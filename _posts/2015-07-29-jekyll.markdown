@@ -3,7 +3,7 @@ layout: post
 title:  "Jekyll themes i am compelled to share"
 author: Brice V.
 summary: Very recently, i've decided to build a blog. Here are some themes i thought were interesting.
-image: https://www.dropbox.com/s/4xgbdzbifvqyu9e/jekyll.png?raw=1
+image: '/images/jh.jpg'
 date:   2015-07-29 13:57:19
 categories: [resource]
 tags: [jekyll, themes, bootstrap]
@@ -49,7 +49,8 @@ your email to my list and I'll let you know when it's up. Thanks.**
 
 [stacey]: http://staceyapp.com
 
-{% include mailchimp.html %} 
+<br />
+<br />
 
 {{% if page.comments %}}
   {% include disqus.html %} 

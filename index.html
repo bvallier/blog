@@ -1,33 +1,98 @@
 ---
 layout: default
 ---
-<style>
-  #pill li  {margin: 2.5px;}
-</style>
-<div class="home">
-  <h2 class="header-heading">
-  <!--<a href="{{ site.baseurl }}"><img src="{{ site.images }}/bvallieres.svg" height="50" width="50"></a>-->
-  <div class = "tag-line">{{ site.tagline }}</div>
-  </h2>
-  
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+<div id="blog" class="section container blog-columns">
+    <div class="row">
+      <div class="col-md-8">
+        
+        <!-- Blog Post 1 -->
+        {% for post in site.posts %}
+          <div class="col-lg-12 mb-sm-50 ws-s" style="border-radius: 5px; border-width: 2px;">
+            <div class="blog-post">
+              <!-- Item 1 -->
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-        <div class = "summary">
-          <p>{{ post.summary }}</p>
-        </div>
-        <ul class="tags">
-         {% for tag in post.tags %}
-            <li id="pill">{{ tag }}</li>
-         {% endfor %}
-        </ul>
-      </li>
-    {% endfor %}
-  </ul>
+              <!-- Image -->
+              <a href="{{ post.url | prepend: site.baseurl }}" class="post-img"><img src="{{ post.image }}" alt="Blog Post 1" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-width: 2px;"></a>
 
-</div>
+              <div class="bp-content">
+                <!-- Meta data -->
+                <div class="post-meta">
+                  <a href="{{ post.url | prepend: site.baseurl }}" class="post-date">
+                    {{ post.author }}&nbsp;
+                    <span> {{ post.date | date: "%b %-d, %Y" }}</span>
+                  </a>
+                  <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread" class="post-comments">
+                  </a>
+                </div><!-- / .meta -->
+                <!-- Post Title -->
+                <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h4>{{ post.title }}</h4></a>
+                <!-- Blurb -->
+                <p>{{ post.summary }}</p>
+
+                <!-- Link -->
+                <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-small">Read More</a>
+
+              </div><!-- / .bp-content -->
+            </div><!-- / .blog-post -->
+        </div><!-- / .col-lg-4 -->
+        {% endfor %}
+        
+        <!-- Pagination
+        <nav class="blog-pagination mb-sm-100">
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
+              </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">7</a></li>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        -->
+
+      </div><!-- / .col-md-8 -->
+
+
+
+      <!-- ========== Sidebar ========== -->
+
+      <aside class="col-md-offset-1 col-md-3 sidebar">
+
+        <!-- Search - Widget -->
+        <div class="col-md-12 ws-s search-widget">
+          <img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="images/profile_pic.jpg" alt="Blog Post 1" height="160" width="160">
+          <h3>Brice Vallieres</h3>
+          <h5 class="header-widget"></h5>
+          I am a web and data analytics consultant living in Washington, DC. I created <a href="https://WorkDive.com">WorkDive</a>. I also love food so much.
+           <br />
+           <br />
+           <center><a href="/../{{site.baseurl}}">home</a> | <a href="https://twitter.com/{{ site.twitter_username }}"><span class="username">twitter</span></a> |
+           <a href="https://github.com/{{ site.github_username }}"><span class="username">github</span></a></center>
+
+           {% include mailchimp.html %} 
+
+          <h5 class="header-widget">Recent Posts</h5>
+            {% for post in site.posts %}
+              <!-- Item 1 -->
+              <div class="widget-item">
+                <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt">{{ post.title }}</h6></a>
+                <span>by {{ post.author }} / {{ post.date | date: "%b %-d, %Y" }}</span>
+              </div>
+            {% endfor %}
+            <br />
+           <br />
+           <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+        </div><!-- / .recent-posts-widget -->
+
+      </aside><!-- / .sidebar -->
+
+    </div><!-- / .row -->
+  </div><!-- / .container -->
