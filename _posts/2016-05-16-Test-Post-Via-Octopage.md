@@ -23,6 +23,4 @@ The other day I discovered this great iPhone app, called Octopage, which allows 
 <br />
 <br />
 
-{{% if page.comments %}}
-  {% include disqus.html %} 
-{{% endif %}}
+{% include disqus.html %} 

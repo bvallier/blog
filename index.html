@@ -9,6 +9,7 @@ layout: default
         {% for post in site.posts %}
           <div class="col-lg-12 mb-sm-50 ws-s" style="border-radius: 5px; border-width: 2px;">
             <div class="blog-post">
+
               <!-- Item 1 -->
 
               <!-- Image -->
@@ -25,10 +26,10 @@ layout: default
                   </a>
                 </div><!-- / .meta -->
                 <!-- Post Title -->
-                <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h4>{{ post.title }}</h4></a>
+                <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h2>{{ post.title }}</h2></a>
                 <!-- Blurb -->
                 <p>{{ post.summary }}</p>
-
+                
                 <!-- Link -->
                 <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-small">Read More</a>
 
@@ -70,12 +71,14 @@ layout: default
         <div class="col-md-12 ws-s search-widget">
           <img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="images/profile_pic.jpg" alt="Blog Post 1" height="160" width="160">
           <h3>Brice Vallieres</h3>
+
           <h5 class="header-widget"></h5>
-          I am a web and data analytics consultant living in Washington, DC. I created <a href="https://WorkDive.com">WorkDive</a>. I also love food so much.
-           <br />
-           <br />
-           <center><a href="/../{{site.baseurl}}">home</a> | <a href="https://twitter.com/{{ site.twitter_username }}"><span class="username">twitter</span></a> |
-           <a href="https://github.com/{{ site.github_username }}"><span class="username">github</span></a></center>
+          I am a web and data analytics consultant living in Washington, DC. I created <a href="https://workdive.com">WorkDive</a>. I also love food so much.
+          <h5 class="header-widget"></h5>
+           <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <!-- Place this tag where you want the button to render. -->
+          
+          <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
 
            {% include mailchimp.html %} 
 

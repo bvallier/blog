@@ -2,7 +2,6 @@
 layout: default
 ---
 <!-- ========== Single Blog Post ========== -->
-        
 <div id="blog" class="section container blog-classic">
   <div class="row">
     <div class="col-md-8 mb-sm-160">
@@ -11,7 +10,7 @@ layout: default
         <div class="col-md-12 blog-post-single wow fadeIn" data-wow-delay=".1s" data-wow-duration="2s">
 
           <!-- Image -->
-          <a href="{{ page.url | prepend: site.baseurl }}"><img class="img-responsive post-img" src="/../{{ page.image }}" alt="Blog Post 1" style="border-radius: 5px; border-width: 2px;"></a>
+          <a href="{{ page.url | prepend: site.baseurl }}"><img class="img-responsive post-img" src="/../{{ page.image }}" alt="{{ page.title }}" style="border-radius: 5px; border-width: 2px;"></a>
 
           <!-- Meta data -->
           <div class="post-meta">
@@ -24,7 +23,14 @@ layout: default
           </div><!-- / .meta -->
 
           <!-- Title -->
-          <h2 class="post-title">{{ page.title }}</h2>
+          <br />
+
+          <center><h2 class="post-title">{{ page.title }}</h2></center>
+          <br />
+          <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <br />
+          <div class="fb-like" data-href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+
           <br />
           <article class="post-content"> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
             {{ content }}
@@ -33,29 +39,29 @@ layout: default
         </div><!-- / .blog-post-single -->
     </div><!-- / .blog-post-single -->
 
-
-
-
 <!-- ========== Sidebar ========== -->
 
 <aside class="col-md-offset-1 col-md-3 sidebar">
 
   <div class="col-md-12 ws-s search-widget">
-    <img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/profile_pic.jpg" alt="Blog Post 1" height="160" width="160">
+    <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/profile_pic.jpg" alt="Blog Post 1" height="160" width="160"></a>
     <h3>Brice Vallieres</h3>
+    
     <h5 class="header-widget"></h5>
-    I am a web and data analytics consultant living in Washington, DC. I created <a href="https://WorkDive.com">WorkDive</a>. I also love food so much.
-     <br />
-     <br />
-     <center><a href="/../{{site.baseurl}}">home</a> | <a href="https://twitter.com/{{ site.twitter_username }}"><span class="username">twitter</span></a> |
-      <a href="https://github.com/{{ site.github_username }}"><span class="username">github</span></a></center>
+    I am a web and data analytics consultant living in Washington, DC. I created <a href="https://workdive.com">WorkDive</a>. I also love food so much.
+    <h5 class="header-widget"></h5>
+     <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- Place this tag where you want the button to render. -->
+    
+    <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
+
      {% include mailchimp.html %} 
      
-    <h5 class="header-widget">Recent Posts</h5>
+    <h5 class="header-widget">Recent Posts <a class="site-title" href="/..{{ site.baseurl }}/">(Home)</a></h5>
       {% for post in site.posts %}
         <!-- Item 1 -->
         <div class="widget-item">
-          <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt">{{ post.title }}</h6></a>
+          <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt" style="text-transform:uppercase;">{{ post.title }}</h6></a>
           <span>by {{ post.author }} / {{ post.date | date: "%b %-d, %Y" }}</span>
         </div>
       {% endfor %}

@@ -243,6 +243,4 @@ If you have any thoughts, please leave them below. Always looking to improve the
 [redis]: https://github.com/redis-store/redis-rails
 
 
-{{% if page.comments %}}
-  {% include disqus.html %} 
-{{% endif %}}
+{% include disqus.html %} 

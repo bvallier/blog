@@ -52,7 +52,5 @@ your email to my list and I'll let you know when it's up. Thanks.**
 <br />
 <br />
 
-{{% if page.comments %}}
-  {% include disqus.html %} 
-{{% endif %}}
+{% include disqus.html %} 
 
