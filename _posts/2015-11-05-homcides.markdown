@@ -54,8 +54,6 @@ The following is a look at violent crimes, sentences and executions from 1930 to
 
 </script>
 
-
-
 <br />
 
 Interestingly, violent crimes appear to grow pretty consistently and then dip back down in 1992. Sentences also seem to decrease shortly thereafter, however, executions in this timeframe appear to increase from 31 executions in 1992 to 98 executions in 1998. The chart is interactive, so if you are having trouble visualizing the executions, just click on the data series in the legend. Also, you won't see any executions from 1969 - 1976 or so; the Supreme Court suspended capital punishment from 1972-1976, not because it was unconstitutional per se, but rather that how it was being carried out was arbitrary and unreliable, therefore unconstitutional under the Eighth Amendment’s cruel and unusual punishment ban. Lesley was kind enough to comment on this period: "By 1976 States had re-written their death penalty statutes, which is when the Court revisited the issue and deemed that the new schemes fixed the arbitrariness and unreliability, and therefore were no longer unconstitutional.  Of course, that’s very debatable as it’s carried out today." 
