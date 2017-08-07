@@ -2,17 +2,17 @@
 p {
 	font-family: "proxima-nova", "Open Sans", "Montserrat", "Helvetica Neue", Helvetica, sans-serif;
   font-style: normal
-  font-size: 16px;
+  font-size: 40px;
   font-weight: 300;
   letter-spacing: 0.4px;
-  line-height: 1.2;
+  line-height: 1.8;
   color: #292f33;
 }
 
 li {
 	font-family: "proxima-nova", "Open Sans", "Montserrat", "Helvetica Neue", Helvetica, sans-serif;
   font-style: normal
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 300;
   letter-spacing: 0.4px;
   line-height: 1.3;
