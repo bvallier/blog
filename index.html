@@ -8,30 +8,27 @@ layout: default
         <!-- Blog Post 1 -->
         {% for post in site.posts %}
           <div class="col-lg-12 mb-sm-50 ws-s" style="border-radius: 5px; border-width: 2px;">
-            <a href="{{ post.url | prepend: site.baseurl }}" class="post-img"><div class="blog-post">
+            <a href="{{ post.url | prepend: site.baseurl }}" class="post-img">
+              <div class="blog-post">
 
               <!-- Item 1 -->
 
               <!-- Image -->
-              <img src="{{ post.image }}" alt="Blog Post 1" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-width: 2px;">
+              <img src="{{ post.image }}" alt="{{ post.summary }}" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-width: 2px;">
 
               <div class="bp-content">
                 <!-- Meta data -->
                 <div class="post-meta">
-                  <a href="{{ post.url | prepend: site.baseurl }}" class="post-date">
-                    {{ post.author }}&nbsp;
+                  <a class="post-date">
                     <span> {{ post.date | date: "%b %-d, %Y" }}</span>
                   </a>
                   <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread" class="post-comments">
                   </a>
                 </div><!-- / .meta -->
                 <!-- Post Title -->
-                <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h2>{{ post.title }}</h2></a>
+                <center><a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h4 style="text-transform:uppercase;">{{ post.title }}</h4></a></center>
                 <!-- Blurb -->
-                <p>{{ post.summary }}</p>
-                
-                <!-- Link -->
-                <a href="{{ post.url | prepend: site.baseurl }}" class="btn btn-small">Read More</a>
+                <p style="margin-top:1px;">{{ post.summary }}</p>
 
               </div><!-- / .bp-content -->
             </div><!-- / .blog-post --></a>
