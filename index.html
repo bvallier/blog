@@ -18,17 +18,13 @@ layout: default
 
               <div class="bp-content">
                 <!-- Meta data -->
-                <div class="post-meta">
-                  <a class="post-date">
-                    <span> {{ post.date | date: "%b %-d, %Y" }}</span>
-                  </a>
-                  <a href="{{ post.url | prepend: site.baseurl }}#disqus_thread" class="post-comments">
-                  </a>
-                </div><!-- / .meta -->
-                <!-- Post Title -->
-                <center><a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h4 style="text-transform:uppercase;">{{ post.title }}</h4></a></center>
-                <!-- Blurb -->
-                <p style="margin-top:1px;">{{ post.summary }}</p>
+                
+                  <center>
+                    <a class="post-date">{{ post.date | date: "%b %-d, %Y" }}</a><br/>
+                    <!--<a href="{{ post.url | prepend: site.baseurl }}#disqus_thread" class="post-comments"></a>-->
+                    <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h4 style="text-transform:uppercase;">{{ post.title }}</h4></a>
+                    <p style="margin-top:1px;">{{ post.summary }}</p>
+                  </center>
 
               </div><!-- / .bp-content -->
             </div><!-- / .blog-post --></a>
