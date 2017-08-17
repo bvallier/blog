@@ -1,17 +1,28 @@
 ---
 layout: default
 ---
+<script>
+  $(window).scroll(function(){
+    $(".top").css("opacity", 1 - $(window).scrollTop() / 400);
+  });
+</script>
+<style>
+  .top {
+    margin: 0;
+    position: relative;
+    width: 100%;
+    opacity: 1;
+    color: #fff;
+  }
+</style>
 <!-- ========== Single Blog Post ========== -->
 <div id="blog" class="section container blog-classic">
   <div class="row">
     <div class="col-md-8 mb-sm-160">
         <!-- Blog Post -->
         <div class="col-md-12 blog-post-single wow fadeIn" data-wow-delay=".1s" data-wow-duration="2s">
-        <a href="/..{{ site.baseurl }}/"><< Back</a>
-        <br />
-        <br />
           <!-- Image -->
-          <a href="{{ page.url | prepend: site.baseurl }}"><img class="img-responsive post-img" src="/../{{ page.image }}" alt="{{ page.title }}" style="border-radius: 5px; border-width: 2px;"></a>
+          <a href="{{ page.url | prepend: site.baseurl }}"><img class="img-responsive post-img top" src="/../{{ page.image }}" alt="{{ page.title }}" style="border-radius: 5px; border-width: 2px;"></a>
 
           <!-- Meta data -->
           <div class="post-meta">
@@ -42,14 +53,17 @@ layout: default
 
 <!-- ========== Sidebar ========== -->
 
-<aside class="col-md-offset-1 col-md-3 sidebar">
+<aside class="col-md-offset-1 col-md-3 sidebar" style="position: fixed; right:5%">
 
   <div class="col-md-12 ws-s search-widget">
     <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/profile_pic.jpg" alt="Blog Post 1" height="160" width="160"></a>
     <h3>Brice Vallieres</h3>
     
     <h5 class="header-widget"></h5>
-    I am a web and data analytics consultant living in Washington, DC. I created <a href="https://workdive.com">WorkDive</a>. I also love food so much.
+    I am a web and data analytics consultant living in Boston. I created <a href="https://workdive.com">WorkDive</a>. I like food too.
+    <br />
+    <br />
+    <a href="/..{{ site.baseurl }}/">Home Page</a>
     <h5 class="header-widget"></h5>
      <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <!-- Place this tag where you want the button to render. -->
@@ -57,19 +71,6 @@ layout: default
     <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
 
      {% include mailchimp.html %} 
-     
-    <h5 class="header-widget">Recent Posts <a class="site-title" href="/..{{ site.baseurl }}/">(Home)</a></h5>
-      {% for post in site.posts %}
-        <!-- Item 1 -->
-        <div class="widget-item">
-          <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt" style="text-transform:uppercase;">{{ post.title }}</h6></a>
-          <span>by {{ post.author }} / {{ post.date | date: "%b %-d, %Y" }}</span>
-        </div>
-      {% endfor %}
-      <br />
-     <br />
-     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-  </div><!-- / .recent-posts-widget -->
 
 </aside><!-- / .sidebar -->
 
