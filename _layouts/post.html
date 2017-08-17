@@ -2,9 +2,11 @@
 layout: default
 ---
 <script>
+  
   $(window).scroll(function(){
     $(".top").css("opacity", 1 - $(window).scrollTop() / 400);
   });
+
 </script>
 <style>
   .top {
@@ -23,31 +25,32 @@ layout: default
         <div class="col-md-12 blog-post-single wow fadeIn" data-wow-delay=".1s" data-wow-duration="2s">
           <!-- Image -->
           <a href="{{ page.url | prepend: site.baseurl }}"><img class="img-responsive post-img top" src="/../{{ page.image }}" alt="{{ page.title }}" style="border-radius: 5px; border-width: 2px;"></a>
+          <div id="post-content">
+            <br />
+            <br />
+            <!-- Meta data -->
+            <div class="post-meta">
+              <a href="#" class="post-date">
+                <a href="{{ post.url | prepend: site.baseurl }}" class="post-date">
+                  {{ page.author }}&nbsp;
+                  <span> {{ page.date | date: "%b %-d, %Y" }}</span>
+              </a>
+              
+              <a href="{{ page.url | prepend: site.baseurl }}#disqus_thread" class="post-comments"></a>
+            </div><!-- / .meta -->
 
-          <!-- Meta data -->
-          <div class="post-meta">
-            <a href="#" class="post-date">
-              <a href="{{ post.url | prepend: site.baseurl }}" class="post-date">
-                {{ page.author }}&nbsp;
-                <span> {{ page.date | date: "%b %-d, %Y" }}</span>
-            </a>
-            <a href="{{ page.url | prepend: site.baseurl }}#disqus_thread" class="post-comments"></a>
-          </div><!-- / .meta -->
-
-          <!-- Title -->
-          <br />
-
-          <center><h2 class="post-title">{{ page.title }}</h2></center>
-          <br />
-          <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <br />
-          <div class="fb-like" data-href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
-
-          <br />
-          <article class="post-content"> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
-            {{ content }}
-          </article> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
+            <!-- Title -->
           
+            <center><h2 class="post-title" style="font-size:40px; text-transform:uppercase;">{{ page.title }}</h2></center>
+            <br />
+            <center>    
+              <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </center>
+          
+            <article class="post-content"> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
+              {{ content }}
+            </article> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
+          </div>
         </div><!-- / .blog-post-single -->
     </div><!-- / .blog-post-single -->
 
@@ -56,14 +59,14 @@ layout: default
 <aside class="col-md-offset-1 col-md-3 sidebar" style="position: fixed; right:5%">
 
   <div class="col-md-12 ws-s search-widget">
+    
     <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/profile_pic.jpg" alt="Blog Post 1" height="160" width="160"></a>
     <h3>Brice Vallieres</h3>
     
+    <!--<div class="fb-like" data-href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>-->
+    
     <h5 class="header-widget"></h5>
     I am a web and data analytics consultant living in Boston. I created <a href="https://workdive.com">WorkDive</a>. I like food too.
-    <br />
-    <br />
-    <a href="/..{{ site.baseurl }}/">Home Page</a>
     <h5 class="header-widget"></h5>
      <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     <!-- Place this tag where you want the button to render. -->
@@ -79,3 +82,12 @@ layout: default
 
   
 </div>
+
+<script>
+  setTimeout(function(){
+    $('html, body').animate({
+        scrollTop: $("#post-content").offset().top
+    }, 2000);
+  }, 100);
+
+</script>
