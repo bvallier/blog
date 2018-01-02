@@ -40,7 +40,42 @@
   <script src="/js/d3-color.v1.min.js"></script>
   <script src="/js/d3-interpolate.v1.min.js"></script>
   <script src="/js/d3-scale-chromatic.v1.min.js"></script>
+  <script src="/js/exit-intent.min.js"></script>
   <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+<style>
+  #sticker {
+    margin-top:-200px;
+  }
+</style>
+
+<!-- OuiBounce Modal -->
+<div class="modal fade" id="ouibounce-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="col-lg-4">
+          <h3>Join Me!</h3>
+        </div>
+        <div class="col-lg-12">
+          <h5>Do you like what you see?
+          <br />
+          <br />
+          Show some love! 👍 </h5>
+          <br />
+          {% include mailchimp.html %}
+        </div>
+        <div class="col-lg-4 pull-right">
+          <img class="img-responsive" id="sticker" src = "/../images/solo_stogie.png" height="200" width="267" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No thanks</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <script>
         /*!
     Mailchimp Ajax Submit
