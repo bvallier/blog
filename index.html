@@ -1,6 +1,52 @@
 ---
 layout: default
 ---
+
+<!-- ========== Sidebar ========== -->
+<br />
+<br />
+<br />
+<br />
+<aside class="col-md-offset-1 col-md-3 sidebar">
+
+  <!-- Search - Widget -->
+  <div class="col-md-12 ws-s search-widget">
+    <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/Vallieres_08542.jpg" alt="Blog Post 1" height="160" width="160"></a>
+    <h3>Brice Vallieres</h3>
+
+    <h5 class="header-widget"></h5>
+    I am a web and data analytics consultant living in Cambridge, MA. I created <a href="https://workdive.com">WorkDive</a> and <a href="https://staffmapper.com">StaffMapper</a>. I like food too. <a href="mailto:brice@thesmallweb.co">Hit me up.</a>
+
+    <br />
+    <br />
+    <a rel="ck_modal" href="#ck_modal">Subscribe - make me happy!</a>
+
+    <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
+    
+    <h5 class="header-widget"></h5>
+
+     <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a><br /><br />
+
+     <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- Place this tag where you want the button to render. -->
+    
+    <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
+
+    <h5 class="header-widget">Recent Posts</h5>
+      {% for post in site.posts %}
+        <!-- Item 1 -->
+        <div class="widget-item">
+          <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt">{{ post.title }}</h6></a>
+          <span>by {{ post.author }} / {{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+      {% endfor %}
+      <br />
+     <br />
+     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  </div><!-- / .recent-posts-widget -->
+
+</aside><!-- / .sidebar -->
+
 <div id="blog" class="section container blog-columns">
     <div class="row">
       <div class="col-md-8">
@@ -53,50 +99,6 @@ layout: default
         -->
 
       </div><!-- / .col-md-8 -->
-
-
-
-      <!-- ========== Sidebar ========== -->
-
-      <aside class="col-md-offset-1 col-md-3 sidebar">
-
-        <!-- Search - Widget -->
-        <div class="col-md-12 ws-s search-widget">
-          <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/Vallieres_08542.jpg" alt="Blog Post 1" height="160" width="160"></a>
-          <h3>Brice Vallieres</h3>
-
-          <h5 class="header-widget"></h5>
-          I am a web and data analytics consultant living in Cambridge, MA. I created <a href="https://workdive.com">WorkDive</a> and <a href="https://staffmapper.com">StaffMapper</a>. I like food too. <a href="mailto:brice@thesmallweb.co">Hit me up.</a>
-
-          <br />
-          <br />
-          <a rel="ck_modal" href="#ck_modal">Subscribe - make me happy!</a>
-
-          <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
-          
-          <h5 class="header-widget"></h5>
-
-           <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a><br /><br />
-
-           <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <!-- Place this tag where you want the button to render. -->
-          
-          <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
-
-          <h5 class="header-widget">Recent Posts</h5>
-            {% for post in site.posts %}
-              <!-- Item 1 -->
-              <div class="widget-item">
-                <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt">{{ post.title }}</h6></a>
-                <span>by {{ post.author }} / {{ post.date | date: "%b %-d, %Y" }}</span>
-              </div>
-            {% endfor %}
-            <br />
-           <br />
-           <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-        </div><!-- / .recent-posts-widget -->
-
-      </aside><!-- / .sidebar -->
 
     </div><!-- / .row -->
   </div><!-- / .container -->
