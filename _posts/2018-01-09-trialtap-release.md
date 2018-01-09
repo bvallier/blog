@@ -14,7 +14,7 @@ tags: [clinical trials, software, productivity, ctgov, trials, studies, patients
 
 Let me start by saying that clinical trials deserves transparency. Why? Because patients lives are at stake. Okay, well maybe not directly or immediately, but it's a huge part of advancing our research efforts (e.g. [Project Data Sphere](https://www.projectdatasphere.org/projectdatasphere/html/home)). Aggregating trial data hasn't been the pancea we thought it was at first glance, but the consensus is universal: the more data in the public the better for human kind. And maybe it just needs to be easier to analyze.
 
-**[Access Trial Tap]([https://trialtap.com])**
+**[Access Trial Tap](https://trialtap.com)**
 
 Today, I want to announce the release of an extremely valuable and astonishingly FREE [resource](https://trialtap.com) we've developed over at the small web co. allowing you to download **standardized clinical trials data** from [https://clinicaltrials.gov](https://clinicaltrials.gov). Sure, you can download _some_ of this data from ct.gov directly, but it only contains a fraction of the total data available - don't you want more data?? In other words, we capture ALL meta fields from their XML schema which includes data points like arms, interventions, facilities, conditions, publications, keywords, etc.  We currently have over 260K+ trials on our platform and it grows everyday in lock-step with clinicaltrials.gov through some crawlers we've built.
 
