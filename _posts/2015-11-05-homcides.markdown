@@ -62,6 +62,7 @@ Lesley went on to add that it would probably be nearly impossible to prove a cor
 
 Of course, we have more meta information that could make this information more useful. This includes population growth, sentences, executions and violent crimes by state (which could be interesting based on where capital punishment is legal), as well as type of violent crime. We also have meta information on the method of execution from hanging, to firing squad to gas chamber (all earlier methods, naturally). If this is of interest, I'd be happy to take a deeper look. I'd also be interested in understanding what people make of these trends (if you folks are clamoring for a regression, we can talk). Comments, as always are welcome.
 
+<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
 
 <br />
 <br />

@@ -56,8 +56,8 @@ layout: default
       js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=1405428132863318';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-    
-<div id="blog" class="section container blog-columns">
+
+<div id="blog" class="section container blog-columns" style="margin-top:-250px;">
     <div class="row">
       <div class="col-md-8">
         
@@ -69,7 +69,7 @@ layout: default
               <!-- Image -->
               <img src="{{ post.image }}" alt="{{ post.summary }}" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-width: 2px;">
               <a href="{{ post.url | prepend: site.baseurl }}">
-                <div class="bp-content">
+                <div class="bp-content" style="padding:40px;">
                   <!-- Meta data -->
                     <center>
                       <a href="{{ post.url | prepend: site.baseurl }}" class="post-title">

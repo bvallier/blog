@@ -242,5 +242,8 @@ If you have any thoughts, please leave them below. Always looking to improve the
 [actioncable]: https://github.com/rails/rails/tree/master/actioncable
 [redis]: https://github.com/redis-store/redis-rails
 
+<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
 
+<br />
+<br />
 {% include disqus.html %} 
