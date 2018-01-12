@@ -18,6 +18,8 @@ Let me start by saying that clinical trials deserves transparency. Why? Because 
 
 Today, I want to announce the release of an extremely valuable and astonishingly FREE [resource](https://trialtap.com) we've developed over at the small web co. allowing you to download **standardized clinical trials data** from [https://clinicaltrials.gov](https://clinicaltrials.gov). Sure, you can download _some_ of this data from ct.gov directly, but it only contains a fraction of the total data available - don't you want more data?? In other words, we capture ALL meta fields from their XML schema which includes data points like arms, interventions, facilities, conditions, publications, keywords, etc.  We currently have over 260K+ trials on our platform and it grows everyday in lock-step with clinicaltrials.gov through some crawlers we've built.
 
+[Here's an extract of the type of data you can tap](https://drive.google.com/file/d/16gmN4aWdLIXNzmAmUw5_8YcizQHlTYqT/view?usp=sharing)
+
 This is an important project to me for several reasons, but like many in the industry, I felt that advancing this data set and providing it free of charge would help to mobilize a stronger community around it. A type of community where we can advance good ideas and design something everyone will use to support the mission of better data, while holding sponsors accountable for releasing correct data. My hope is that people will use the data to analyze trial data with their specific expertise or just play around with to understand what's possible. In the past, I have it used for many reasons, including but not limited to the following:
 - Tracking clinical trial recruitment locations
 - Reaching out to PIs for information on a study
