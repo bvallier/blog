@@ -44,12 +44,11 @@ Big list of jekyll themes (although some don't appear to be functional / actuall
 
 - [https://github.com/jekyll/jekyll/wiki/sites](https://github.com/jekyll/jekyll/wiki/sites)
 
-**If you are interested in this particular jekyll theme, i will be pushing this theme to github in the near future. Feel free to add 
-your email to my list and I'll let you know when it's up. Thanks.**
+**If you are interested in this particular jekyll theme, sign up and i'll send you the download link.**
 
 [stacey]: http://staceyapp.com
 
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
+<script async id="_ck_331405" src="https://forms.convertkit.com/331405?v=6"></script>
 
 <br />
 <br />
