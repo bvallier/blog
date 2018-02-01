@@ -15,7 +15,7 @@ layout: default
     <h3>Brice Vallieres</h3>
 
     <h5 class="header-widget"></h5>
-    I am a web and data analytics consultant working out of Cambridge, MA. I created <a href="https://workdive.com">WorkDive</a>, <a href="https://trialtap.com">TrialTap</a> and <a href="https://staffmapper.com">StaffMapper</a>. I like food too. <a href="mailto:brice@thesmallweb.co">Hit me up.</a>
+    Web and data analytics consultant working out of Cambridge, MA. I created <a href="https://staffmapper.com">Staff Mapper</a>. I like food too. <a href="mailto:brice@thesmallweb.co">Hit me up.</a>
 
     <br />
     <br />
@@ -35,15 +35,12 @@ layout: default
     <h5 class="header-widget">Recent Posts</h5>
       {% for post in site.posts %}
         <!-- Item 1 -->
-        <div class="widget-item">
-          <a href="{{ post.url | prepend: site.baseurl }}"><h6 class="h-alt">{{ post.title }}</h6></a>
-          <span>by {{ post.author }} / {{ post.date | date: "%b %-d, %Y" }}</span>
-        </div>
+        {{ post.title }} - {{ post.date | date: "%b %-d, %Y" }}<br /><br />
       {% endfor %}
      <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
      <br />
      <br />
-  </div><!-- / .recent-posts-widget -->
+  </div><!-- / .recent-posts-widget --><br />
 
 </aside><!-- / .sidebar -->
 
