@@ -6,7 +6,7 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: ""
 #images: "https://dl.dropboxusercontent.com/s/dv8fo6wlb14cv0p"
 url: "https://bvallieres.com" # the base hostname & protocol for your site
-twitter_username: wireblitz
+twitter_username: bvallieres
 github_username:  bvallier
 #tagline: wired. thoughts.
 github: blog
