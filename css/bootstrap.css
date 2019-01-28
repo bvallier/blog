@@ -678,7 +678,6 @@ code {
   padding: 0.2rem 0.4rem;
   font-size: 90%;
   color: #bd4147;
-  background-color: #f7f7f9;
   border-radius: 0.25rem;
 }
 
@@ -714,7 +713,6 @@ pre code {
   padding: 0;
   font-size: inherit;
   color: inherit;
-  background-color: transparent;
   border-radius: 0;
 }
 

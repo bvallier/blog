@@ -64,6 +64,13 @@ a:not([href]):not([tabindex]):focus {
 pre, code {
   padding: 2px 4px;
   font-size: 90%;
-  background-color: rgb(249,242,244,0.8);
+  background-color: transparent;
+  background: rgb(249,242,244,0.6) !important;
   border-radius: 4px;
+}
+
+@media screen and (max-width: 1024px) {
+    .viewport-hide {
+        display: none !important;
+    }
 }
