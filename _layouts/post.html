@@ -1,97 +1,86 @@
 ---
 layout: default
 ---
-<script>
-  
-  $(window).scroll(function(){
-    $(".top").css("opacity", 1 - $(window).scrollTop() / 400);
-  });
 
-</script>
-<style>
-  .top {
-    margin: 0;
-    position: relative;
-    width: 100%;
-    opacity: 1;
-    color: #fff;
-  }
-</style>
+<!-- ========== Sidebar ========== -->
+<br />
+<br />
+
 <!-- ========== Single Blog Post ========== -->
-<div id="blog" class="section container blog-classic">
-  <div class="row">
-    <div class="col-md-8 mb-sm-160">
-        <!-- Blog Post -->
-        <div class="col-md-12 blog-post-single wow fadeIn" data-wow-delay=".1s" data-wow-duration="2s">
-          <!-- Image -->
-          <a href="{{ page.url | prepend: site.baseurl }}"><img class="img-responsive post-img top" src="/../{{ page.image }}" alt="{{ page.title }}" style="border-radius: 5px; border-width: 2px;"></a>
-          <div id="post-content">
-            <br />
-            <br />
-            <!-- Meta data -->
-            <div class="post-meta">
-              <a href="#" class="post-date">
-                <a href="{{ post.url | prepend: site.baseurl }}" class="post-date">
-                  {{ page.author }}&nbsp;
-                  <span> {{ page.date | date: "%b %-d, %Y" }}</span>
-              </a>
-              
+<div class="container">
+<div class="row">
+    <div class="col-lg-3">
+      <aside class="col-md-offset-2 sidebar">
+
+      <!-- Search - Widget -->
+      <div class="col-md-12 ws-s search-widget">
+        <a class="site-title" href="/..{{ site.baseurl }}/"><img class="image" style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/Vallieres_08542.jpg" alt="Blog Post 1" height="160" width="160"></a>
+        <br />
+        <br />
+        <h3>Brice Vallieres</h3>
+
+        Web and data analytics consultant working out of Cambridge, MA. Working on <a href="https://staffmapper.com">Staff Mapper</a>. 
+        <br />
+        <br />
+        <a href="mailto:brice@thesmallweb.co">Reach out</a>
+        <br />
+        <a rel="ck_modal" href="#ck_modal">Subscribe</a>
+
+        <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
+
+         <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a><br /><br />
+
+         <a href="https://twitter.com/bricevallieres" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- Place this tag where you want the button to render. -->
+        
+        <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
+        <br />
+        <br />
+        <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+        <br />
+        <br />
+      </div><!-- / .recent-posts-widget --><br />
+
+    </aside><!-- / .sidebar -->
+  </div>
+  <div class="col-lg-8">
+    <body>
+      <!-- Blog Post -->
+        <!-- Image -->
+        <div id="post-content">
+          <!-- Meta data -->
+
+          <!-- Title -->
+          <div class="row">
+            <div class="col-lg-10">
+              <h4 class="post-title">{{ page.title }}</h4>
               <a href="{{ page.url | prepend: site.baseurl }}#disqus_thread" class="post-comments"></a>
-            </div><!-- / .meta -->
-
-            <!-- Title -->
-          
-            <center><h2 class="post-title" style="font-size:40px; text-transform:uppercase;">{{ page.title }}</h2></center>
-            <br />
-            <center>    
-              <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </center>
-
-            <center><div class="fb-share-button" data-href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div></center>
-          
-            <article class="post-content"> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
-              {{ content }}
-            </article> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
+            </div>
+            <div class="col-lg-2">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br />
+               <span> {{ page.date | date: "%b %-d, %Y" }}</span><br />
+               
+            </div>
           </div>
-        </div><!-- / .blog-post-single -->
+
+          <br />
+          <br />
+          <article class="post-content"> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
+            {{ content }}
+          </article> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
+
+        </div>
+      </div><!-- / .blog-post-single -->
     </div><!-- / .blog-post-single -->
 
 <!-- ========== Sidebar ========== -->
 
-<aside class="col-md-offset-1 col-md-3 sidebar" style="position: fixed; right:5%">
-
-  <div class="col-md-12 ws-s search-widget">
-    
-    <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/Vallieres_08542.jpg" alt="Blog Post 1" height="125" width="125"></a>
-    <h4>Brice Vallieres</h4>
-    <!--<div class="fb-like" data-href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>-->
-    Web and data analytics consultant working out of Cambridge, MA. I created <a href="https://staffmapper.com">Staff Mapper</a>. I like food too. <a href="mailto:brice@thesmallweb.co">Hit me up.</a>
+    </body>
     <br />
     <br />
-     <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!-- Place this tag where you want the button to render. -->
-    
-    <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
-
+    <hr>
     <br />
     <br />
-    <a rel="ck_modal" href="#ck_modal">Subscribe - make me happy!</a>
-
-    <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
-
-</aside><!-- / .sidebar -->
-
-    </div><!-- / .row -->
-  </div><!-- / .container -->
-
-  
+  </div>
 </div>
-
-<script>
-  setTimeout(function(){
-    $('html, body').animate({
-        //scrollTop: $("#post-content").offset().top
-    }, 2000);
-  }, 100);
-
-</script>
+</div>

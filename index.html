@@ -5,108 +5,67 @@ layout: default
 <!-- ========== Sidebar ========== -->
 <br />
 <br />
-<br />
-<br />
-<aside class="col-md-offset-1 col-md-3 sidebar">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <aside class="col-md-offset-2 sidebar">
 
-  <!-- Search - Widget -->
-  <div class="col-md-12 ws-s search-widget">
-    <a class="site-title" href="/..{{ site.baseurl }}/"><img style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/Vallieres_08542.jpg" alt="Blog Post 1" height="160" width="160"></a>
-    <h3>Brice Vallieres</h3>
+        <!-- Search - Widget -->
+        <div class="col-md-12 ws-s search-widget">
+          <a class="site-title" href="/..{{ site.baseurl }}/"><img class="image" style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/Vallieres_08542.jpg" alt="Blog Post 1" height="160" width="160"></a>
+          <br />
+          <br />
+          <h3>Brice Vallieres</h3>
 
-    <h5 class="header-widget"></h5>
-    Web and data analytics consultant working out of Cambridge, MA. I created <a href="https://staffmapper.com">Staff Mapper</a>. I like food too. <a href="mailto:brice@thesmallweb.co">Hit me up.</a>
+          Web and data analytics consultant working out of Cambridge, MA. Working on <a href="https://staffmapper.com">Staff Mapper</a>. 
+          <br />
+          <br />
+          <a href="mailto:brice@thesmallweb.co">Reach out</a>
+          <br />
+          <a rel="ck_modal" href="#ck_modal">Subscribe</a>
 
-    <br />
-    <br />
-    <a rel="ck_modal" href="#ck_modal">Subscribe - make me happy!</a>
+          <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
 
-    <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
-    
-    <h5 class="header-widget"></h5>
+           <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a><br /><br />
 
-     <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a><br /><br />
+           <a href="https://twitter.com/bricevallieres" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <!-- Place this tag where you want the button to render. -->
+          
+          <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
+          <br />
+          <br />
+          <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+          <br />
+          <br />
+        </div><!-- / .recent-posts-widget --><br />
 
-     <a href="https://twitter.com/wireblitz" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!-- Place this tag where you want the button to render. -->
-    
-    <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
-
-    <h5 class="header-widget">Recent Posts</h5>
-      {% for post in site.posts %}
-        <!-- Item 1 -->
-        {{ post.title }} - {{ post.date | date: "%b %-d, %Y" }}<br /><br />
-      {% endfor %}
-     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-     <br />
-     <br />
-  </div><!-- / .recent-posts-widget --><br />
-
-</aside><!-- / .sidebar -->
-
-<body>
-<div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=1405428132863318';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-<div id="blog" class="section container blog-columns" style="margin-top:-250px;">
-    <div class="row">
-      <div class="col-md-8">
-        
+      </aside><!-- / .sidebar -->
+    </div>
+    <div class="col-lg-8">
+      <body>
         <!-- Blog Post 1 -->
         {% for post in site.posts %}
-          <div class="col-lg-12 mb-sm-50 ws-s" style="border-radius: 5px; border-width: 2px;">
-              <a href="{{ post.url | prepend: site.baseurl }}" class="post-img">
-              <div class="blog-post">     
-              <!-- Image -->
-              <img src="{{ post.image }}" alt="{{ post.summary }}" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-width: 2px;">
-              <a href="{{ post.url | prepend: site.baseurl }}">
-                <div class="bp-content" style="padding:40px;">
-                  <!-- Meta data -->
-                    <center>
-                      <a href="{{ post.url | prepend: site.baseurl }}" class="post-title">
-                        <h5>{{ post.date | date: "%b %-d, %Y" }}</h5><br />
-                        <!--<a href="{{ post.url | prepend: site.baseurl }}#disqus_thread" class="post-comments"></a>-->
-                        <h3 style="text-transform:uppercase;">{{ post.title }}</h3>
-                        <br />
-                        <p>{{ post.summary }}</p>
-                      </a>
-                    </center>
-                </div><!-- / .bp-content -->
-              </a>
-            </div><!-- / .blog-post -->
-            </a>
-        </div><!-- / .col-lg-4 -->
+          
+          <!-- Image -->
+          <div class="row">
+            <div class="col-lg-4">
+              <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><img class= "img-thumbnail" src="{{ post.image }}" alt="{{ post.summary }}"></a>
+              <br />
+              <br />
+            </div>
+
+            <div class="col-lg-8">
+              
+              <h6>{{ post.date | date: "%b %-d, %Y" }}</h6>
+              <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><h5>{{ post.title }}</h5></a>
+              <p>{{ post.summary }}</p>
+              
+            </div>
+          </div>
+
         {% endfor %}
-        
-        <!-- Pagination
-        <nav class="blog-pagination mb-sm-100">
-          <ul class="pagination">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true"><i class="fa fa-angle-double-left"></i></span>
-              </a>
-            </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#">7</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true"><i class="fa fa-angle-double-right"></i></span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        -->
-
-      </div><!-- / .col-md-8 -->
-
-    </div><!-- / .row -->
-  </div><!-- / .container -->
-</body>
+      </body>
+      
+    </div>
+  </div>
+</div>
