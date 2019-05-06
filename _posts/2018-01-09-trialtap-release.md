@@ -12,6 +12,8 @@ tags: [clinical trials, software, productivity, ctgov, trials, studies, patients
 	image tag above needs to be 200x200
 {% endcomment %}
 
+**NOTE - We've taken the online solution down, but are still running the database backend. If you'd like to inquire about this product more, please reach out.**
+
 Let me start by saying that clinical trials deserves transparency. Why? Because patients lives are at stake. Okay, well maybe not directly or immediately, but it's a huge part of advancing our research efforts (e.g. [Project Data Sphere](https://www.projectdatasphere.org/projectdatasphere/html/home)). Aggregating trial data hasn't been the pancea we thought it was at first glance, but the consensus is universal: the more data in the public the better for human kind. And maybe it just needs to be easier to analyze.
 
 **[Access Trial Tap](https://trialtap.com)**
