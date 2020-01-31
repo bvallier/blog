@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Evolving Staff Mapper - Customizations vs. Scale. Reaching ~$700/month"
+title:  "Evolving Staff Mapper - Reaching ~$700/month"
 author: Brice V.
 summary: Fast forward a year later and a lot has changed. The good news - we still have our primary client using the system. They are happy and continue to request customizations that have made the software even more powerful for their firm.
 image: '/images/magikarp.png'
