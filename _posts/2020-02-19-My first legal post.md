@@ -1,1 +1,0 @@
-Obviously it's thrilling!
