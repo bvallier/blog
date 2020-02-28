@@ -1,2 +1,8 @@
----U+000AU+000Alayout:postU+000AU+000Atitle:Re: Franklin - Blog via EmailU+000AU+000Aauthor:brice@thesmallweb.coU+000AU+000Asummary:I built another thing.
-I’m almost embarrassed to sayU+000AU+000Adate:2020-02-28T16:23:52.390-05:00U+000AU+000A---U+000A<body><div class="WordSection1"><p class="MsoNormal"><span style="font-size:11.0pt;color:black">I built another thing. </span><span style="color:black"><p></p></span></p><p class="MsoNormal"><span style="font-size:11.0pt;color:black;background:yellow">I’m almost embarrassed to say</span><span style="color:black"><p></p></span></p><div><p class="MsoNormal"><span style="font-size:11.0pt;color:black">U+000APosted via + <a href="https://franklinpostal.com">Franklin</a>
+<body><div class="WordSection1"><p class="MsoNormal"><span style="color:black">I built another thing. </span><span style="font-size:12.0pt;color:black"><p></p></span></p><p class="MsoNormal"><span style="color:black;background:yellow">I’m almost embarrassed to say</span><span style="font-size:12.0pt;color:black"><p></p></span></p><p class="MsoNormal"><span style="color:black">Brice Vallieres</span><span style="font-size:12.0pt;color:black"><p></p></span></p><p class="MsoNormal"></p>
+<p> </p><p class="MsoNormal"></p>
+<p> </p><div><p class="MsoNormal"><span style="color:black">Brice Vallieres<p></p></span></p><p class="MsoNormal"><span style="color:black">315.794.1718 |<a href="mailto:brice@thesmallweb.co"><span style="color:#0563C1">brice@thesmallweb.co</span></a></span></p>
+<p></p><p class="MsoNormal">----</p>
+<p></p><p class="MsoNormal"><a href="https://thesmallweb.co/"><span style="color:windowtext;text-decoration:none"></span></a></p>
+<p></p></div><p class="MsoNormal"><span style="font-size:9.0pt">Tech | Consulting | Software | Analytics</span></p>
+<p></p><p class="MsoNormal"></p>
+<p> </p></div></body>
