@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another a...  
-date: 2020-03-03T14:58:38.729-05:00  
+date: 2020-03-03T15:00:00.840-05:00  
 ---
 
 <body><div class="WordSection1">
@@ -31,17 +31,16 @@ date: 2020-03-03T14:58:38.729-05:00
 </ul>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">Who is this for?</span></p>
-<ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l4 level1 lfo5" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.</li></ul>
+<ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l0 level1 lfo5" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.</li></ul>
 <ul style="margin-top:0in" type="disc">
-<li style="color:black;mso-list:l0 level1 lfo6" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.</li>
-<li style="color:black;mso-list:l0 level1 lfo6" class="MsoNormal">Anyone trying to build an audience.</li>
+<li style="color:black;mso-list:l4 level1 lfo6" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.</li>
+<li style="color:black;mso-list:l4 level1 lfo6" class="MsoNormal">Anyone trying to build an audience.</li>
 </ul>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">Right now, we’re still working on the pricing model, so if you’re willing to be the guinea pig for this, we’ll grandfather you into the pricing that we have established on the site when that time comes, although
  our goal is to make this 100% free for our largest population of users. </span></p>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">All feedback is welcome.  </span></p>
-<p class="MsoNormal"><span style="color:black"> </span></p>
 <p> </p>
 <p> </p>
 <div>
