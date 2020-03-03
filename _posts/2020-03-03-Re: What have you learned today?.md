@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another a...  
-date: 2020-03-03T14:39:13.862-05:00  
+date: 2020-03-03T14:39:39.458-05:00  
 ---
 
 <body><div class="WordSection1">
@@ -24,22 +24,22 @@ date: 2020-03-03T14:39:13.862-05:00
 <p class="MsoNormal"><span style="color:black"> <p></p></span></p>
 <p class="MsoNormal"><span style="color:black">So why email?<p></p></span></p>
 <ul style="margin-top:0in" type="disc">
-<li style="color:black;mso-list:l1 level1 lfo4" class="MsoNormal">Email is a familiar tool.<p></p>
+<li style="color:black;mso-list:l4 level1 lfo4" class="MsoNormal">Email is a familiar tool.<p></p>
 </li>
-<li style="color:black;mso-list:l1 level1 lfo4" class="MsoNormal">You take care of email correspondence. When you hit the send button, that message is being sent to someone who will read it. You want to make sure that email is 1) useful, 2) accurate and 3)
+<li style="color:black;mso-list:l4 level1 lfo4" class="MsoNormal">You take care of email correspondence. When you hit the send button, that message is being sent to someone who will read it. You want to make sure that email is 1) useful, 2) accurate and 3)
  concise for the reader. We wanted to capture that here with Franklin.<p></p>
 </li>
-<li style="color:black;mso-list:l1 level1 lfo4" class="MsoNormal">Why build another bloated app for you to manage your blog posts. Just get the message out there quickly and efficiently.<p></p>
+<li style="color:black;mso-list:l4 level1 lfo4" class="MsoNormal">Why build another bloated app for you to manage your blog posts. Just get the message out there quickly and efficiently.<p></p>
 </li>
 </ul>
 <p class="MsoNormal"><span style="color:black"> <p></p></span></p>
 <p class="MsoNormal"><span style="color:black">Who is this for?<p></p></span></p>
-<ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l3 level1 lfo5" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.<p></p>
+<ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l1 level1 lfo5" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.<p></p>
 </li></ul>
 <ul style="margin-top:0in" type="disc">
-<li style="color:black;mso-list:l4 level1 lfo6" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.<p></p>
+<li style="color:black;mso-list:l0 level1 lfo6" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.<p></p>
 </li>
-<li style="color:black;mso-list:l4 level1 lfo6" class="MsoNormal">Anyone trying to build an audience.<p></p>
+<li style="color:black;mso-list:l0 level1 lfo6" class="MsoNormal">Anyone trying to build an audience.<p></p>
 </li>
 </ul>
 <p class="MsoNormal"><span style="color:black"> <p></p></span></p>
