@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help ...  
-date: 2020-03-03T15:26:35.408-05:00  
+date: 2020-03-03T15:29:14.999-05:00  
 ---
 
 <body><div class="WordSection1"><p class="MsoNormal"><span style="color:black">Dear Web,<p/></span></p><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help you write more consistently in public, which is something I think most people should try. Why? Because thinking in public
@@ -13,18 +13,18 @@ date: 2020-03-03T15:26:35.408-05:00
  is key to running a successful business and it doesn’t always require a dialogue. You want people to think of you first for anything related to your line of services – putting your word out there will keep people interested in what you are doing, even if it’s
  simple update.<p/></span></p><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">So more on the app, we’ve built: Franklin. Franklin, named after the first postmaster general of the U.S., Ben Franklin, allows you to email your blog posts. Flat out. It’s currently available for anyone who runs
  their blog on Jekyll. We’re working on other static site generators. If you don’t have a blog / don’t know what any of this is, we want to help. The app is in beta. If you’re interested in building an audience and working towards writing more consistency,
- please indicate your interest here: <a href="https://small-web-llc.ck.page/09f8f55667"><span style="color:#954F72">https://small-web-llc.ck.page/09f8f55667</span></a><p/></span></p><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">So why email?<p/></span></p><ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l3 level1 lfo4" class="MsoNormal">Email is a familiar tool.<p/>
+ please indicate your interest here: <a href="https://small-web-llc.ck.page/09f8f55667"><span style="color:#954F72">https://small-web-llc.ck.page/09f8f55667</span></a><p/></span></p><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">So why email?<p/></span></p><ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l2 level1 lfo4" class="MsoNormal">Email is a familiar tool.<p/>
 </li>
-<li style="color:black;mso-list:l3 level1 lfo4" class="MsoNormal">You take care of email correspondence. When you hit the send button, that message is being sent to someone who will read it. You want to make sure that email is 1) useful, 2) accurate and 3)
+<li style="color:black;mso-list:l2 level1 lfo4" class="MsoNormal">You take care of email correspondence. When you hit the send button, that message is being sent to someone who will read it. You want to make sure that email is 1) useful, 2) accurate and 3)
  concise for the reader. We wanted to capture that here with Franklin.<p/>
 </li>
-<li style="color:black;mso-list:l3 level1 lfo4" class="MsoNormal">Why build another bloated app for you to manage your blog posts. Just get the message out there quickly and efficiently.<p/>
+<li style="color:black;mso-list:l2 level1 lfo4" class="MsoNormal">Why build another bloated app for you to manage your blog posts. Just get the message out there quickly and efficiently.<p/>
 </li>
-</ul><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">Who is this for?<p/></span></p><ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l0 level1 lfo5" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.<p/>
+</ul><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">Who is this for?<p/></span></p><ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l5 level1 lfo5" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.<p/>
 </li>
-</ul><ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l5 level1 lfo6" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.<p/>
+</ul><ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l3 level1 lfo6" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.<p/>
 </li>
-<li style="color:black;mso-list:l5 level1 lfo6" class="MsoNormal">Anyone trying to build an audience.<p/>
+<li style="color:black;mso-list:l3 level1 lfo6" class="MsoNormal">Anyone trying to build an audience.<p/>
 </li>
 </ul><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">Right now, we’re still working on the pricing model, so if you’re willing to be the guinea pig for this, we’ll grandfather you into the pricing that we have established on the site when that time comes, although
  our goal is to make this 100% free for our largest population of users. <p/></span></p><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"><span style="color:black">All feedback is welcome.  <p/></span></p><p class="MsoNormal"><span style="color:black"> <p/></span></p><p class="MsoNormal"/>
