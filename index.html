@@ -17,7 +17,7 @@ layout: default
           <br />
           <h3>Brice Vallieres</h3>
 
-          Web and data analytics consultant working out of Cambridge, MA. Building <a href="https://staffmapper.com">Staff Mapper</a>. 🚀
+          Software and data analytics consultant working out of Cambridge, MA. 🚀
           <br />
           <br />
           <a href="mailto:brice@thesmallweb.co">Reach out</a>
@@ -36,7 +36,12 @@ layout: default
           <br />
           <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
           <br />
-          <br />
+          <u>Projects</u><br />
+          <a href="https://workdive.com?ref=blog">WorkDive</a><br />
+          <a href="https://staffmapper.com?ref=blog">Staff Mapper</a><br />
+          <a href="https://franklinpostal.com?ref=blog">Franklin</a><br />
+          <a href="https://t.me/joinchat/QB3rFhTJKYOKkhh1Vzkiaw">Telegram Crypto Bot</a><br />
+
         </div><!-- / .recent-posts-widget --><br />
 
       </aside><!-- / .sidebar -->
@@ -49,7 +54,13 @@ layout: default
           <!-- Image -->
           <div class="row">
             <div class="col-lg-4">
-              <a href="{{ post.url | prepend: site.baseurl }}" class="post-title"><img class= "img-thumbnail" src="{{ post.image }}" alt="{{ post.summary }}"></a>
+              <a href="{{ post.url | prepend: site.baseurl }}" class="post-title">
+                {% if post.image %}
+                  <img class= "img-thumbnail" src="{{ post.image }}" alt="{{ post.summary }}">
+                {% else %}
+                  <img class="img-thumbnail" src="https://source.unsplash.com/random/500x250" alt=" {{ post.summary }}">
+                {% endif %}
+              </a>
               <br />
               <br />
             </div>
