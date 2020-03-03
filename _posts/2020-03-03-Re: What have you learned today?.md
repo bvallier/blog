@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help ...  
-date: 2020-03-03T15:44:45.079-05:00  
+date: 2020-03-03T15:45:08.228-05:00  
 ---
 
 <body><div><p><span>Dear Web,<p></p></span></p><p><span> <p></p></span></p><p><span>I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help you write more consistently in public, which is something I think most people should try. Why? Because thinking in public
@@ -27,6 +27,6 @@ date: 2020-03-03T15:44:45.079-05:00
 <li>Anyone trying to build an audience.<p></p>
 </li>
 </ul><p><span> <p></p></span></p><p><span>Right now, we’re still working on the pricing model, so if you’re willing to be the guinea pig for this, we’ll grandfather you into the pricing that we have established on the site when that time comes, although
- our goal is to make this 100% free for our largest population of users. <p></p></span></p><p><span> <p></p></span></p><p><span>All feedback is welcome.  <p></p></span></p><p><span> <p></p></span></p><p><span> <p></p></span></p><p></p>
+ our goal is to make this 100% free for our largest population of users. <p></p></span></p><p><span> <p></p></span></p><p><span>All feedback is welcome.  <p></p></span></p><p><span> <p></p></span></p><p></p>
 <p> </p><p></p>
 <p> </p><div><p><span><br />Posted via <a href="https://franklinpostal.com">Franklin</a>
