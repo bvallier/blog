@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another a...  
-date: 2020-03-03T14:04:03.283-05:00  
+date: 2020-03-03T14:05:02.664-05:00  
 ---
 
 <body><div class="WordSection1">
@@ -23,25 +23,26 @@ date: 2020-03-03T14:04:03.283-05:00
  please indicate your interest here: <a href="https://small-web-llc.ck.page/09f8f55667"><span style="color:#954F72">https://small-web-llc.ck.page/09f8f55667</span></a></span></p>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">So why email?</span></p>
-<ul style="margin-top:0in" type="disc">
-<li class="MsoListParagraph" style="margin-left:0in;mso-list:l4 level1 lfo7"><span style="color:black">Email is a familiar tool.</span></li>
-<li class="MsoListParagraph" style="margin-left:0in;mso-list:l4 level1 lfo7"><span style="color:black">You take care of email correspondence. When you hit the send button, that message is being sent to someone who will read it. You want to make sure that email
- is 1) useful, 2) accurate and 3) concise for the reader. We wanted to capture that here with Franklin.</span></li>
-<li class="MsoListParagraph" style="margin-left:0in;mso-list:l4 level1 lfo7"><span style="color:black">Why build another bloated app for you to manage your blog posts. Just get the message out there quickly and efficiently.</span></li>
-</ul>
+<p style="margin-left:38.25pt;text-indent:-.25in" class="MsoNormal"><span style="font-size:10.0pt;color:black">·</span><span style="color:black">Email is a familiar
+ tool.</span></p>
+<p style="margin-left:38.25pt;text-indent:-.25in" class="MsoNormal"><span style="font-size:10.0pt;color:black">·</span><span style="color:black">You take care of email
+ correspondence. When you hit the send button, that message is being sent to someone who will read it. You want to make sure that email is 1) useful, 2) accurate and 3) concise for the reader. We wanted to capture that here with Franklin.</span></p>
+<p style="margin-left:38.25pt;text-indent:-.25in" class="MsoNormal"><span style="font-size:10.0pt;color:black">·</span><span style="color:black">Why build another bloated
+ app for you to manage your blog posts. Just get the message out there quickly and efficiently.</span></p>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">Who is this for?</span></p>
-<ul style="margin-top:0in" type="disc"><li class="MsoNormal" style="color:black;mso-list:l2 level1 lfo1">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.</li></ul>
+<ul style="margin-top:0in" type="disc"><li style="color:black;mso-list:l1 level1 lfo3" class="MsoNormal">Anyone who finds the current process for releasing a blog post on a static site generator frustrating.</li></ul>
 <ul style="margin-top:0in" type="disc">
-<li class="MsoNormal" style="color:black;mso-list:l1 level1 lfo2">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.</li>
-<li class="MsoNormal" style="color:black;mso-list:l1 level1 lfo2">Anyone trying to build an audience.</li>
+<li style="color:black;mso-list:l0 level1 lfo4" class="MsoNormal">Anyone who NEEDs to get their content out more consistently. Franklin sends reminders to post, “e.g. what have you learned today”.</li>
+<li style="color:black;mso-list:l0 level1 lfo4" class="MsoNormal">Anyone trying to build an audience.</li>
 </ul>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">Right now, we’re still working on the pricing model, so if you’re willing to be the guinea pig for this, we’ll grandfather you into the pricing that we have established on the site when that time comes, although
  our goal is to make this 100% free for our largest population of users. </span></p>
 <p class="MsoNormal"><span style="color:black"> </span></p>
 <p class="MsoNormal"><span style="color:black">All feedback is welcome.  </span></p>
-<p class="MsoNormal"><p> </p></p>
-<p class="MsoNormal"><p> </p></p>
+<p class="MsoNormal"><span style="color:black"> </span></p>
+<p> </p>
+<p> </p>
 <div>
 <p class="MsoNormal"><span style="color:black"><br />Posted via <a href="https://franklinpostal.com">Franklin</a>
