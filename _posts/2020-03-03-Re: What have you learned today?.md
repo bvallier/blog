@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help ...  
-date: 2020-03-03T16:25:40.910-05:00  
+date: 2020-03-03T16:26:51.865-05:00  
 ---
 
 <body><div class="WordSection1"><p class="MsoNormal"><span style="color:black;">Dear Web,</span></p><p class="MsoNormal"><span style="color:black;"> </span></p><p class="MsoNormal"><span style="color:black;">I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help you write more consistently in public, which is something I think most people should try. Why? Because thinking in public
