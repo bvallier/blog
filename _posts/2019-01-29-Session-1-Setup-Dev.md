@@ -91,9 +91,3 @@ Once you add the pull request (PR) I'll merge the code (if everything looks good
 That's it, you're officially an open-source contributor.
 
 All of this is being done in preparation for the web scraping task in our next tutorial, so keep up! Please <b>share</b>, comment, upvote as you needed. I'll respond to comments / questions, etc. If something is unclear, comment. See you soon.
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-{% include disqus.html %} 

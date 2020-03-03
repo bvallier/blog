@@ -43,11 +43,3 @@ _So it's free_ to everyone for as long as I can keep the solution running.
 My ultimate goal, as stated earlier, is to build a community around this, so we can tackle bigger issues like standardizing global trial registry data, automated CSR development and/or disclosure to ct.gov, whatever, really. If you're interested in tackling solutions as a community on these issues, use TrialTap. 
 
 <center>🎉 LONG LIVE TRANSPARENCY 🎉</center>
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-
-{% include disqus.html %} 
-

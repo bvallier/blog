@@ -125,9 +125,3 @@ Here's the form I'm using. Make sure the id and name of the inputs match the scr
 You'll need to link to the scripts.js file located [HERE](https://raw.githubusercontent.com/bvallier/python-ses-dynamodb-contactform/master/public/js/script.js).
 
 That's it. Setup didn't take me long and I now have a nice, cheap, serverless contact form. Was fun getting to know serverless and hope to use it more in the future!
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-{% include disqus.html %} 

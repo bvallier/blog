@@ -18,10 +18,3 @@ Dude. The other day I got a sushi burrito and it felt like we as a human race ha
 The other day I discovered this great iPhone app, called Octopage, which allows you to create and publish posts directly to your Jekyll blog / github page. Great right? I'll hit this app up for short posts and pushing pics on the run. For example, my next post will be all about my bachelor trip to Montana (I'm getting married in July ;). I'll try and use this iphone workflow to post some pics about my travels in a singular, continually updated post, while simaltaneously letting loved ones (e.g. Aliza) know that I have not become the main character in the revenant. Here is a picture I took from my Patagonia hiking excursion with Aliza. We were on a catamaran traveling across Pehoe Lake. Look closely and you will see a mountain man. That will be me in Montana.
 
 <img class="img-thumbnail" src = "/../images/patagonia.jpg" />
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-
-{% include disqus.html %} 

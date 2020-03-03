@@ -74,9 +74,3 @@ These were the main features that was just enough for the client to pull the tri
 We handled and still handle payments through Stripe, which reads the number of active staff they have in the solution and bills them monthly accounting for fluctations in the staff count over the course of the month. The first invoice for $208 went out on June 6, 2018 after about a year of development and the first pitch.
 
 A YEAR'S WORTH OF WORK. More on this soon.
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-{% include disqus.html %} 

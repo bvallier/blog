@@ -26,9 +26,3 @@ So I put pen to paper and with some very brief market research, product developm
 I didn't realize I'd still be working on it today...
 
 I'll be writing more about this in a 3-part series. Sign up to get the updates.
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-{% include disqus.html %} 

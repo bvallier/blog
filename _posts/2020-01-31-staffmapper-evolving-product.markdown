@@ -34,9 +34,3 @@ This year we will be focused on streamlining the customization of our product so
 I'll continue to write about this approach - writing custom software for clients presents a couple of challenges. For instance, how do you scale custom code? The short answer, is it's really hard. Almost no one does it outside of a platform-as-a-service like Salesforce. 
 
 At one point we had a conversation with an investor who told us to avoid it all costs. But that wouldn't be the right move for our current client. He's not wrong but we need to find a way to accomodate our current clients while keeping our growth prospects strong, which means, more easily scaling. I'd consider our scope of work to be more aligned to "Productized Services", rather than a pure SAAS play. And I'm ok with that for the moment - we have a paying customer and we want to do anything we can to make them happy. Disagree? Leave a comment.
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-{% include disqus.html %} 

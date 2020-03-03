@@ -48,10 +48,3 @@ Big list of jekyll themes (although some don't appear to be functional / actuall
 
 [stacey]: http://staceyapp.com
 
-<script async id="_ck_331405" src="https://forms.convertkit.com/331405?v=6"></script>
-
-<br />
-<br />
-
-{% include disqus.html %} 
-

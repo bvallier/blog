@@ -54,9 +54,3 @@ So I wanted to attempt something similar with our data and files using her proce
 
 <h5 style="color:#4B85C0">The Final Word</h5>
 Here's what no one wants to hear: once you tidy up, you have to keep the effort going. Marie appears to be changing lives, but time will tell if her advice sticks. Alternatively, you can throw your computer off a 50-foot building somewhere. 
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-{% include disqus.html %} 

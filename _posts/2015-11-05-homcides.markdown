@@ -61,11 +61,3 @@ Interestingly, violent crimes appear to grow pretty consistently and then dip ba
 Lesley went on to add that it would probably be nearly impossible to prove a correlation between any drop in violent crime and the death penatly acting as a deterrent, since it is no longer reserved for the “worst of the worst” but much more so based on where the defendant is from.  For example - take the Colorado shooter getting a life sentence, and then someone who shot and killed one person in Georgia or Louisiana who then gets sentenced to death (Lesley has worked on multiple cases where it was a “heat of passion” type crime involving just one or two victims).  Another example is Caddo Parish in Louisiana; it is among 2% of U.S. counties responsible for 56% of all the inmates on death row.  From 2010 to 2014 more people were sentenced to death per capita there than any other county in the U.S.
 
 Of course, we have more meta information that could make this information more useful. This includes population growth, sentences, executions and violent crimes by state (which could be interesting based on where capital punishment is legal), as well as type of violent crime. We also have meta information on the method of execution from hanging, to firing squad to gas chamber (all earlier methods, naturally). If this is of interest, I'd be happy to take a deeper look. I'd also be interested in understanding what people make of these trends (if you folks are clamoring for a regression, we can talk). Comments, as always are welcome.
-
-<script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-<br />
-<br />
-
-
-{% include disqus.html %} 
