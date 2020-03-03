@@ -3,7 +3,7 @@ layout: post
 title: Re: What have you learned today?  
 author: brice@thesmallweb.co  
 summary: Dear Web, I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help ...  
-date: 2020-03-03T16:17:13.790-05:00  
+date: 2020-03-03T16:18:26.109-05:00  
 ---
 
 <body><div class="WordSection1"><p class="MsoNormal"><span style="color:black;">Dear Web,</span></p><p class="MsoNormal"><span style="color:black;"> </span></p><p class="MsoNormal"><span style="color:black;">I’m addicted to building things. Yes, I built another app. This time, it’s a tool to help you write more consistently in public, which is something I think most people should try. Why? Because thinking in public
@@ -27,6 +27,6 @@ date: 2020-03-03T16:17:13.790-05:00
 <li style="color:black;" class="MsoNormal">Anyone trying to build an audience.
 </li>
 </ul><p class="MsoNormal"><span style="color:black;"> </span></p><p class="MsoNormal"><span style="color:black;">Right now, we’re still working on the pricing model, so if you’re willing to be the guinea pig for this, we’ll grandfather you into the pricing that we have established on the site when that time comes, although
- our goal is to make this 100% free for our largest population of users. </span></p><p class="MsoNormal"><span style="color:black;"> </span></p><p class="MsoNormal"><span style="color:black;">All feedback is welcome.</span></p><p class="MsoNormal"><span style="color:black;"> </span></p><p class="MsoNormal"></p>
+ our goal is to make this 100% free for our largest population of users. </span></p><p class="MsoNormal"><span style="color:black;"> </span></p><p class="MsoNormal"><span style="color:black;">All feedback is welcome.</span></p><p class="MsoNormal"></p>
 <p> </p><p class="MsoNormal"></p>
 <p> </p><div><p class="MsoNormal"><span style="color:black;"><br />Posted via <a href="https://franklinpostal.com">Franklin</a>
