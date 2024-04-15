@@ -56,7 +56,7 @@ Check Ollama status:
 sudo systemctl status ollama
 {% endhighlight %}
 
-Download an LLM model, Ollama makes this dead easy. I'm running mistral because it's a smaller 7B model and it's pretty fast. I've also listed others you can download and run. As a word-of-caution, I beleive Ollama can context switch between models when the request is made, but it takes time perform the switch and load the model:
+Ollama makes it dead easy to download a model. I'm running mistral because it's a smaller 7B model and it's pretty fast. I've also listed others you can download and run. As a word-of-caution, I beleive Ollama can context switch between models when the request is made, but it takes time perform the switch and load the model:
 
 {% highlight ruby %}
 ollama run mistral
