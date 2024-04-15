@@ -4,7 +4,7 @@ title: "Hosting a private LLM in the cloud"
 author: Brice V.
 summary: Hosting a private LLM in the cloud is easier and more expensive than you think
 image: "/images/staffmapper_llm.gif"
-date: 2020-04-15 13:57:19
+date: 2024-04-15 13:57:19
 categories: [product, ideation]
 tags: [staff mapper, ideation, llm, ollama, openrouter]
 ---
