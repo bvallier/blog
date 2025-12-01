@@ -4,7 +4,7 @@ title: "Why I Built TinyPivot: Excel-Like Pivot Tables for Vue 3"
 author: Brice V.
 summary: After years of building dashboards with clunky data tables, I finally scratched my own itch and built a pivot table component for Vue 3.
 image: '/images/tinypivot_demo.gif'
-date: 2024-12-01 13:57:19
+date: 2025-12-01 13:57:19
 categories: [product, development]
 tags: [vue, pivot table, data grid, open source, tinypivot]
 ---
