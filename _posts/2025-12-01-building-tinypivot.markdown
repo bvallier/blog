@@ -1,25 +1,25 @@
 ---
 layout: post
-title: "Why I Built TinyPivot: Excel-Like Pivot Tables for Vue 3"
+title: "Why I Built TinyPivot: Excel-Like Pivot Tables for Vue 3 & React"
 author: Brice V.
-summary: After years of building dashboards with clunky data tables, I finally scratched my own itch and built a pivot table component for Vue 3.
+summary: After years of building dashboards with clunky data tables, I finally scratched my own itch and built pivot table components for Vue 3 and React.
 image: '/images/tinypivot_demo.gif'
 date: 2025-12-01 13:57:19
 categories: [product, development]
-tags: [vue, pivot table, data grid, open source, tinypivot]
+tags: [vue, react, pivot table, data grid, open source, tinypivot]
 ---
 
 If you've ever built a data-heavy dashboard in Vue, you know the pain. You need to display tabular data, let users sort and filter, maybe even do some aggregations. You reach for a data table library and... it's either way too heavy, looks like it was designed in 2012, or requires a PhD to configure.
 
 I've been there more times than I'd like to admit.
 
-After years of wrestling with various table components across client projects - at consultancies, on my own apps like Staff Mapper - I realized something: **there wasn't a simple, beautiful, Excel-like data grid for Vue 3 that just worked out of the box.** Sure, there were enterprise behemoths that cost thousands per year. And there were bare-bones tables that looked... bare-bones. Nothing in between.
+After years of wrestling with various table components across client projects - at consultancies, on my own apps like Staff Mapper - I realized something: **there wasn't a simple, beautiful, Excel-like data grid for Vue 3 or React that just worked out of the box.** Sure, there were enterprise behemoths that cost thousands per year. And there were bare-bones tables that looked... bare-bones. Nothing in between.
 
 So I built [TinyPivot](https://tiny-pivot.com).
 
 ## What Is It?
 
-TinyPivot is a Vue 3 component that gives you:
+TinyPivot is a **Vue 3 and React** component library that gives you:
 
 - An Excel-like data grid with auto-sizing columns
 - Column filtering with multi-select dropdowns
@@ -39,12 +39,12 @@ What starts as a simple `<table>` element inevitably becomes a feature-creep nig
 
 ## Dead Simple to Use
 
-Here's all you need to get started:
+Here's all you need to get started with **Vue 3**:
 
 {% highlight vue %}
 <script setup lang="ts">
-import { DataGrid } from 'tinypivot'
-import 'tinypivot/style.css'
+import { DataGrid } from '@smallwebco/tinypivot-vue'
+import '@smallwebco/tinypivot-vue/style.css'
 
 const data = [
   { region: 'North', product: 'Widget A', sales: 12500 },
@@ -56,6 +56,23 @@ const data = [
 <template>
   <DataGrid :data="data" />
 </template>
+{% endhighlight %}
+
+Or with **React**:
+
+{% highlight tsx %}
+import { DataGrid } from '@smallwebco/tinypivot-react'
+import '@smallwebco/tinypivot-react/style.css'
+
+const data = [
+  { region: 'North', product: 'Widget A', sales: 12500 },
+  { region: 'North', product: 'Widget B', sales: 8300 },
+  { region: 'South', product: 'Widget A', sales: 15200 },
+]
+
+export default function App() {
+  return <DataGrid data={data} />
+}
 {% endhighlight %}
 
 That's it. No config objects, no schema definitions, no boilerplate. Just pass your data and it figures out the columns.
@@ -80,11 +97,16 @@ I'm actively working on a few things:
 - **Column resizing** via drag handles
 - **Export to CSV/Excel** (the inevitable ask, might as well build it in)
 - **Nuxt module** for easier SSR integration
+- **Next.js** optimizations for React SSR
 
-If you're building dashboards in Vue 3 and need a data grid that doesn't suck, give [TinyPivot](https://tiny-pivot.com) a shot. It's on npm:
+If you're building dashboards in Vue 3 or React and need a data grid that doesn't suck, give [TinyPivot](https://tiny-pivot.com) a shot. It's on npm:
 
 {% highlight bash %}
-pnpm add tinypivot
+# Vue 3
+pnpm add @smallwebco/tinypivot-vue
+
+# React
+pnpm add @smallwebco/tinypivot-react
 {% endhighlight %}
 
 I'd love to hear what you think. Drop me a line on [X @bricevallieres](https://twitter.com/bricevallieres) or open an issue on [GitHub](https://github.com/Small-Web-Co/tinypivot).
