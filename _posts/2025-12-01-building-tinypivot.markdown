@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Why I Built TinyPivot: Excel-Like Pivot Tables for Vue 3 & React"
+title: "Introducing TinyPivot: Excel-Like Pivot Tables for Vue 3 & React"
 author: Brice V.
 summary: After years of building dashboards with clunky data tables, I finally scratched my own itch and built pivot table components for Vue 3 and React.
 image: '/images/tinypivot_demo.gif'
