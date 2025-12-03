@@ -1,17 +1,54 @@
 # Site settings
 title: Brice Vallieres
 email: brice@thesmallweb.co
-description: > # this means to ignore newlines until "baseurl:"
-  Views are my own and admittedly biased.
+description: >
+  Software and data analytics insights from Cambridge, MA. 
+  Thoughts on technology, consulting, and building products.
 baseurl: ""
-#images: "https://dl.dropboxusercontent.com/s/dv8fo6wlb14cv0p"
-url: "https://bvallieres.com" # the base hostname & protocol for your site
+url: "https://bvallieres.com"
 twitter_username: bricevallieres
-github_username:  bvallier
-#tagline: wired. thoughts.
+github_username: bvallier
 github: blog
+
+# Author info
+author:
+  name: Brice Vallieres
+  email: brice@thesmallweb.co
+  twitter: bricevallieres
+  linkedin: bricevallieres
+
+# SEO settings
+lang: en-US
+timezone: America/New_York
 
 # Build settings
 markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
 
+# Comments
 comments: true
+
+# Pagination (if using jekyll-paginate)
+# paginate: 10
+# paginate_path: "/page/:num/"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - docker-compose.yml
+  - vendor
+  - .bundle
+
+# Include files
+include:
+  - _pages
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed

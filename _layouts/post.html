@@ -2,96 +2,60 @@
 layout: default
 ---
 
-<!-- ========== Sidebar ========== -->
-<br />
-<br />
-
-<!-- ========== Single Blog Post ========== -->
-<div class="container">
-<div class="row">
-
+<main class="container" role="main">
+  <div class="row">
+    <!-- Sidebar -->
     <div class="col-lg-3 viewport-hide">
-      <aside class="col-md-offset-2 sidebar">
-
-      <!-- Search - Widget -->
-      <div class="col-md-12 ws-s search-widget">
-        <a class="site-title" href="/..{{ site.baseurl }}/"><img class="image" style="border-radius: 5px; border-width: 2px; border-color: #FFF; border-style: solid;" src="/../images/brice_boston.png" alt="Blog Post 1" height="160" width="160"></a>
-        <br />
-        <br />
-        <h3>Brice Vallieres</h3>
-
-        Software and data analytics consultant working out of Cambridge, MA. 🚀
-        <br />
-        <br />
-        <a href="mailto:brice@thesmallweb.co">Reach out</a>
-        <br />
-        <a rel="ck_modal" href="#ck_modal">Subscribe</a>
-
-        <script async id="_ck_320448" src="https://forms.convertkit.com/320448?v=6"></script>
-
-         <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a><br /><br />
-
-         <a href="https://twitter.com/bricevallieres" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true"></a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-        <!-- Place this tag where you want the button to render. -->
-        
-        <a class="github-button" href="https://github.com/bvallier" data-count-href="/bvallier/followers" data-count-api="/users/bvallier#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @bvallier on GitHub">Follow</a>
-        <br />
-        <br />
-        <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-        <br />
-        <br />
-        <u>Projects</u><br />
-        <a href="https://staffmapper.com?ref=blog">Staff Mapper</a><br />
-        <a href="https://tiny-pivot.com">TinyPivot</a><br />
-      </div><!-- / .recent-posts-widget --><br />
-
-    </aside><!-- / .sidebar -->
-  </div>
-  <div class="col-lg-8">
-    <body>
-      <!-- Blog Post -->
-        <!-- Image -->
-        <div id="post-content">
-          <!-- Meta data -->
-
-          <!-- Title -->
-          <div class="row">
-            <div class="col-lg-10">
-              <h4 class="post-title">{{ page.title }}</h4>
-              <a href="{{ page.url | prepend: site.baseurl }}#disqus_thread" class="post-comments"></a>
-            </div>
-            <div class="col-lg-2">
-              <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br />
-               <span> {{ page.date | date: "%b %-d, %Y" }}</span><br />
-               
-            </div>
-          </div>
-
-          <br />
-          <br />
-          <article class="post-content"> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
-            {{ content }}
-          </article> <!--NEED TO KEEP THIS FOR MARKDOWN TO GET PARSED -->
-
-          <br />
-          <br />
-
-          <script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-
-          <br />
-          <br />
-
-
-          {% include disqus.html %}
+      <aside class="sidebar" role="complementary">
+        <div class="search-widget">
+          <a href="{{ site.baseurl }}/" aria-label="Home">
+            <img class="image" src="/images/brice_boston.png" alt="Brice Vallieres" height="100" width="100" loading="eager">
+          </a>
+          
+          <h3>Brice Vallieres</h3>
+          <p>Software & data analytics consultant in Cambridge, MA 🚀</p>
+          
+          <a href="https://twitter.com/bricevallieres" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false"></a>
+          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a class="github-button" href="https://github.com/bvallier" aria-label="Follow @bvallier on GitHub">Follow</a>
+          
+          <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></p>
+          <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a>
+          
+          <u>Projects</u>
+          <a href="https://staffmapper.com?ref=blog">Staff Mapper</a><br>
+          <a href="https://tiny-pivot.com">TinyPivot</a>
         </div>
-      </div><!-- / .blog-post-single -->
-    </div><!-- / .blog-post-single -->
+      </aside>
+    </div>
 
-<!-- ========== Sidebar ========== -->
+    <!-- Blog Post Content -->
+    <div class="col-lg-8">
+      <article id="post-content" itemscope itemtype="https://schema.org/BlogPosting">
+        <header>
+          <div class="header-left">
+            <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
+            <span class="post-date">
+              <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                {{ page.date | date: "%b %-d, %Y" }}
+              </time>
+            </span>
+          </div>
+          <div class="header-right">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+        </header>
 
-    </body>
-    <br />
-    <br />
+        <div class="post-content" itemprop="articleBody">
+          {{ content }}
+        </div>
+
+        <footer>
+          <script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
+          {% include disqus.html %}
+        </footer>
+      </article>
+    </div>
   </div>
-</div>
-</div>
+</main>

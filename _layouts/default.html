@@ -1,24 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body id="page-top">
-
-    {{ content }}
+<body id="page-top">
+  <!-- Interactive Network Background -->
+  <canvas id="network-bg" aria-hidden="true"></canvas>
+  
+  {% seo %}
+  {{ content }}
 
   <script id="dsq-count-scr" src="//bvallieres.disqus.com/count.js" async></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  </body>
 
+  <!-- Copy code button and mobile enhancements -->
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-65760216-1', 'auto');
-    ga('send', 'pageview');
+    document.addEventListener('DOMContentLoaded', function() {
+      // Copy button for code blocks
+      document.querySelectorAll('.highlight').forEach(function(block) {
+        var btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.addEventListener('click', function() {
+          var code = block.querySelector('code');
+          var text = code ? code.textContent : block.textContent;
+          navigator.clipboard.writeText(text).then(function() {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+              btn.textContent = 'Copy';
+              btn.classList.remove('copied');
+            }, 2000);
+          });
+        });
+        block.appendChild(btn);
+      });
+      
+      // Wrap tables for horizontal scroll on mobile
+      document.querySelectorAll('.post-content table').forEach(function(table) {
+        if (!table.parentElement.classList.contains('table-wrapper')) {
+          var wrapper = document.createElement('div');
+          wrapper.className = 'table-wrapper';
+          table.parentNode.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
+    });
   </script>
+
+  <!-- Blog Posts Data for Interactive Background -->
+  <script>
+    window.blogPosts = [
+      {% for post in site.posts %}
+      {
+        title: {{ post.title | jsonify }},
+        summary: {{ post.summary | default: post.excerpt | strip_html | truncate: 120 | jsonify }},
+        url: "{{ post.url | prepend: site.baseurl }}",
+        date: "{{ post.date | date: '%b %d, %Y' }}"
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ];
+  </script>
+  
+  <!-- Interactive Network Background -->
+  <script src="/js/network-bg.js"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65760216-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('set', 'anonymize_ip', true);
+    gtag('config', 'UA-65760216-1');
+  </script>
+</body>
 
 </html>

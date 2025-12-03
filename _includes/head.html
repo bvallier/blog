@@ -3,192 +3,99 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:type"            content="website" />
-  <meta property="og:url"           content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
-  <meta property="og:title"         content="{{ page.title }}" />
-  <meta property="og:image"         content="{{ page.image }}" />
-  <meta property="og:description"   content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
-  <meta property="fb:app_id"        content="1405428132863318" />
-
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <!-- SEO Meta Tags -->
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-
-  <link rel="stylesheet" href="/css/custom.css">
-  <link rel="stylesheet" href="/css/syntax.css">
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/magnific-popup.css">
-  <link rel="stylesheet" href="/css/responsive.css">
-  <link rel="stylesheet" href="/css/c3.min.css">
-
-  <link rel="icon" href="/../../favicon.ico" />
+  <meta name="author" content="{{ site.title }}">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ', ' }}{% else %}software, data analytics, consulting, technology{% endif %}">
   
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
+  <meta property="og:image" content="{% if page.image %}{{ page.image }}{% else %}{{ site.url }}/images/brice_boston.png{% endif %}" />
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="fb:app_id" content="1405428132863318" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@{{ site.twitter_username }}">
+  <meta name="twitter:creator" content="@{{ site.twitter_username }}">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:image" content="{% if page.image %}{{ page.image }}{% else %}{{ site.url }}/images/brice_boston.png{% endif %}">
+
+  <!-- Article specific meta (for posts) -->
+  {% if page.layout == 'post' %}
+  <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  <meta property="article:author" content="{{ site.title }}">
+  {% if page.tags %}
+  {% for tag in page.tags %}
+  <meta property="article:tag" content="{{ tag }}">
+  {% endfor %}
+  {% endif %}
+  {% endif %}
+
+  <!-- Canonical URL -->
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
-  
-  <!-- TypeKit -->
-  <script src="https://use.typekit.net/dve6wto.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
-  <!-- TypeKit -->
-  
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Modern Fonts - Source Serif for body, DM Sans for headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+
+  <!-- Scripts -->
   <script src="/js/jquery.min.js"></script>
-  <script src="/js/crossfilter.min.js"></script>
   <script src="/js/d3.min.js"></script>
   <script src="/js/c3.min.js"></script>
-  <script src="/js/d3-color.v1.min.js"></script>
-  <script src="/js/d3-interpolate.v1.min.js"></script>
-  <script src="/js/d3-scale-chromatic.v1.min.js"></script>
+  <link rel="stylesheet" href="/css/c3.min.css">
   <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 
-
-<!--
-  <script>
-        /*!
-    Mailchimp Ajax Submit
-    jQuery Plugin
-    Author: Siddharth Doshi
-
-    Use:
-    ===
-    $('#form_id').ajaxchimp(options);
-
-    - Form should have one <input> element with attribute 'type=email'
-    - Form should have one label element with attribute 'for=email_input_id' (used to display error/success message)
-    - All options are optional.
-
-    Options:
-    =======
-    options = {
-        language: 'en',
-        callback: callbackFunction,
-        url: 'http://blahblah.us1.list-manage.com/subscribe/post?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f'
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    {% if page.layout == 'post' %}
+    "@type": "BlogPosting",
+    "headline": "{{ page.title | escape }}",
+    "datePublished": "{{ page.date | date_to_xmlschema }}",
+    "dateModified": "{{ page.date | date_to_xmlschema }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "{{ site.title }}"
+    },
+    "description": "{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}{% else %}{{ site.description | escape }}{% endif %}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
     }
-
-    Notes:
-    =====
-    To get the mailchimp JSONP url (undocumented), change 'post?' to 'post-json?' and add '&c=?' to the end.
-    For e.g. 'http://blahblah.us1.list-manage.com/subscribe/post-json?u=5afsdhfuhdsiufdba6f8802&id=4djhfdsh99f&c=?',
-    */
-
-    (function ($) {
-        'use strict';
-
-        $.ajaxChimp = {
-            responses: {
-                'We have sent you a confirmation email'                                             : 0,
-                'Please enter a value'                                                              : 1,
-                'An email address must contain a single @'                                          : 2,
-                'The domain portion of the email address is invalid (the portion after the @: )'    : 3,
-                'The username portion of the email address is invalid (the portion before the @: )' : 4,
-                'This email address looks fake or invalid. Please enter a real email address'       : 5
-            },
-            translations: {
-                'en': null
-            },
-            init: function (selector, options) {
-                $(selector).ajaxChimp(options);
-            }
-        };
-
-        $.fn.ajaxChimp = function (options) {
-            $(this).each(function(i, elem) {
-                var form = $(elem);
-                var email = form.find('input[type=email]');
-                var label = form.find('label[for=' + email.attr('id') + ']');
-
-                var settings = $.extend({
-                    'url': form.attr('action'),
-                    'language': 'en'
-                }, options);
-
-                var url = settings.url.replace('/post?', '/post-json?').concat('&c=?');
-
-                form.attr('novalidate', 'true');
-                email.attr('name', 'EMAIL');
-
-                form.submit(function () {
-                    var msg;
-                    function successCallback(resp) {
-                        if (resp.result === 'success') {
-                            msg = 'We have sent you a confirmation email';
-                            label.removeClass('error').addClass('valid');
-                            email.removeClass('error').addClass('valid');
-                        } else {
-                            email.removeClass('valid').addClass('error');
-                            label.removeClass('valid').addClass('error');
-                            var index = -1;
-                            try {
-                                var parts = resp.msg.split(' - ', 2);
-                                if (parts[1] === undefined) {
-                                    msg = resp.msg;
-                                } else {
-                                    var i = parseInt(parts[0], 10);
-                                    if (i.toString() === parts[0]) {
-                                        index = parts[0];
-                                        msg = parts[1];
-                                    } else {
-                                        index = -1;
-                                        msg = resp.msg;
-                                    }
-                                }
-                            }
-                            catch (e) {
-                                index = -1;
-                                msg = resp.msg;
-                            }
-                        }
-
-                        // Translate and display message
-                        if (
-                            settings.language !== 'en'
-                            && $.ajaxChimp.responses[msg] !== undefined
-                            && $.ajaxChimp.translations
-                            && $.ajaxChimp.translations[settings.language]
-                            && $.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]]
-                        ) {
-                            msg = $.ajaxChimp.translations[settings.language][$.ajaxChimp.responses[msg]];
-                        }
-                        label.html(msg);
-
-                        label.show(2000);
-                        if (settings.callback) {
-                            settings.callback(resp);
-                        }
-                    }
-
-                    var data = {};
-                    var dataArray = form.serializeArray();
-                    $.each(dataArray, function (index, item) {
-                        data[item.name] = item.value;
-                    });
-
-                    $.ajax({
-                        url: url,
-                        data: data,
-                        success: successCallback,
-                        dataType: 'jsonp',
-                        error: function (resp, text) {
-                            console.log('mailchimp ajax submit error: ' + text);
-                        }
-                    });
-
-                    // Translate and display submit message
-                    var submitMsg = 'Submitting...';
-                    if(
-                        settings.language !== 'en'
-                        && $.ajaxChimp.translations
-                        && $.ajaxChimp.translations[settings.language]
-                        && $.ajaxChimp.translations[settings.language]['submit']
-                    ) {
-                        submitMsg = $.ajaxChimp.translations[settings.language]['submit'];
-                    }
-                    label.html(submitMsg).show(2000);
-
-                    return false;
-                });
-            });
-            return this;
-        };
-    })(jQuery);
+    {% else %}
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}",
+    "description": "{{ site.description | escape }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ site.title }}"
+    }
+    {% endif %}
+  }
   </script>
--->
 </head>
