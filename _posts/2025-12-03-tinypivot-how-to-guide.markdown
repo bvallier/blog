@@ -1,15 +1,20 @@
 ---
 layout: post
-title: "TinyPivot How-To: Building Data-Heavy UIs Without the Headache"
+title: "Vue 3 & React Pivot Table Tutorial: Build Data Dashboards with TinyPivot"
 author: Brice V.
-summary: A practical guide to using TinyPivot for real-world scenarios - from sales dashboards to inventory tracking, with code examples for Vue and React.
+summary: Step-by-step tutorial for adding lightweight pivot tables to Vue 3 and React apps. Learn filtering, sorting, aggregations, and Excel-like data grids with code examples.
 image: '/images/tinypivot_demo.gif'
 date: 2025-12-03 10:00:00
+last_modified_at: 2025-12-17
 categories: [development, tutorial]
-tags: [vue, react, pivot table, data grid, tinypivot, tutorial]
+tags: [vue 3 pivot table tutorial, react pivot table tutorial, vue 3 data grid, react data grid, lightweight data table, tinypivot, javascript pivot table, data visualization]
 ---
 
 Last week someone asked me "what can TinyPivot actually *do*?" - and I realized I'd been so focused on building features that I hadn't written a proper guide on how to use them. So here's the practical stuff: real scenarios, actual code, and the patterns I've found myself using repeatedly.
+
+Whether you're looking for a **lightweight Vue 3 pivot table** or a **React data grid component**, this tutorial covers everything from basic setup to advanced pivot table configurations.
+
+If you haven't already, check out [the intro post on why I built TinyPivot](/product/development/2025/12/01/building-tinypivot.html) for the backstory and motivation.
 
 ## Try It Now
 
@@ -24,9 +29,9 @@ Before we dive into code, here's the actual component in action. Click around, f
   </iframe>
 </div>
 
-## The Basics: Just Show Me Some Data
+## The Basics: Vue 3 Data Grid Setup
 
-Let's start with the most common case. You have an array of objects and you need to display them in a grid. No fancy config - just data in, table out.
+Let's start with the most common case. You have an array of objects and you need to display them in a grid. No fancy config - just data in, table out. This lightweight approach means no complex schemas or configuration objects.
 
 {% highlight vue %}
 <script setup lang="ts">
@@ -82,12 +87,12 @@ The column headers become clickable filters. Users can:
 - Use the global search (Cmd+F) to find specific records
 - Export the filtered view to CSV
 
-## Scenario 2: Handling Large Datasets
+## Scenario 2: React Data Grid with Large Datasets
 
-When you're dealing with 10K+ rows, pagination keeps things snappy:
+When you're dealing with 10K+ rows, pagination keeps things snappy. Here's how to set up a **lightweight React pivot table** that handles large datasets efficiently:
 
 {% highlight tsx %}
-// React example
+// React data grid example
 import { DataGrid } from '@smallwebco/tinypivot-react'
 import '@smallwebco/tinypivot-react/style.css'
 
@@ -167,9 +172,9 @@ Users can:
 
 This is the kind of thing finance teams *love*. They can pull a subset of data into their own spreadsheets without exporting the whole thing.
 
-## Scenario 5: Building a Pivot Table (Pro)
+## Scenario 5: Vue 3 Pivot Table with Drag-and-Drop (Pro)
 
-This is where it gets interesting. Say you have sales data and want to analyze it by region and product:
+This is where TinyPivot really shines as a **Vue 3 pivot table component**. Say you have sales data and want to analyze it by region and product:
 
 {% highlight vue %}
 <script setup lang="ts">
@@ -348,7 +353,9 @@ const flatData = apiResponse.map(item => ({
 
 ## Wrapping Up
 
-The patterns above cover probably 90% of what I've needed across various projects. The core idea is: get data on screen fast, let users explore it, and don't make them wait for the backend when they want to filter or aggregate.
+The patterns above cover probably 90% of what I've needed across various projects. Whether you need a **lightweight Vue 3 data grid**, a **React pivot table component**, or something that handles both - TinyPivot keeps things simple without sacrificing features.
+
+The core idea is: get data on screen fast, let users explore it, and don't make them wait for the backend when they want to filter or aggregate. And do it all with a tiny bundle size.
 
 Full docs and live demo at [tiny-pivot.com](https://tiny-pivot.com). The npm packages are `@smallwebco/tinypivot-vue` for Vue 3 and `@smallwebco/tinypivot-react` for React.
 
