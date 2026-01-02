@@ -2,7 +2,7 @@
 layout: post
 title: "Introducing Chart Builder: Data Visualization Comes to TinyPivot"
 author: Brice V.
-summary: TinyPivot now includes a drag-and-drop chart builder with 10 chart types. Build bar charts, line graphs, pie charts, and more — all while respecting your data grid filters.
+summary: TinyPivot now includes a drag-and-drop chart builder with 6 chart types. Build bar charts, line graphs, pie charts, and more — all while respecting your data grid filters.
 image: '/images/chart-builder.gif'
 date: 2026-01-02 13:50:00
 categories: [product, development]
@@ -23,11 +23,11 @@ TinyPivot now has three ways to look at your data:
 
 1. **Grid** — Your classic Excel-like data table with sorting, filtering, and cell selection
 2. **Pivot** — Drag-and-drop pivot tables with aggregations and totals
-3. **Chart** — A visual chart builder with 10 chart types
+3. **Chart** — A visual chart builder with 6 chart types
 
 Each view shares the same filtered dataset. Apply a filter in Grid view, and your Pivot and Chart views automatically reflect that subset. No configuration gymnastics needed.
 
-## 10 Chart Types
+## 6 Chart Types
 
 Chart Builder supports the visualizations you actually need:
 
@@ -38,10 +38,6 @@ Chart Builder supports the visualizations you actually need:
 | **Area** | Volume trends, stacked comparisons |
 | **Pie** | Part-to-whole proportions (2-6 categories) |
 | **Donut** | Proportions with a center metric |
-| **Scatter** | Correlation, outlier detection |
-| **Bubble** | Three-variable comparison |
-| **Heatmap** | Density, cross-tabulation patterns |
-| **Treemap** | Hierarchical proportions, many categories |
 | **Radar** | Multi-metric comparison, balanced scorecards |
 
 ## Drag-and-Drop Configuration
