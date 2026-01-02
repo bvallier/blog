@@ -3,11 +3,13 @@ layout: post
 title: "Introducing Chart Builder: Data Visualization Comes to TinyPivot"
 author: Brice V.
 summary: TinyPivot now includes a drag-and-drop chart builder with 10 chart types. Build bar charts, line graphs, pie charts, and more — all while respecting your data grid filters.
-image: '/images/tinypivot_chart_builder.png'
+image: '/images/chart-builder.gif'
 date: 2026-01-02 13:50:00
 categories: [product, development]
 tags: [vue 3, react, chart builder, data visualization, pivot table, tinypivot, charting library, react charts, vue charts]
 ---
+
+![TinyPivot Chart Builder Demo](/images/chart-builder.gif)
 
 When I built TinyPivot, the goal was simple: give developers a lightweight way to display, filter, and pivot their data without the bloat of enterprise solutions. Grid view for raw data exploration. Pivot view for aggregated insights.
 
