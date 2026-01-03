@@ -9,7 +9,7 @@ categories: [product, development]
 tags: [vue 3, react, ai data analyst, embedded ai, natural language sql, data grid, tinypivot, llm integration]
 ---
 
-We recently shipped the [AI Data Analyst](/tinypivot/ai/data-analysis/2026/01/02/tinypivot-ai-data-analyst.html) feature for TinyPivot - natural language queries that generate SQL against your data. Today I want to dive into what makes it unique: the **embedded** part.
+TinyPivot now includes an **Embedded AI Analyst** - natural language queries that generate SQL against your data. What makes it unique is the **embedded** part.
 
 Most AI-powered data tools work like this: you leave your app, go to some external dashboard, paste in your data or connect a database, ask your question, then copy results back. It's clunky. It breaks your flow.
 
