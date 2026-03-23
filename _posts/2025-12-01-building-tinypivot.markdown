@@ -5,7 +5,7 @@ author: Brice V.
 summary: A lightweight, zero-dependency pivot table and data grid component for Vue 3 and React. Excel-like features without the bloat - filtering, sorting, aggregations, and drag-and-drop pivoting.
 image: '/images/tinypivot_demo.gif'
 date: 2025-12-01 13:57:19
-last_modified_at: 2025-12-17
+last_modified_at: 2026-03-23
 categories: [product, development]
 tags: [vue 3, vue 3 pivot table, vue 3 data grid, react, react pivot table, react data grid, lightweight pivot table, data grid component, open source, tinypivot]
 ---
@@ -28,7 +28,7 @@ TinyPivot is a **lightweight Vue 3 and React pivot table component** that gives 
 - Keyboard navigation and cell selection
 - Copy to clipboard (Cmd+C like you'd expect)
 
-And if you upgrade to Pro, you get the real magic: **drag-and-drop pivot tables** with aggregations, totals, and percentage modes. The kind of stuff your finance team has been asking for.
+TinyPivot now includes **free drag-and-drop pivot tables** with Sum aggregation, totals, and calculated fields. Pro is where the more advanced analytics live: richer aggregations, charts, embedded AI, and watermark removal.
 
 ## The Problem I Was Solving
 
@@ -36,7 +36,7 @@ Here's the thing - I kept running into the same pattern on client projects. Some
 
 Every. Single. Time.
 
-What starts as a simple `<table>` element inevitably becomes a feature-creep nightmare. I wanted something that could handle the basics beautifully out of the gate, but scale up to pivot table territory when the inevitable ask came.
+What starts as a simple `<table>` element inevitably becomes a feature-creep nightmare. I wanted something that could handle the basics beautifully out of the gate, but scale up into richer analytics territory when the inevitable ask came.
 
 ## Dead Simple to Use
 
@@ -82,13 +82,13 @@ That's it. No config objects, no schema definitions, no boilerplate. Just pass y
 
 I went back and forth on pricing for a while. Ultimately, I landed on a freemium approach:
 
-**Free tier** gets you the data grid with filtering, sorting, and all the basics. No watermark tricks, no feature time-bombs. It's genuinely useful.
+**Free tier** gets you the data grid with filtering, sorting, export, and free pivot tables with Sum aggregation, totals, and calculated fields. It's genuinely useful.
 
-**Pro licenses** ($49 for a single project, $149 unlimited) unlock pivot tables, aggregations, totals, and removes the small "Powered by TinyPivot" badge.
+**Pro licenses** ($49 for a single project, $149 unlimited) unlock advanced aggregations, charts, embedded AI, and remove the small "Powered by TinyPivot" badge.
 
 Why this model? Because I've been burned by libraries that bait-and-switch. You integrate them, ship to production, and then realize you need a feature that's locked behind a $5K/year enterprise plan. Not cool.
 
-With TinyPivot, you can evaluate everything in demo mode before buying. And if the free tier does what you need, use it forever. I'd rather have devs actually using it than hiding it behind a paywall nobody can afford.
+With TinyPivot, you can evaluate everything in demo mode before buying. And if the free tier does what you need, use it forever. I'd rather have devs actually using it than hiding the useful parts behind a paywall nobody can afford.
 
 ## What's Next
 
@@ -115,4 +115,3 @@ I'd love to hear what you think. Drop me a line on [X @bricevallieres](https://t
 **Next up:** Check out the [Vue 3 & React Pivot Table Tutorial](/development/tutorial/2025/12/03/tinypivot-how-to-guide.html) for practical examples and real-world use cases.
 
 <center>🚀 Happy pivoting 🚀</center>
-

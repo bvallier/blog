@@ -5,7 +5,7 @@ author: Brice V.
 summary: Step-by-step tutorial for adding lightweight pivot tables to Vue 3 and React apps. Learn filtering, sorting, aggregations, and Excel-like data grids with code examples.
 image: '/images/tinypivot_demo.gif'
 date: 2025-12-03 10:00:00
-last_modified_at: 2025-12-17
+last_modified_at: 2026-03-23
 categories: [development, tutorial]
 tags: [vue 3 pivot table tutorial, react pivot table tutorial, vue 3 data grid, react data grid, lightweight data table, tinypivot, javascript pivot table, data visualization]
 ---
@@ -172,7 +172,7 @@ Users can:
 
 This is the kind of thing finance teams *love*. They can pull a subset of data into their own spreadsheets without exporting the whole thing.
 
-## Scenario 5: Vue 3 Pivot Table with Drag-and-Drop (Pro)
+## Scenario 5: Vue 3 Pivot Table with Drag-and-Drop
 
 This is where TinyPivot really shines as a **Vue 3 pivot table component**. Say you have sales data and want to analyze it by region and product:
 
@@ -199,16 +199,19 @@ const salesData = ref([
 </template>
 {% endhighlight %}
 
-With Pro enabled, users can drag fields into row/column slots and get instant aggregations. Want to see total revenue by region? Drag `region` to rows and `revenue` to values. Want to break it down by quarter? Drag `quarter` to columns.
+TinyPivot includes pivot mode in the free tier, so users can drag fields into row/column slots and get instant Sum-based aggregations. Want to see total revenue by region? Drag `region` to rows and `revenue` to values. Want to break it down by quarter? Drag `quarter` to columns.
 
-The aggregations available:
+In the free tier, you get:
 - **Sum** - total of all values
-- **Count** - number of records
-- **Average** - mean value
-- **Min/Max** - range boundaries
-- **Median** - middle value (great for salary data where outliers skew averages)
-- **Std Dev** - spread measure
-- **% of Total** - each cell's contribution to the grand total
+- **Row/column totals** - quick rollups without extra setup
+- **Calculated fields** - create derived metrics from your existing columns
+
+If you upgrade to Pro, TinyPivot adds the fuller analytics layer:
+- **Count / Average / Min / Max**
+- **Median / Std Dev**
+- **% of Total**
+- **Chart Builder**
+- **Embedded AI Analyst**
 
 ## Scenario 6: Custom Aggregations
 
@@ -360,4 +363,3 @@ The core idea is: get data on screen fast, let users explore it, and don't make 
 Full docs and live demo at [tiny-pivot.com](https://tiny-pivot.com). The npm packages are `@smallwebco/tinypivot-vue` for Vue 3 and `@smallwebco/tinypivot-react` for React.
 
 Questions or feedback? Find me on [X @bricevallieres](https://twitter.com/bricevallieres) or open an issue on [GitHub](https://github.com/Small-Web-Co/tinypivot).
-
