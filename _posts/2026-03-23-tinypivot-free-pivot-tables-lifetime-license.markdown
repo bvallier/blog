@@ -3,7 +3,7 @@ layout: post
 title: "TinyPivot Update: Free Pivot Tables + Lifetime Pro Licensing"
 author: Brice V.
 summary: TinyPivot now makes its core story much clearer: free pivot tables with Sum aggregation, totals, and calculated fields for Vue 3 and React. Pro focuses on advanced aggregations, charts, AI Analyst, and watermark removal with a lifetime license.
-image: '/images/tinypivot_demo.gif'
+image: '/images/tinypivot_pivot.png'
 date: 2026-03-23 11:00:00
 last_modified_at: 2026-03-23
 categories: [product, development]
