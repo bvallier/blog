@@ -47,19 +47,19 @@ We tested across **five models** — Mac-local `Inkling 2 Mini`, my home DGX Spa
 
 | Model | Class | Baseline (`bare-sql` / Python) | TinyPivot Free | TinyPivot Pro | Baseline → Pro Impact |
 |---|---|---|---|---|---|
-| **Inkling 2 Mini** (fast) | Small Local (Mac) | 14/18 (78%) · 46.1s · 5.11t | 13/18 (72%) · 38.3s | **16/18 (89%)** · 25.2s · 4.22t | **+11 pts · −45% faster (4.0× Hard DS) · −50% out tok** |
-| **DeepSeek V4.1 Flash** | Local Cluster (DGX Spark) | 17/18 (94%) · 25.7s · 4.94t | 17/18 (94%) · 27.0s | **18/18 (100%)** · 15.6s · 3.44t | **+6 pts · −39% faster (3.4× Hard DS) · −30% turns · −48% out** |
-| **Claude Haiku 5.5** | Fast Cloud | 15/18 (83%) · 13.1s · $0.074* | 16/18 (89%) · 14.6s | **18/18 (100%)** · 12.5s · $0.083* | **+17 pts (matches Sonnet/Opus) · −5% faster (−23% Hard DS)** |
-| **Claude Sonnet 5.5** | Balanced Frontier | 18/18 (100%) · 20.0s · $1.22* | 16/18 (89%) · 18.5s | **18/18 (100%)** · 18.8s · $1.01* | **100% parity + lineage · −6% faster · −17% warm API*** |
-| **Claude Opus 5.5** | Flagship Frontier | 18/18 (100%) · 21.5s · $2.32* | 16/18 (89%) · 22.2s | **17/18 (94%)†** · 22.0s · $1.38* | **−20% faster Hard DS (2.9× OLS) · −41% warm API*** |
-| **Combined (90 tasks/arm)** | **All 5 Models** | **82/90 (91%) · 25.3s** | **78/90 (87%) · 24.1s** | **87/90 (97%) · 18.8s** | **+6 pts overall · −26% faster · 2.1× faster Hard DS (80% → 93%)** |
+| **Inkling 2 Mini** (fast) | Small Local (Mac) | 14/18 (78%) · 46.1s · 5.11t | 15/18 (83%) · 37.3s | **18/18 (100%)** · 26.0s · 4.22t | **+22 pts (Free +6) · −44% faster (3.8× Hard DS) · −50% out tok** |
+| **DeepSeek V4.1 Flash** | Local Cluster (DGX Spark) | 17/18 (94%) · 25.7s · 4.94t | 17/18 (94%) · 27.7s | **18/18 (100%)** · 15.6s · 3.44t | **+6 pts · −39% faster (3.4× Hard DS) · −30% turns · −48% out** |
+| **Claude Haiku 5.5** | Fast Cloud | 15/18 (83%) · 13.1s · $0.074* | 16/18 (89%) · 13.9s | **18/18 (100%)** · 12.5s · $0.083* | **+17 pts (Free +6) · −5% faster (−23% Hard DS)** |
+| **Claude Sonnet 5.5** | Balanced Frontier | 18/18 (100%) · 20.0s · $1.22* | 16/18 (89%) · 18.0s | **18/18 (100%)** · 18.8s · $1.01* | **100% parity (no Bash) + lineage · −6% faster · −17% warm API*** |
+| **Claude Opus 5.5** | Flagship Frontier | 18/18 (100%) · 21.5s · $2.32* | 18/18 (100%) · 21.9s | **18/18 (100%)** · 22.0s · $1.41* | **100% Free & Pro · −19% faster Hard DS · −39% warm API*** |
+| **Combined (90 tasks/arm)** | **All 5 Models** | **82/90 (91%) · 25.3s** | **82/90 (91%) · 23.8s** | **90/90 (100%) · 19.0s** | **+9 pts overall · −25% faster · 2.1× faster Hard DS (80% → 100%)** |
 
-*\*Claude 5.5 arms ran via local Claude Code subscription ($0 extra spend) with costs computed from published Anthropic API rates; Sonnet & Opus `tp-pro` reflect warm-session prompt caching (90% cache-read discount on repeated tool schemas). †Opus Pro's lone flagged item (`ds_confounded_ols`) caught confounding and exact +8 pp lift in 21.5s vs. 61.4s vanilla (2.9× faster), differing only on phrasing regex.*
+*\*Claude 5.5 arms ran via local Claude Code subscription ($0 extra spend) with costs computed from published Anthropic API rates; `TinyPivot Free` ran additively alongside Claude Code's built-in `Bash` (matching real installs), while `TinyPivot Pro` ran MCP-only (`Bash` disabled) and still hit 54/54 (100%) across all three Claude models. Sonnet & Opus `tp-pro` reflect warm-session prompt caching (90% cache-read discount on repeated tool schemas).*
 
 By category across all 5 models (30 model-tasks per arm):
-- **Routine BI:** `93% (28/30)` → **`100% (30/30)`** with TinyPivot Pro (`17.4s` vs `17.7s`).
-- **Relational Analytics:** `100% (30/30)` → **`97% (29/30)`** with clickable Studio lineage.
-- **Hard Data Science:** `80% (24/30)` → **`93% (28/30, +13 pts)`**, **`2.1× faster`** (`39.7s → 19.1s/task`), **`−20% fewer turns`** (`5.40 → 4.33`), and **`−32% fewer output tokens`**.
+- **Routine BI:** `93% (28/30)` → `93% (28/30)` Free → **`100% (30/30)`** with TinyPivot Pro (`17.4s` vs `17.7s`).
+- **Relational Analytics:** `100% (30/30)` → **`100% (30/30)`** Free → **`100% (30/30)`** Pro with unweighted `AVG(rate/position)` guards and clickable Studio lineage.
+- **Hard Data Science:** `80% (24/30)` → `80% (24/30, −15% faster)` Free → **`100% (30/30, +20 pts!)`**, **`2.1× faster`** (`39.7s → 19.3s/task`), **`−20% fewer turns`** (`5.40 → 4.33`), and **`−32% fewer output tokens`**.
 
 ### 2. Official External Benchmark: Adyen / Hugging Face `adyen/DABstep` Dev (60 Runs)
 
