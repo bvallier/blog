@@ -67,11 +67,9 @@ Three things surprised me even as the author:
 3. **Local Recursive Data Memory:** Every `[AUDIT]` catch and every human SQL edit in TinyPivot Studio is saved locally by schema fingerprint (`~/.local/share/tinypivot/memory.json`, never uploaded). On repeat inquiries against the same data, TinyPivot recalls a ~40-token brief on Turn 1 — cutting `Inkling 2 Mini` join-trap tokens by **−47%** (`32.5k → 17.1k`, 6 → 3 turns).
 4. **Proof-of-Work Studio, Notebook & Lineage:** Every chart now comes with a flexible 4-pane Studio IDE + Notebook view, editable SQL with lossless revision history, clickable **Underlying Source Rows**, order-independent SHA-256 Data Hashes, isolated saved sessions, and zero-CDN **Offline HTML Notebooks** you can email straight to a stakeholder.
 
-## Dropping the 2,500-Row Free Limit
+## Unlimited Local Rows on Free
 
-One product decision came straight out of this work: **we're removing the 2,500-row limit on TinyPivot Free.**
-
-Truncating a 15,000-row CSV to 2,500 rows directly fights the promise of a trust layer. Starting today, **TinyPivot Free includes unlimited local rows**, charts, pivots, DuckDB SQL, Studio IDE + Proof-of-Work Lineage, offline HTML export, basic SQL guardrails & repair hints, and `analyze(explain_change, ab_test)`.
+An analyst evaluating a trust layer on a 15,000-row CSV should never see partial totals. **TinyPivot Free includes unlimited local rows**, charts, pivots, DuckDB SQL, Studio IDE + Proof-of-Work Lineage, offline HTML export, basic SQL guardrails & repair hints, and `analyze(explain_change, ab_test)` — with no signup or trial clock.
 
 **TinyPivot Pro** now gates what serious analysts and teams actually pay for: deep relational & statistical audits, the full Pro Data Science shelf, Recursive Data Memory, closed-loop claim verification, editorial themes, white-label HTML & `.xlsx` exports, and direct PostgreSQL.
 
