@@ -8,10 +8,10 @@ image: "/images/covers/private-llm.jpg"
 date: 2024-04-15 13:57:19
 last_modified_at: 2026-11-27
 categories: [product, ideation]
-tags: [llm, ollama, aws, ec2, privacy, staff mapper]
+tags: [llm, ollama, aws, ec2, privacy]
 ---
 
-A client recently asked whether we could run a privately hosted LLM inside our own infrastructure so sensitive staffing data never left our control. I wired [Ollama](https://ollama.com/) onto an AWS GPU instance, connected it to Staff Mapper, and shared a quick note on X—which unexpectedly struck a nerve. Clearly, plenty of teams want practical patterns for private inference without building a full ML platform from scratch.
+A client recently asked whether we could run a privately hosted LLM inside our own infrastructure so sensitive data never left our control. I wired [Ollama](https://ollama.com/) onto an AWS GPU instance, connected it to our web app, and shared a quick note on X—which unexpectedly struck a nerve. Clearly, plenty of teams want practical patterns for private inference without building a full ML platform from scratch.
 
 Ollama makes running open-weight models like Mistral, Llama, and Mixtral remarkably straightforward. It is not yet a turnkey multi-tenant production serving engine (tools like vLLM handle high concurrency much better), but for a dedicated single-client proof of concept, its simplicity is hard to beat.
 

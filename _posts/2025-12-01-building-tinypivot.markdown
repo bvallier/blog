@@ -19,7 +19,7 @@ There was very little in between.
 
 ## The Feature-Creep Loop
 
-I ran into the exact same pattern across years of consulting projects and my own apps like Staff Mapper. A stakeholder starts by saying, *"We just need a simple table to display this dataset."*
+I ran into the exact same pattern across years of consulting projects and my own web apps. A stakeholder starts by saying, *"We just need a simple table to display this dataset."*
 
 Two weeks later, the asks arrive like clockwork:
 
