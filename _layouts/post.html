@@ -2,60 +2,72 @@
 layout: default
 ---
 
-<main class="container" role="main">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-lg-3 viewport-hide">
-      <aside class="sidebar" role="complementary">
-        <div class="search-widget">
-          <a href="{{ site.baseurl }}/" aria-label="Home">
-            <img class="image" src="/images/brice_boston.png" alt="Brice Vallieres" height="100" width="100" loading="eager">
-          </a>
-          
-          <h3>Brice Vallieres</h3>
-          <p>Software & data analytics consultant in Cambridge, MA 🚀</p>
-          
-          <a href="https://twitter.com/bricevallieres" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false"></a>
-          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <a class="github-button" href="https://github.com/bvallier" aria-label="Follow @bvallier on GitHub">Follow</a>
-          
-          <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></p>
-          <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a>
-          
-          <u>Projects</u>
-          <a href="https://staffmapper.com?ref=blog">Staff Mapper</a><br>
-          <a href="https://tiny-pivot.com">TinyPivot</a>
-        </div>
-      </aside>
-    </div>
+{% assign words = content | number_of_words %}
+{% assign read_time = words | divided_by: 220 %}
+{% if read_time < 1 %}{% assign read_time = 1 %}{% endif %}
 
-    <!-- Blog Post Content -->
-    <div class="col-lg-8">
-      <article id="post-content" itemscope itemtype="https://schema.org/BlogPosting">
-        <header>
-          <div class="header-left">
-            <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
-            <span class="post-date">
-              <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                {{ page.date | date: "%b %-d, %Y" }}
-              </time>
-            </span>
-          </div>
-          <div class="header-right">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-        </header>
-
-        <div class="post-content" itemprop="articleBody">
-          {{ content }}
-        </div>
-
-        <footer>
-          <script async id="_ck_321906" src="https://forms.convertkit.com/321906?v=6"></script>
-          {% include disqus.html %}
-        </footer>
-      </article>
-    </div>
+<article class="article-shell" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-back">
+    <a href="{{ site.baseurl }}/">&larr; All essays</a>
   </div>
-</main>
+
+  <header class="article-header">
+    <div class="article-meta">
+      {% if page.topic %}
+      <span class="meta-topic">{{ page.topic }}</span>
+      <span class="meta-dot" aria-hidden="true">&middot;</span>
+      {% endif %}
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: "%B %-d, %Y" }}
+      </time>
+      <span class="meta-dot" aria-hidden="true">&middot;</span>
+      <span>{{ read_time }} min read</span>
+    </div>
+
+    <h1 class="article-title" itemprop="headline">{{ page.title }}</h1>
+
+    {% if page.summary %}
+    <p class="article-lead" itemprop="description">{{ page.summary }}</p>
+    {% endif %}
+  </header>
+
+  {% if page.image and page.hide_cover != true %}
+  <figure class="article-cover">
+    <img src="{{ page.image }}" alt="{{ page.title }}" itemprop="image" loading="eager">
+  </figure>
+  {% endif %}
+
+  <div class="post-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <footer class="article-footer">
+    <div class="author-colophon">
+      <img class="author-colophon-avatar" src="/images/brice_boston.png" alt="Brice Vallieres" width="52" height="52">
+      <div class="author-colophon-text">
+        <p class="author-colophon-name">Written by <strong>Brice Vallieres</strong></p>
+        <p class="author-colophon-bio">Data engineering leader and software builder in Cambridge, MA. Creator of <a href="https://tiny-pivot.com" target="_blank" rel="noopener">TinyPivot</a> and <a href="https://staffmapper.com?ref=blog" target="_blank" rel="noopener">Staff Mapper</a>.</p>
+      </div>
+    </div>
+
+    {% if page.previous or page.next %}
+    <nav class="article-pagination" aria-label="Adjacent essays">
+      {% if page.previous %}
+      <a class="pagination-link pagination-prev" href="{{ page.previous.url | prepend: site.baseurl }}">
+        <span class="pagination-label">&larr; Older</span>
+        <span class="pagination-title">{{ page.previous.title }}</span>
+      </a>
+      {% else %}
+      <div></div>
+      {% endif %}
+
+      {% if page.next %}
+      <a class="pagination-link pagination-next" href="{{ page.next.url | prepend: site.baseurl }}">
+        <span class="pagination-label">Newer &rarr;</span>
+        <span class="pagination-title">{{ page.next.title }}</span>
+      </a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </footer>
+</article>

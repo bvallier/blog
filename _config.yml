@@ -2,8 +2,7 @@
 title: Brice Vallieres
 email: brice@thesmallweb.co
 description: >
-  Software and data analytics insights from Cambridge, MA. 
-  Thoughts on technology, consulting, and building products.
+  Data engineering, applied AI, and independent software from Cambridge, MA.
 baseurl: ""
 url: "https://bvallieres.com"
 twitter_username: bricevallieres
@@ -27,13 +26,6 @@ kramdown:
   input: GFM
   hard_wrap: false
   syntax_highlighter: rouge
-
-# Comments
-comments: true
-
-# Pagination (if using jekyll-paginate)
-# paginate: 10
-# paginate_path: "/page/:num/"
 
 # Exclude from processing
 exclude:

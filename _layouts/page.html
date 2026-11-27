@@ -1,15 +1,15 @@
 ---
 layout: default
 ---
-<div class="post">
-  <h2 class="header-heading">
-  <!--<a href="/"><img src="{{ site.images }}/bvallieres.svg" height="50" width="50"></a>
-  -->
-  <div class = "tag-line">{{ site.tagline }}</div>
-  </h2>
 
-  <article class="post-content">
+<article class="article-shell">
+  {% if page.title %}
+  <header class="article-header">
+    <h1 class="article-title">{{ page.title }}</h1>
+  </header>
+  {% endif %}
+
+  <div class="post-content">
     {{ content }}
-  </article>
-
-</div>
+  </div>
+</article>

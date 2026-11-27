@@ -3,40 +3,70 @@
 
 {% include head.html %}
 
-<body id="page-top">
-  <!-- Interactive Network Background -->
-  <canvas id="network-bg" aria-hidden="true"></canvas>
-  
-  {% seo %}
-  {{ content }}
+<body class="{% if page.layout == 'post' %}layout-post{% else %}layout-home{% endif %}">
+  {% if page.layout == 'post' %}
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+  {% endif %}
 
-  <script id="dsq-count-scr" src="//bvallieres.disqus.com/count.js" async></script>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <header class="site-header" role="banner">
+    <div class="site-header-inner">
+      <a class="site-brand" href="{{ site.baseurl }}/">Brice Vallieres</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="{{ site.baseurl }}/"{% if page.url == '/' or page.url == '/index.html' %} aria-current="page"{% endif %}>Essays</a>
+        <a href="https://tiny-pivot.com" target="_blank" rel="noopener">TinyPivot</a>
+        <a href="https://staffmapper.com?ref=blog" target="_blank" rel="noopener">Staff Mapper</a>
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
+        <a href="{{ '/feed.xml' | prepend: site.baseurl }}">RSS</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Copy code button and mobile enhancements -->
+  <main class="site-main" role="main">
+    {{ content }}
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      <div class="footer-colophon">
+        <span class="footer-name">Brice Vallieres</span>
+        <span class="footer-sep" aria-hidden="true">&middot;</span>
+        <span>Cambridge, Massachusetts</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener">X</a>
+        <a href="{{ '/feed.xml' | prepend: site.baseurl }}">RSS</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Copy button for code blocks
       document.querySelectorAll('.highlight').forEach(function(block) {
+        if (block.querySelector('.copy-btn')) return;
         var btn = document.createElement('button');
+        btn.type = 'button';
         btn.className = 'copy-btn';
         btn.textContent = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
         btn.addEventListener('click', function() {
           var code = block.querySelector('code');
           var text = code ? code.textContent : block.textContent;
           navigator.clipboard.writeText(text).then(function() {
-            btn.textContent = 'Copied!';
+            btn.textContent = 'Copied';
             btn.classList.add('copied');
             setTimeout(function() {
               btn.textContent = 'Copy';
               btn.classList.remove('copied');
-            }, 2000);
+            }, 1800);
           });
         });
         block.appendChild(btn);
       });
-      
-      // Wrap tables for horizontal scroll on mobile
+
+      // Responsive table wrappers
       document.querySelectorAll('.post-content table').forEach(function(table) {
         if (!table.parentElement.classList.contains('table-wrapper')) {
           var wrapper = document.createElement('div');
@@ -45,34 +75,39 @@
           wrapper.appendChild(table);
         }
       });
+
+      // Reading progress indicator on articles
+      var progress = document.getElementById('reading-progress');
+      if (progress) {
+        var updateProgress = function() {
+          var scrollTop = window.scrollY || document.documentElement.scrollTop;
+          var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          var pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+          progress.style.width = pct + '%';
+        };
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+      }
+
+      // Homepage category filters
+      var filterButtons = document.querySelectorAll('[data-filter]');
+      var essayItems = document.querySelectorAll('[data-category]');
+      if (filterButtons.length && essayItems.length) {
+        filterButtons.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var target = btn.getAttribute('data-filter');
+            filterButtons.forEach(function(b) {
+              b.classList.toggle('is-active', b === btn);
+              b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+            });
+            essayItems.forEach(function(item) {
+              var cat = item.getAttribute('data-category');
+              item.hidden = target !== 'all' && cat !== target;
+            });
+          });
+        });
+      }
     });
-  </script>
-
-  <!-- Blog Posts Data for Interactive Background -->
-  <script>
-    window.blogPosts = [
-      {% for post in site.posts %}
-      {
-        title: {{ post.title | jsonify }},
-        summary: {{ post.summary | default: post.excerpt | strip_html | truncate: 120 | jsonify }},
-        url: "{{ post.url | prepend: site.baseurl }}",
-        date: "{{ post.date | date: '%b %d, %Y' }}"
-      }{% unless forloop.last %},{% endunless %}
-      {% endfor %}
-    ];
-  </script>
-  
-  <!-- Interactive Network Background -->
-  <script src="/js/network-bg.js"></script>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65760216-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('set', 'anonymize_ip', true);
-    gtag('config', 'UA-65760216-1');
   </script>
 </body>
 

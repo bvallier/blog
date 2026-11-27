@@ -1,46 +1,41 @@
 ---
 layout: post
-title: "TinyPivot: A Lightweight Pivot Table Component for Vue 3 & React"
-author: Brice V.
-summary: A lightweight, zero-dependency pivot table and data grid component for Vue 3 and React. Excel-like features without the bloat - filtering, sorting, aggregations, and drag-and-drop pivoting.
-image: '/images/tinypivot_demo.gif'
+title: "Why I Built TinyPivot"
+author: Brice Vallieres
+topic: "Product"
+summary: "After years of hitting the same data-table feature creep across client projects, I built a lightweight, zero-dependency pivot grid for Vue 3 and React."
+image: "/images/covers/building-tinypivot.jpg"
 date: 2025-12-01 13:57:19
-last_modified_at: 2026-03-23
+last_modified_at: 2026-11-27
 categories: [product, development]
-tags: [vue 3, vue 3 pivot table, vue 3 data grid, react, react pivot table, react data grid, lightweight pivot table, data grid component, open source, tinypivot]
+tags: [vue 3, react, pivot table, data grid, tinypivot, open source]
 ---
 
-If you've ever built a data-heavy dashboard in Vue 3 or React, you know the pain. You need to display tabular data, let users sort and filter, maybe even do some aggregations. You reach for a data table library and... it's either way too heavy, looks like it was designed in 2012, or requires a PhD to configure.
+If you have built data-heavy web apps in Vue or React, you know the trade-off you always hit when it is time to render tabular data.
 
-I've been there more times than I'd like to admit.
+On one end sit massive enterprise grid suites: expensive annual contracts, 500 KB added to your bundle, and configuration schemas that feel like a second programming language. On the other end sit bare-bones table primitives that require weeks of glue code before a user can even filter a column or copy a range of cells into Excel.
 
-After years of wrestling with various table components across client projects - at consultancies, on my own apps like Staff Mapper - I realized something: **there wasn't a lightweight, beautiful, Excel-like data grid for Vue 3 or React that just worked out of the box.** Sure, there were enterprise behemoths that cost thousands per year and added 500KB to your bundle. And there were bare-bones tables that looked... bare-bones. Nothing in between.
+There was very little in between.
 
-So I built [TinyPivot](https://tiny-pivot.com) - a lightweight pivot table component that doesn't sacrifice features for simplicity.
+## The Feature-Creep Loop
 
-## What Is It?
+I ran into the exact same pattern across years of consulting projects and my own apps like Staff Mapper. A stakeholder starts by saying, *"We just need a simple table to display this dataset."*
 
-TinyPivot is a **lightweight Vue 3 and React pivot table component** that gives you:
+Two weeks later, the asks arrive like clockwork:
 
-- An Excel-like data grid with auto-sizing columns
-- Column filtering with multi-select dropdowns
-- Sorting (just click the headers)
-- Keyboard navigation and cell selection
-- Copy to clipboard (Cmd+C like you'd expect)
+- *"Can we filter by region and product?"*
+- *"Can we pivot the rows by quarter and see subtotals?"*
+- *"Can I copy a block of cells into Excel—or just export the filtered view?"*
 
-TinyPivot now includes **free drag-and-drop pivot tables** with Sum aggregation, totals, and calculated fields. Pro is where the more advanced analytics live: richer aggregations, charts, embedded AI, and watermark removal.
+What starts as a clean HTML `<table>` quietly turns into a brittle, half-baked spreadsheet. I wanted a drop-in component that felt close to Excel out of the box, stayed tiny in the bundle, and handled pivoting without forcing a procurement review.
 
-## The Problem I Was Solving
+So I built [TinyPivot](https://tiny-pivot.com).
 
-Here's the thing - I kept running into the same pattern on client projects. Someone would say "we just need a simple table to show this data." Two weeks later, it's "can we add filtering?" Then "can users pivot the data by region?" Then "can we export this to Excel?"
+## Zero Configuration to Start
 
-Every. Single. Time.
+Passing an array of flat objects should be enough to get sorting, multi-select column filtering, keyboard navigation, clipboard copy (`Cmd+C`), export, and drag-and-drop pivoting—no boilerplate column definitions required.
 
-What starts as a simple `<table>` element inevitably becomes a feature-creep nightmare. I wanted something that could handle the basics beautifully out of the gate, but scale up into richer analytics territory when the inevitable ask came.
-
-## Dead Simple to Use
-
-Here's all you need to get started with **Vue 3**:
+In **Vue 3**:
 
 {% highlight vue %}
 <script setup lang="ts">
@@ -55,11 +50,11 @@ const data = [
 </script>
 
 <template>
-  <DataGrid :data="data" />
+  <DataGrid :data="data" :show-pivot="true" />
 </template>
 {% endhighlight %}
 
-Or with **React**:
+In **React**:
 
 {% highlight tsx %}
 import { DataGrid } from '@smallwebco/tinypivot-react'
@@ -72,46 +67,14 @@ const data = [
 ]
 
 export default function App() {
-  return <DataGrid data={data} />
+  return <DataGrid data={data} showPivot />
 }
 {% endhighlight %}
 
-That's it. No config objects, no schema definitions, no boilerplate. Just pass your data and it figures out the columns.
+## Keeping the Business Model Simple
 
-## The Freemium Model
+I have been burned by developer tools that look free until you are halfway through production and hit an enterprise paywall for basic functionality.
 
-I went back and forth on pricing for a while. Ultimately, I landed on a freemium approach:
+With TinyPivot, the core data grid and drag-and-drop pivot tables (with Sum aggregation, totals, and calculated fields) are free to use indefinitely. A one-time perpetual Pro license covers advanced statistical aggregations, built-in charts, embedded natural-language querying, and watermark removal. Simple for a solo builder to support, and straightforward for an engineering team to evaluate.
 
-**Free tier** gets you the data grid with filtering, sorting, export, and free pivot tables with Sum aggregation, totals, and calculated fields. It's genuinely useful.
-
-**Pro licenses** ($49 for a single project, $149 unlimited) unlock advanced aggregations, charts, embedded AI, and remove the small "Powered by TinyPivot" badge.
-
-Why this model? Because I've been burned by libraries that bait-and-switch. You integrate them, ship to production, and then realize you need a feature that's locked behind a $5K/year enterprise plan. Not cool.
-
-With TinyPivot, you can evaluate everything in demo mode before buying. And if the free tier does what you need, use it forever. I'd rather have devs actually using it than hiding the useful parts behind a paywall nobody can afford.
-
-## What's Next
-
-I'm actively working on a few things:
-
-- **Virtual scrolling** for massive datasets (100K+ rows)
-- **Column resizing** via drag handles
-- **Export to CSV/Excel** (the inevitable ask, might as well build it in)
-- **Nuxt module** for easier SSR integration
-- **Next.js** optimizations for React SSR
-
-If you're building dashboards in Vue 3 or React and need a lightweight data grid that doesn't suck, give [TinyPivot](https://tiny-pivot.com) a shot. Zero dependencies, tiny bundle size, and it actually looks good. It's on npm:
-
-{% highlight bash %}
-# Vue 3
-pnpm add @smallwebco/tinypivot-vue
-
-# React
-pnpm add @smallwebco/tinypivot-react
-{% endhighlight %}
-
-I'd love to hear what you think. Drop me a line on [X @bricevallieres](https://twitter.com/bricevallieres) or open an issue on [GitHub](https://github.com/Small-Web-Co/tinypivot).
-
-**Next up:** Check out the [Vue 3 & React Pivot Table Tutorial](/development/tutorial/2025/12/03/tinypivot-how-to-guide.html) for practical examples and real-world use cases.
-
-<center>🚀 Happy pivoting 🚀</center>
+Both packages are on npm (`@smallwebco/tinypivot-vue` and `@smallwebco/tinypivot-react`), with live demos and documentation at [tiny-pivot.com](https://tiny-pivot.com).

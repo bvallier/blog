@@ -3,75 +3,67 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- SEO Meta Tags -->
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <title>{% if page.title %}{{ page.title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description | strip_newlines }}{% endif %}">
   <meta name="author" content="{{ site.title }}">
   <meta name="robots" content="index, follow">
-  <meta name="keywords" content="{% if page.tags %}{{ page.tags | join: ', ' }}{% else %}software, data analytics, consulting, technology{% endif %}">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
-  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
-  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-  <meta property="og:image" content="{% if page.image %}{{ page.image }}{% else %}{{ site.url }}/images/brice_boston.png{% endif %}" />
-  <meta property="og:description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
-  <meta property="og:site_name" content="{{ site.title }}" />
-  <meta property="fb:app_id" content="1405428132863318" />
+  <meta name="theme-color" content="#FBF9F5">
+
+  {% assign og_image = page.image | default: '/images/brice_boston.png' %}
+  {% unless og_image contains '://' %}
+    {% assign og_image = og_image | prepend: site.url %}
+  {% endunless %}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description | strip_newlines }}{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@{{ site.twitter_username }}">
   <meta name="twitter:creator" content="@{{ site.twitter_username }}">
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-  <meta name="twitter:description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="twitter:image" content="{% if page.image %}{{ page.image }}{% else %}{{ site.url }}/images/brice_boston.png{% endif %}">
+  <meta name="twitter:description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description | strip_newlines }}{% endif %}">
+  <meta name="twitter:image" content="{{ og_image }}">
 
-  <!-- Article specific meta (for posts) -->
   {% if page.layout == 'post' %}
   <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
   <meta property="article:author" content="{{ site.title }}">
-  {% if page.tags %}
-  {% for tag in page.tags %}
-  <meta property="article:tag" content="{{ tag }}">
-  {% endfor %}
-  {% endif %}
   {% endif %}
 
-  <!-- Canonical URL -->
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="icon" href="/favicon.ico">
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" />
-
-  <!-- Modern Fonts - Source Serif for body, DM Sans for headings -->
+  <!-- Editorial & Academic Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <link rel="stylesheet" href="/css/custom.css?v=2">
-  <link rel="stylesheet" href="/css/syntax.css?v=2">
-  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/custom.css?v=3">
+  <link rel="stylesheet" href="/css/syntax.css?v=3">
 
-  <!-- Scripts -->
-  <script src="/js/jquery.min.js"></script>
+  {% if page.charts %}
   <script src="/js/d3.min.js"></script>
   <script src="/js/c3.min.js"></script>
   <link rel="stylesheet" href="/css/c3.min.css">
-  <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+  {% endif %}
 
-  <!-- JSON-LD Structured Data -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     {% if page.layout == 'post' %}
     "@type": "BlogPosting",
-    "headline": "{{ page.title | escape }}",
+    "headline": {{ page.title | jsonify }},
     "datePublished": "{{ page.date | date_to_xmlschema }}",
     "dateModified": "{% if page.last_modified_at %}{{ page.last_modified_at | date_to_xmlschema }}{% else %}{{ page.date | date_to_xmlschema }}{% endif %}",
+    "image": {{ og_image | jsonify }},
     "author": {
       "@type": "Person",
       "name": "{{ site.title }}",
@@ -81,7 +73,7 @@
       "@type": "Person",
       "name": "{{ site.title }}"
     },
-    "description": "{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 | escape }}{% elsif page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}{% else %}{{ site.description | escape }}{% endif %}",
+    "description": {{ page.summary | default: page.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }},
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
@@ -90,7 +82,7 @@
     "@type": "WebSite",
     "name": "{{ site.title }}",
     "url": "{{ site.url }}",
-    "description": "{{ site.description | escape }}",
+    "description": {{ site.description | strip_newlines | jsonify }},
     "author": {
       "@type": "Person",
       "name": "{{ site.title }}"

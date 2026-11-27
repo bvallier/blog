@@ -1,63 +1,91 @@
 ---
 layout: post
-title:  "Death Penalty as a Deterrence"
-author: Brice V.
-summary: Looking at you, Captial Punishment
-image: '/images/dylanroof.jpg'
-date:   2015-11-05 13:57:19
+title: "Capital Punishment as a Deterrent: Looking at the Data"
+author: Brice Vallieres
+topic: "AI & Data"
+summary: "Plotting U.S. violent crime, death sentences, and executions from 1930 to 2012—and why geography complicates any simple deterrence claim."
+image: "/images/covers/deterrence-data.jpg"
+date: 2015-11-05 13:57:19
+last_modified_at: 2026-11-27
+charts: true
 categories: [data, analysis]
-tags: [homocides, dc, capital punishment, death penalty]
+tags: [capital punishment, data analysis, criminology, visualization]
 ---
 
-Lately I have been interested in our country's evolution of capital punishment. I spoke with my good friend Lesley O'Neill, over at UGA law school about the topic recently. This past summer, Lesley spent time with inmates on death row and she remarked on the staggering complication of these peoples lives - lost fathers, unfaithful partners, mental issues and of course, murder. I've always been muted about capital punishment and whether or not it serves as a useful deterrent to violent crimes but after speaking with Lesley, I had an urge to understand more - was it possilble that capital punishment served as an effective deterrent?
+After talking with my friend Lesley O'Neill at UGA Law School—who spent a summer working alongside inmates on death row—I found myself curious about a basic empirical question: does historical U.S. data actually suggest that capital punishment deters violent crime?
 
-The following is a look at violent crimes, sentences and executions from 1930 to 2012, where data was readily available. If data was not available, I plotted a 0 (that's not entirely accurate, but sufficient for now). 
+Lesley described the tangled realities behind nearly every case she encountered: absent parents, mental illness, instability, and violent tragedy. Rather than debating the question abstractly, I pulled together historical figures on violent crimes, death sentences, and executions from **1930 to 2012** (where national series were not reported in earlier decades, values are plotted as zero).
 
-<p style="text-align: center">Sentences vs. Executions vs. Violent Crimes</p>
+<figure>
+  <div id="chart"></div>
+  <figcaption>U.S. violent crimes (bars, right axis), death sentences (area), and executions (line), 1930–2012. Click legend items to isolate any series.</figcaption>
+</figure>
 
-<div id="chart"></div>
 <script>
-
-    var chart = c3.generate({
-        data: {
-            x: 'x',
-            json: {
-                x: [1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
-                violent_crimes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 526786, 527686, 548985, 577084, 675675, 775678, 860773, 999954, 1190348, 1324155, 1478062, 1633127, 1670050, 1751624, 1949024, 2078532, 2008038, 2058871, 2170713, 2415683, 2688573, 2723059, 2644286, 2515738, 2546076, 2656524, 2978338, 2967998, 3132442, 3292074, 3640254, 3823534, 3864548, 3852034, 3715340, 3597584, 3377080, 3272192, 3067774, 2852088, 2850972, 2878960, 2847354, 2767352, 2720176, 2781490, 2870246, 2845940, 2788922, 2651792, 2502496, 2412062, 2428928],
-                sentenced:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 131, 147, 125, 146, 151, 147, 164, 212, 257, 267, 297, 315, 331, 406, 435, 517, 575, 631, 642, 334, 134, 244, 488, 420, 423, 482, 593, 692, 860, 1066, 1209, 1420, 1575, 1800, 1967, 2117, 2243, 2346, 2465, 2580, 2727, 2905, 3064, 3242, 3328, 3465, 3527, 3601, 3577, 3562, 3377, 3320, 3245, 3228, 3215, 3210, 3173, 3139, 3065, 3011],
-                executions: [155, 153, 140, 160, 168, 199, 195, 147, 190, 160, 124, 123, 147, 131, 120, 117, 131, 153, 119, 119, 82, 105, 83, 62, 81, 76, 65, 65, 49, 49, 56, 42, 47, 21, 15, 7, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 1, 2, 5, 21, 18, 18, 25, 11, 16, 23, 14, 31, 38, 31, 56, 45, 74, 68, 98, 85, 66, 71, 65, 59, 60, 53, 42, 37, 52, 46, 43, 43]
-            },
-            types: {
-                violent_crimes: 'bar',
-                sentenced: 'area',
-                executions: 'spline',
-            },
-            axes: {
-                executions: 'y',
-                violent_crimes: 'y2'
-            }
-        },
-        axis: {
-          y2: {
-            show: true
-          },
-          x: {
-            type: 'date',
-            tick: {
-                format: '%Y'
-            }
-          }
-        },
-        bindto: '#chart'
-    });
-
-
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof c3 === 'undefined') return;
+  c3.generate({
+    size: { height: 340 },
+    padding: { right: 56 },
+    data: {
+      x: 'x',
+      json: {
+        x: [1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947, 1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012],
+        violent_crimes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 526786, 527686, 548985, 577084, 675675, 775678, 860773, 999954, 1190348, 1324155, 1478062, 1633127, 1670050, 1751624, 1949024, 2078532, 2008038, 2058871, 2170713, 2415683, 2688573, 2723059, 2644286, 2515738, 2546076, 2656524, 2978338, 2967998, 3132442, 3292074, 3640254, 3823534, 3864548, 3852034, 3715340, 3597584, 3377080, 3272192, 3067774, 2852088, 2850972, 2878960, 2847354, 2767352, 2720176, 2781490, 2870246, 2845940, 2788922, 2651792, 2502496, 2412062, 2428928],
+        sentenced: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 131, 147, 125, 146, 151, 147, 164, 212, 257, 267, 297, 315, 331, 406, 435, 517, 575, 631, 642, 334, 134, 244, 488, 420, 423, 482, 593, 692, 860, 1066, 1209, 1420, 1575, 1800, 1967, 2117, 2243, 2346, 2465, 2580, 2727, 2905, 3064, 3242, 3328, 3465, 3527, 3601, 3577, 3562, 3377, 3320, 3245, 3228, 3215, 3210, 3173, 3139, 3065, 3011],
+        executions: [155, 153, 140, 160, 168, 199, 195, 147, 190, 160, 124, 123, 147, 131, 120, 117, 131, 153, 119, 119, 82, 105, 83, 62, 81, 76, 65, 65, 49, 49, 56, 42, 47, 21, 15, 7, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0, 1, 2, 5, 21, 18, 18, 25, 11, 16, 23, 14, 31, 38, 31, 56, 45, 74, 68, 98, 85, 66, 71, 65, 59, 60, 53, 42, 37, 52, 46, 43, 43]
+      },
+      names: {
+        violent_crimes: 'Violent Crimes',
+        sentenced: 'Death Row Population',
+        executions: 'Executions'
+      },
+      types: {
+        violent_crimes: 'bar',
+        sentenced: 'area',
+        executions: 'spline'
+      },
+      colors: {
+        violent_crimes: '#C9BFAE',
+        sentenced: '#3A556A',
+        executions: '#9B3B26'
+      },
+      axes: {
+        executions: 'y',
+        violent_crimes: 'y2'
+      }
+    },
+    axis: {
+      y: {
+        label: { text: 'Sentences / Executions', position: 'outer-middle' }
+      },
+      y2: {
+        show: true,
+        label: { text: 'Violent Crimes', position: 'outer-middle' },
+        tick: { format: d3.format('.2s') }
+      },
+      x: {
+        tick: {
+          values: [1930, 1940, 1950, 1960, 1970, 1980, 1990, 2000, 2010]
+        }
+      }
+    },
+    bindto: '#chart'
+  });
+});
 </script>
 
-<br />
+## Reading the Historical Pattern
 
-Interestingly, violent crimes appear to grow pretty consistently and then dip back down in 1992. Sentences also seem to decrease shortly thereafter, however, executions in this timeframe appear to increase from 31 executions in 1992 to 98 executions in 1998. The chart is interactive, so if you are having trouble visualizing the executions, just click on the data series in the legend. Also, you won't see any executions from 1969 - 1976 or so; the Supreme Court suspended capital punishment from 1972-1976, not because it was unconstitutional per se, but rather that how it was being carried out was arbitrary and unreliable, therefore unconstitutional under the Eighth Amendment’s cruel and unusual punishment ban. Lesley was kind enough to comment on this period: "By 1976 States had re-written their death penalty statutes, which is when the Court revisited the issue and deemed that the new schemes fixed the arbitrariness and unreliability, and therefore were no longer unconstitutional.  Of course, that’s very debatable as it’s carried out today." 
+Violent crime rose steadily from 1960 until peaking in 1992, then declined sharply. Death-row populations leveled off shortly afterward, while annual executions climbed from 31 in 1992 to 98 in 1999 before falling again.
 
-Lesley went on to add that it would probably be nearly impossible to prove a correlation between any drop in violent crime and the death penatly acting as a deterrent, since it is no longer reserved for the “worst of the worst” but much more so based on where the defendant is from.  For example - take the Colorado shooter getting a life sentence, and then someone who shot and killed one person in Georgia or Louisiana who then gets sentenced to death (Lesley has worked on multiple cases where it was a “heat of passion” type crime involving just one or two victims).  Another example is Caddo Parish in Louisiana; it is among 2% of U.S. counties responsible for 56% of all the inmates on death row.  From 2010 to 2014 more people were sentenced to death per capita there than any other county in the U.S.
+Notice also the flat zero line between 1968 and 1976: the Supreme Court suspended capital punishment in 1972—not as unconstitutional in principle, but because its application was arbitrary and unreliable under the Eighth Amendment. As Lesley noted, states rewrote their statutes by 1976 and the Court reinstated it, though whether arbitrariness was truly resolved remains deeply contested.
 
-Of course, we have more meta information that could make this information more useful. This includes population growth, sentences, executions and violent crimes by state (which could be interesting based on where capital punishment is legal), as well as type of violent crime. We also have meta information on the method of execution from hanging, to firing squad to gas chamber (all earlier methods, naturally). If this is of interest, I'd be happy to take a deeper look. I'd also be interested in understanding what people make of these trends (if you folks are clamoring for a regression, we can talk). Comments, as always are welcome.
+## Why Geography Confounds Deterrence
+
+Even if you wanted to isolate a causal link between executions and declining violent crime, national aggregates hide a striking geographic skew. Capital punishment is far less about the "worst of the worst" than about **which county prosecutes the case**:
+
+- Mass-casualty defendants in states like Colorado have received life sentences, while single-victim crimes in Georgia or Louisiana regularly draw death sentences.
+- Just **2% of U.S. counties account for 56% of all inmates on death row**. Between 2010 and 2014, Caddo Parish, Louisiana sentenced more people to death per capita than any other county in the country.
+
+A deeper causal analysis would need state-level panels controlling for population growth, legal status by jurisdiction, and crime category. Even at the macro level, though, the data makes one thing clear: any straightforward deterrence narrative runs straight into how unevenly the penalty is applied.

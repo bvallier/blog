@@ -1,327 +1,153 @@
-/* Code block container */
-.highlight {
+/* ==========================================================================
+   Editorial Code & Syntax Highlighting — Crisp & Legible on Desktop + Mobile
+   ========================================================================== */
+
+.highlight,
+.post-content pre {
   position: relative;
-  background: #282c34;
-  border-radius: 6px;
-  margin: 0.75rem 0;
+  background: #1E1D1B;
+  color: #EAE5DC;
+  border-radius: 8px;
+  border: 1px solid #302E2A;
+  margin: 1.5em 0;
   max-width: 100%;
   overflow: hidden;
 }
 
 .highlight pre {
   margin: 0;
-  padding: 0.65rem 0.85rem;
+  border: 0;
+  border-radius: 0;
+  padding: 18px 76px 18px 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  max-width: 100%;
 }
 
-.highlight code {
-  background: transparent;
-  padding: 0;
-  color: #abb2bf;
-  font-size: 0.75rem;
-  line-height: 1.45;
+.post-content > pre {
+  padding: 18px 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.highlight code,
+.post-content pre code {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-size: 0.9rem; /* ~14.4px — comfortably readable everywhere */
+  line-height: 1.6;
+  color: #EAE5DC;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
-  text-align: left;
+  display: block;
 }
 
-/* Copy button */
+/* Copy Button */
 .copy-btn {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 4px;
-  color: #9ca3af;
-  padding: 4px 8px;
-  font-size: 0.7rem;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  top: 10px;
+  right: 10px;
+  background: rgba(251, 249, 245, 0.1);
+  border: 1px solid rgba(251, 249, 245, 0.14);
+  border-radius: 5px;
+  color: #CFC8BC;
+  padding: 4px 10px;
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 500;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 150ms ease, background 150ms ease;
+  transition: opacity 150ms ease, background-color 150ms ease, color 150ms ease;
 }
 
-.highlight:hover .copy-btn {
+.highlight:hover .copy-btn,
+.copy-btn:focus-visible {
   opacity: 1;
 }
 
 .copy-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: rgba(251, 249, 245, 0.2);
+  color: #FFFFFF;
 }
 
 .copy-btn.copied {
-  color: #10b981;
+  color: #8FC4A3;
+  border-color: rgba(143, 196, 163, 0.4);
 }
 
-/* One Dark theme syntax colors */
-.highlight .c { color: #5c6370; font-style: italic } /* Comment */
-.highlight .err { color: #e06c75 } /* Error */
-.highlight .k { color: #c678dd } /* Keyword */
-.highlight .o { color: #abb2bf } /* Operator */
-.highlight .cm { color: #5c6370; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #e5c07b } /* Comment.Preproc */
-.highlight .c1 { color: #5c6370; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #5c6370; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #e06c75 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #e06c75 } /* Generic.Error */
-.highlight .gh { color: #e5c07b; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #98c379 } /* Generic.Inserted */
-.highlight .go { color: #5c6370 } /* Generic.Output */
-.highlight .gp { color: #61afef } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #56b6c2 } /* Generic.Subheading */
-.highlight .gt { color: #e06c75 } /* Generic.Traceback */
-.highlight .kc { color: #c678dd } /* Keyword.Constant */
-.highlight .kd { color: #c678dd } /* Keyword.Declaration */
-.highlight .kn { color: #c678dd } /* Keyword.Namespace */
-.highlight .kp { color: #c678dd } /* Keyword.Pseudo */
-.highlight .kr { color: #c678dd } /* Keyword.Reserved */
-.highlight .kt { color: #e5c07b } /* Keyword.Type */
-.highlight .m { color: #d19a66 } /* Literal.Number */
-.highlight .s { color: #98c379 } /* Literal.String */
-.highlight .na { color: #d19a66 } /* Name.Attribute */
-.highlight .nb { color: #e5c07b } /* Name.Builtin */
-.highlight .nc { color: #e5c07b } /* Name.Class */
-.highlight .no { color: #d19a66 } /* Name.Constant */
-.highlight .nd { color: #61afef } /* Name.Decorator */
-.highlight .ni { color: #abb2bf } /* Name.Entity */
-.highlight .ne { color: #e06c75 } /* Name.Exception */
-.highlight .nf { color: #61afef } /* Name.Function */
-.highlight .nl { color: #e06c75 } /* Name.Label */
-.highlight .nn { color: #e5c07b } /* Name.Namespace */
-.highlight .nt { color: #e06c75 } /* Name.Tag */
-.highlight .nv { color: #e06c75 } /* Name.Variable */
-.highlight .ow { color: #56b6c2 } /* Operator.Word */
-.highlight .w { color: #abb2bf } /* Text.Whitespace */
-.highlight .mf { color: #d19a66 } /* Literal.Number.Float */
-.highlight .mh { color: #d19a66 } /* Literal.Number.Hex */
-.highlight .mi { color: #d19a66 } /* Literal.Number.Integer */
-.highlight .mo { color: #d19a66 } /* Literal.Number.Oct */
-.highlight .sb { color: #98c379 } /* Literal.String.Backtick */
-.highlight .sc { color: #98c379 } /* Literal.String.Char */
-.highlight .sd { color: #98c379 } /* Literal.String.Doc */
-.highlight .s2 { color: #98c379 } /* Literal.String.Double */
-.highlight .se { color: #56b6c2 } /* Literal.String.Escape */
-.highlight .sh { color: #98c379 } /* Literal.String.Heredoc */
-.highlight .si { color: #98c379 } /* Literal.String.Interpol */
-.highlight .sx { color: #98c379 } /* Literal.String.Other */
-.highlight .sr { color: #56b6c2 } /* Literal.String.Regex */
-.highlight .s1 { color: #98c379 } /* Literal.String.Single */
-.highlight .ss { color: #56b6c2 } /* Literal.String.Symbol */
-.highlight .bp { color: #e5c07b } /* Name.Builtin.Pseudo */
-.highlight .vc { color: #e06c75 } /* Name.Variable.Class */
-.highlight .vg { color: #e06c75 } /* Name.Variable.Global */
-.highlight .vi { color: #e06c75 } /* Name.Variable.Instance */
-.highlight .il { color: #d19a66 } /* Literal.Number.Integer.Long */
+/* Warm Editorial Dark Syntax Tokens */
+.highlight .c,
+.highlight .cm,
+.highlight .c1,
+.highlight .cs  { color: #8B857B; font-style: italic; }
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr  { color: #E2A88B; }
+.highlight .kt,
+.highlight .nb,
+.highlight .nc,
+.highlight .nn,
+.highlight .bp  { color: #E4C889; }
+.highlight .s,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .s1  { color: #A8C99B; }
+.highlight .se,
+.highlight .sr,
+.highlight .ss,
+.highlight .ow  { color: #8AC2C8; }
+.highlight .nf,
+.highlight .nd,
+.highlight .gp  { color: #91B8E2; }
+.highlight .m,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .il,
+.highlight .na,
+.highlight .no  { color: #DFAD7B; }
+.highlight .nt,
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi,
+.highlight .ne,
+.highlight .nl,
+.highlight .err,
+.highlight .gd,
+.highlight .gr,
+.highlight .gt  { color: #E58C8A; }
+.highlight .gi  { color: #A8C99B; }
+.highlight .o,
+.highlight .ni,
+.highlight .w   { color: #EAE5DC; }
+.highlight .gs  { font-weight: 600; }
+.highlight .ge  { font-style: italic; }
 
-/* Line numbers */
-.highlight .lineno { 
-  color: #4b5263; 
-  display: inline-block; 
-  padding: 0 10px 0 0; 
-  margin-right: 10px;
-  border-right: 1px solid #3e4451;
-  user-select: none;
-}
-
-/* Language label (optional) */
-.highlight .language-label {
-  position: absolute;
-  top: 0;
-  right: 40px;
-  background: transparent;
-  color: #5c6370;
-  padding: 4px 8px;
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* ============================================
-   Mobile Responsive Code Blocks
-   ============================================ */
-
-@media (max-width: 768px) {
-  .highlight {
-    margin: 0.75rem -0.5rem; /* Extend to edges on mobile */
-    border-radius: 0;
+@media (max-width: 640px) {
+  .highlight pre,
+  .post-content > pre {
+    padding: 16px 76px 16px 16px;
   }
-  
-  .highlight pre {
-    padding: 0.75rem;
-    font-size: 0.8rem;
+
+  .highlight code,
+  .post-content pre code {
+    font-size: 0.875rem; /* 14px minimum on mobile */
+    line-height: 1.55;
   }
-  
-  .highlight code {
-    font-size: 0.8rem;
-  }
-  
-  /* Always show copy button on touch devices (no hover) */
+
   .copy-btn {
     opacity: 1;
     padding: 6px 10px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
-  
-  .highlight .lineno {
-    padding: 0 6px 0 0;
-    margin-right: 6px;
-  }
-}
-
-@media (max-width: 480px) {
-  .highlight pre {
-    padding: 0.5rem;
-    font-size: 0.75rem;
-  }
-  
-  .highlight code {
-    font-size: 0.75rem;
-    line-height: 1.4;
-  }
-  
-  .copy-btn {
-    top: 4px;
-    right: 4px;
-    padding: 4px 8px;
-    font-size: 0.65rem;
-  }
-}
-
-/* ============================================
-   Non-highlighted code blocks (figure/pre/code)
-   ============================================ */
-
-figure {
-  margin: 1rem 0;
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Code blocks without .highlight wrapper */
-figure code,
-article > code,
-p + code {
-  display: block;
-  background: #282c34;
-  border-radius: 6px;
-  padding: 0.65rem 0.85rem;
-  color: #abb2bf;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.75rem;
-  line-height: 1.45;
-  white-space: pre;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border: none;
-  text-align: left;
-}
-
-figure pre,
-article pre,
-.post-content pre {
-  background: #282c34;
-  border-radius: 6px;
-  padding: 0.65rem 0.85rem;
-  margin: 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  max-width: 100%;
-}
-
-figure pre code,
-article pre code,
-.post-content pre code {
-  background: transparent;
-  color: #abb2bf;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.75rem;
-  line-height: 1.45;
-  white-space: pre;
-  word-break: normal;
-  overflow-wrap: normal;
-  border: none;
-  padding: 0;
-  display: block;
-}
-
-/* Ensure post content doesn't overflow */
-.post-content,
-article {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* Global overflow fix for long content */
-#post-content {
-  overflow-x: hidden;
-}
-
-/* Force code inside figure to scroll */
-figure > code {
-  display: block !important;
-  overflow-x: auto !important;
-  white-space: pre !important;
-  max-width: 100% !important;
-}
-
-/* ============================================
-   CRITICAL: Fix for long code lines overflow
-   ============================================ */
-
-/* The nuclear option - ensure ALL code blocks scroll */
-code {
-  max-width: 100%;
-}
-
-figure,
-.highlight {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-}
-
-figure code:only-child,
-article code:not(pre code):not(p code):not(li code) {
-  display: block;
-  background: #282c34;
-  border-radius: 6px;
-  padding: 0.65rem 0.85rem;
-  color: #abb2bf;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  font-size: 0.75rem;
-  line-height: 1.45;
-  white-space: pre;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  border: none;
-  max-width: 100%;
-  box-sizing: border-box;
-  text-align: left;
-}
-
-/* Ensure the scrollbar appears */
-figure code:only-child::-webkit-scrollbar {
-  height: 8px;
-}
-
-figure code:only-child::-webkit-scrollbar-track {
-  background: #1e2127;
-  border-radius: 4px;
-}
-
-figure code:only-child::-webkit-scrollbar-thumb {
-  background: #4b5263;
-  border-radius: 4px;
-}
-
-figure code:only-child::-webkit-scrollbar-thumb:hover {
-  background: #5c6370;
 }

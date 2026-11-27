@@ -1,129 +1,104 @@
 ---
 layout: post
-title: "Hosting a private LLM in the cloud"
-author: Brice V.
-summary: Hosting a private LLM in the cloud is easier and more expensive than you think
-image: "/images/staffmapper_llm.gif"
+title: "Hosting a Private LLM on AWS with Ollama"
+author: Brice Vallieres
+topic: "AI & Data"
+summary: "Standing up a privately hosted open-source LLM on an AWS GPU instance is easier—and more expensive—than most teams expect."
+image: "/images/covers/private-llm.jpg"
 date: 2024-04-15 13:57:19
+last_modified_at: 2026-11-27
 categories: [product, ideation]
-tags: [staff mapper, ideation, llm, ollama, openrouter]
+tags: [llm, ollama, aws, ec2, privacy, staff mapper]
 ---
 
-Last week I wrote a post on X about hosting a private LLM for a client, and it unexpectedly blew up. If I had to guess, there's a ton of demand for being able to securely interact with LLMs. I also think there's a lot of curiousity around how these private LLMs, using open source models, can be integrated into current applications or workflows. The primary technology I leveraged was [Ollama](https://ollama.com/) and it's a wonderful app for running local LLMs, like Llama and Mixtral. It works really well. There are of course concerns, about running in production and the ability for it to run concurrent requests - I don't think it's there yet, but eventually, someone will get there.
+A client recently asked whether we could run a privately hosted LLM inside our own infrastructure so sensitive staffing data never left our control. I wired [Ollama](https://ollama.com/) onto an AWS GPU instance, connected it to Staff Mapper, and shared a quick note on X—which unexpectedly struck a nerve. Clearly, plenty of teams want practical patterns for private inference without building a full ML platform from scratch.
 
-For those who are curious, here is the post on X:
+Ollama makes running open-weight models like Mistral, Llama, and Mixtral remarkably straightforward. It is not yet a turnkey multi-tenant production serving engine (tools like vLLM handle high concurrency much better), but for a dedicated single-client proof of concept, its simplicity is hard to beat.
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">A client asked me yesterday if we could run a privately hosted LLM to avoid data privacy issues. Today I implemented <a href="https://twitter.com/ollama?ref_src=twsrc%5Etfw">@ollama</a> on an AWS g5 EC2 instance and it&#39;s currently hooked up to Staff Mapper. Couple of thoughts on connecting this service to your web app... <a href="https://t.co/QFtkNGWGMT">pic.twitter.com/QFtkNGWGMT</a></p>&mdash; Brice Vallieres (@bricevallieres) <a href="https://twitter.com/bricevallieres/status/1778883793648009224?ref_src=twsrc%5Etfw">April 12, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+## Choosing an AWS Instance
 
-Now, before we get through the "How-To", here's the general setup (assumes you have an active AWS account):
+For this proof of concept, I launched a **`g5.2xlarge`** running the *Deep Learning OSS Nvidia Driver AMI (Amazon Linux 2)* with 8 vCPUs, 32 GB RAM, an NVIDIA A10G GPU, and 100 GB of storage.
 
-At the time of writing, I'm running a g5.2xlarge Deep Learning OSS Nvidia Driver AMI GPU PyTorch 2.2.0 (Amazon Linux 2) 20240410 machine on AWS. It has 8vCPU and 32GB of memory. This is probably more than you need at ~$870/month. You can also try a g4dn.xlarge model with 4vCPU and 16GB of memory for half the price, I think you'd be able to run the smaller models on this without an issue. I'm using 100GB of storage for this proof-of-concept. Make sure to store your .pem key when you set this up so we can SSH into it later. I typically just have one SSH key I use for all my instances.
+At roughly **$870/month** on-demand, that is overkill for small 7B models. A `g4dn.xlarge` (4 vCPUs, 16 GB RAM) costs roughly half as much and handles 7B models cleanly. Because the AMI comes pre-configured with NVIDIA drivers, GPU acceleration works immediately—dramatically faster than CPU inference.
 
-Once you launch the instance in AWS, we're gonna have to do some setup. Luckily, the instances are pre-configured with GPU acceleration, so the inference will be faster than running traditional CPU instances (benchmarking to be created in another post).
+## Installing Docker and Ollama
 
-As soon as the server is spun up, I change the permission on my key via:
+Lock down your SSH key permissions and connect to the instance:
 
-{% highlight ruby %}
+{% highlight bash %}
 chmod 400 ssh_key.pem
-{% endhighlight %}
-
-I then SSH into my instance:
-
-{% highlight ruby %}
 ssh -i ssh_key.pem ec2-user@ec2-XX-XXX-XX-XX.compute-1.amazonaws.com
 {% endhighlight %}
 
-Then I install docker services:
+Install Docker (optional if you don't need Open WebUI) and Ollama:
 
-{% highlight ruby %}
+{% highlight bash %}
 sudo yum update -y
-sudo yum install docker
+sudo yum install -y docker
 sudo usermod -a -G docker ec2-user
-sudo systemctl enable docker.service
-sudo systemctl start docker.service
-sudo systemctl status docker.service
-{% endhighlight %}
+sudo systemctl enable --now docker.service
 
-Then I install Ollama:
-
-{% highlight ruby %}
 curl -fsSL https://ollama.com/install.sh | sh
-{% endhighlight %}
-
-Check Ollama status:
-
-{% highlight ruby %}
 sudo systemctl status ollama
 {% endhighlight %}
 
-Ollama makes it dead easy to download a model. I'm running mistral because it's a smaller 7B model and it's pretty fast. I've also listed others you can download and run. As a word-of-caution, I beleive Ollama can context switch between models when the request is made, but it takes time perform the switch and load the model:
+Pull the models you want to test. Keep in mind that switching between models on the fly incurs a cold-load delay while Ollama swaps weights in VRAM:
 
-{% highlight ruby %}
+{% highlight bash %}
 ollama run mistral
 ollama run llama2
 ollama run mixtral
 {% endhighlight %}
 
-Finally, we need a way to expose the Ollama service via Nginx:
+## Exposing the API via Nginx
 
-{% highlight ruby %}
+By default, Ollama listens locally on port `11434`. To expose it to your application (initially locked down to your own IP via AWS Security Groups, and later fronted with TLS on port 443), install Nginx and configure a reverse proxy:
+
+{% highlight bash %}
 sudo amazon-linux-extras install nginx1=latest
+sudo nano /etc/nginx/conf.d/ollama.conf
 {% endhighlight %}
 
-It's possible, nginx has a different version, so you may need to search for it if the command above fails. Find the version you have on your system and re-run above:
+Add the proxy block, replacing the server name with your instance hostname or domain:
 
-{% highlight ruby %}
-sudo amazon-linux-extras
-{% endhighlight %}
-
-Now, we need to configure Nginx. This is the setup that worked for me. The default port that Ollama runs on is 11434. We are esentially proxying that so we can run on port 80 and expose the service to the public / web - this should make the API endpoints for Ollama available. Eventually I will configure this to only serve via HTTPS / SSL via port 443. Will update this post, when I do (need to generate a certificate on Cloudflare, and configure the Nginx here):
-
-{% highlight ruby %}
-sudo nano /etc/nginx/conf.d/myapp.conf
-{% endhighlight %}
-
-Paste below and switch out the public server name. If you haven't used Nano before, it's just a text editor on your terminal. I just ctrl+v, ctrl+x and save.
-{% highlight ruby %}
+{% highlight nginx %}
 server {
-listen 80;
-server_name ec2-XX-XXX-XX-XX.compute-1.amazonaws.com;
+    listen 80;
+    server_name ec2-XX-XXX-XX-XX.compute-1.amazonaws.com;
 
     location / {
         proxy_pass http://127.0.0.1:11434;
         proxy_set_header Host $host;
     }
-
 }
 {% endhighlight %}
 
-Restart the Nginx server:
+Restart Nginx and configure systemd so it recovers automatically on reboot:
 
-{% highlight ruby %}
+{% highlight bash %}
 sudo systemctl restart nginx
+sudo systemctl edit nginx
 {% endhighlight %}
 
-Now start the Ollama service:
-
-{% highlight ruby %}
-docker run -d -p 3000:8080 -e OLLAMA_API_BASE_URL=http://ec2-XX-XXX-XX-XX.compute-1.amazonaws.com/api -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
-{% endhighlight %}
-
-I'm not using the webui for Ollama just the API endpoint, so haven't configured that yet.
-
-One last thing you may want to do is enable an Nginx restart on server reboot. I don't want to run the server full-time right now because it's just a POC until I get Staff Mapper v2 up and running in prod. Also need to think through pricing for end client to accomodate switches from open source LLMs hosted privately, vs commerical LLMs. To run your Nginx restart on system reboots:
-
-{% highlight ruby %}
-systemctl edit nginx
-{% endhighlight %}
-
-And then copy paste:
-{% highlight ruby %}
+{% highlight ini %}
 [Service]
 Restart=always
 {% endhighlight %}
 
-One other point to make, is that I've restricted access to this LLM - it's only available to my IP address at the moment. Eventually, I'll get the cert up and I have it pointed to my actual app IP and voila - my SaaS app will be connected to a secure privately-hosted LLM. Once Ollama evolves and grows, this setup will be amazing. There were several suggestions in the comments to check out vLLM, which I'll review as well. Just love the simplicity of Ollama.
+If you also want a browser chat interface during testing, you can point Open WebUI at the same endpoint:
 
-Again, not saying this is production ready but certainly presents a ton of oppurtunities to roll-your-own LLM.
+{% highlight bash %}
+docker run -d -p 3000:8080 \
+  -e OLLAMA_API_BASE_URL=http://ec2-XX-XXX-XX-XX.compute-1.amazonaws.com/api \
+  -v open-webui:/app/backend/data \
+  --name open-webui --restart always \
+  ghcr.io/open-webui/open-webui:main
+{% endhighlight %}
 
-For those of you interested in how I created the UX interface for allowing customers to choose between open vs closed LLMs, comment below and follow and I'll show you how I handled! Benchmarks incoming too.
+## Practical Takeaways
+
+Standing up the stack took less than an afternoon. The real work is operational and economic:
+
+- **Lock down network access early:** Restrict port 80/443 strictly to your application server's IP or VPC peering, and terminate HTTPS with a proper certificate before sending real data.
+- **Watch idle GPU costs:** Dedicated GPUs are expensive when sitting idle between intermittent client queries. For SaaS products, you need clear pricing tiers that reflect the real cost difference between privately hosted open models and pay-per-token commercial APIs.
+- **Know when to graduate:** Ollama is unbeatable for fast prototypes and low-concurrency workloads; once concurrent traffic grows, look at dedicated inference servers like vLLM.

@@ -1,83 +1,61 @@
 ---
 layout: post
-title:  "Action Cable in Rails 5"
-author: Brice V.
-summary: Rails 5 real-time fun
-image: '/images/rails5.jpg'
-date:   2015-12-28 13:57:19
+title: "Real-Time WebSockets with Action Cable in Rails 5"
+author: Brice Vallieres
+topic: "Engineering"
+summary: "A concise written walkthrough of DHH's Rails 5 Action Cable chat demo, including the Redis and origin tweaks needed inside a local Vagrant VM."
+image: "/images/covers/rails-actioncable.jpg"
+date: 2015-12-28 13:57:19
+last_modified_at: 2026-11-27
 categories: [web, development]
-tags: [rails 5, web sockets, actioncable, DHH]
+tags: [rails 5, websockets, actioncable, ruby]
 ---
 
-Recently I was watching a David Heinemeier Hansson (DHH) (founder of rails, basecamp) tutorial on implementing a chat app using the new and improved rails 5 beta release which makes working with web sockets and real-time apps a breeze - seriously, it's fantastic. I was really impressed with how easy it was and so I wanted to take that DHH tutorial ([here][dhh-tutorial]) and provide a written tutoral with the steps DHH outlined for implementing it, but I also wanted to include some additional steps I needed to take to get it to work in my environment. I hope this is helpful for anyone out there looking to implement real-time functionalties using the rails 5 framework. All the credit goes to DHH. His video provides much more detail and explanation, so I would not consider this an alternative, simply a place where it's all laid out on paper. I mostly needed a reference for myself and wanted to solidify the concepts in my head.
+After watching David Heinemeier Hansson's [Rails 5 Action Cable walkthrough](https://www.youtube.com/watch?v=n0WUjGkDFS0), I wanted a concise written reference—both to cement how the pieces fit together and to document the extra configuration required inside my Ubuntu 14.04 Vagrant VM (running Ruby 2.2.2+).
 
-Note: I am running vagrant via virtual box on an ubuntu 14.04 box. This tutorial assumes that you are running ruby > 2.2.2.
+## 1. Initialize a Rails 5 App
 
-First let's start by cloning the rails 5 github source code into a directory. This will initialize an empty rails5 directory, where we will download the rails 5 source code.
+Clone the Rails edge repository and generate a fresh project from it:
 
-{% highlight ruby %}
-sudo mkdir rails5
-cd rails5
+{% highlight bash %}
+mkdir rails5 && cd rails5
 git clone https://github.com/rails/rails.git .
-{% endhighlight %}
 
-If you are already using a rails environment, you are probably running a rails version < 5, so this will allow you to spawn a new rails project using the freshly minted rails 5 source. Once this downloads, you should create a new project directory. First navigate back a level in your directory, running the following:
-
-{% highlight ruby %}
 cd ..
-sudo mkdir campfire
-sudo chmod 777 campfire
-cd campfire
+mkdir campfire && cd campfire
 ../rails5/railties/exe/rails new . --skip-spring
-rails -v
+rails -v  # => Rails 5.0.0.beta1
 {% endhighlight %}
 
-This code block will initialize the application using the rails 5 source and then we will verify we are runnning rails 5. If it works, you should see "Rails 5.0.0.beta1".
-
-Before we can get started building the application, there were a couple of gems I needed to add to get the application working (redis-rails via bundle install, for whatever reason, was giving me the 0.0.0.0 version, so before I ran the bundle install below, I did a manual install by running: gem install redis-rails, which gave me 4.0.0):
+Add the Redis adapter gems to your `Gemfile` and run `bundle install` (if Bundler resolves an older `redis-rails` version, install `4.0.0` manually first):
 
 {% highlight ruby %}
-#Add to Gemfile
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 {% endhighlight %}
 
-Run bundle install to download the redis (more information about redis [here][redis]) gems:
+## 2. Routes, Controller, and Message Model
 
-{% highlight ruby %}
-bundle install
-{% endhighlight %}
+Generate a `rooms` controller and mount Action Cable in `config/routes.rb`:
 
-Let's start building the application. First we will use a command line generator to develop a controller called rooms with a method called show:
-
-{% highlight ruby %}
+{% highlight bash %}
 rails g controller rooms show
 {% endhighlight %}
 
-This will generate a scaffold with several files for you. Modify the config/routes.rb to point the root to the show method you just created. You will also want to enable the Action Cable route, which will be needed later on.
-
 {% highlight ruby %}
-#Modify config/routes.rb
+# config/routes.rb
 Rails.application.routes.draw do
   root to: 'rooms#show'
   mount ActionCable.server => '/cable'
 end
 {% endhighlight %}
 
-Once you do this, you should be able to start your rails server and visit the page:
+Load all messages in `RoomsController#show`, generate the `Message` model, and seed one test record in the console:
 
 {% highlight ruby %}
-rails s -b 0.0.0.0
-{% endhighlight %}
-
-I bind to 0.0.0.0 since my environment sits in a virtual box with a private network IP assigned to the box. By binding my rails server to 0.0.0.0, I am able to see the app when I visit it in my browser. If you are not runnning this environment, you can probably leave off the -b flag.
-
-Now, modify the rooms controller to the following:
-
-{% highlight ruby %}
-#app/controllers/rooms_controller.rb
+# app/controllers/rooms_controller.rb
 class RoomsController < ApplicationController
   def show
     @messages = Message.all
@@ -85,51 +63,50 @@ class RoomsController < ApplicationController
 end
 {% endhighlight %}
 
-Once we have the controller setup to grab all the messages in our model, we want to setup the model by running this in the command prompt (visiting the rails site at this point would cause an error, since we have not yet initialized the data model we are calling in the controller):
-
-{% highlight ruby %}
+{% highlight bash %}
 rails g model message content:text
 rails db:migrate
+rails runner "Message.create! content: 'Hello World!'"
 {% endhighlight %}
 
-This creates a model called Message with a text field called content. This will be used to store our messages in the chat room. Then we run a migration to get the table created. Let's initialize a value in our model, manually for the time being:
+## 3. Views and Message Partial
 
-{% highlight ruby %}
-Message.create! content: 'Hello World!'
-{% endhighlight %}
+Render the messages and wire an input field with a `data-behavior` hook in `app/views/rooms/show.html.erb`:
 
-In order to see this message we need to pass the model attribute to the view. We will need to update the following files:
-
-{% highlight ruby %}
-#modify app/views/rooms/show.html.erb
+{% highlight erb %}
 <h1>Chat Room</h1>
 <div id="messages">
-    <%= render @messages %>
+  <%= render @messages %>
 </div>
 
 <form>
-    <label>Say Something:</label><br>
-    <input type="text" data-behavior="room_speaker">
+  <label>Say Something:</label><br>
+  <input type="text" data-behavior="room_speaker">
 </form>
 {% endhighlight %}
 
-This view will display all messages in the Message model and the input text box will be linked to some client-side javascript attribute ("data-behavior") that will pass our text messages into the messages channel. More on that soon.
+Create `app/views/messages/_message.html.erb`:
 
-{% highlight ruby %}
+{% highlight erb %}
+<div class="message">
+  <p><%= message.content %></p>
+</div>
+{% endhighlight %}
+
+## 4. Channels and Client Subscription
+
+Generate the `room` channel with a `speak` action:
+
+{% highlight bash %}
 rails g channel room speak
 {% endhighlight %}
 
-This will create a channel called room which will contain a method called speak. Modify the following file to match this:
+Stream from `room_channel` and persist incoming messages in `app/channels/room_channel.rb`:
 
 {% highlight ruby %}
-#app/channels/room_channel.rb
 class RoomChannel < ApplicationCable::Channel
   def subscribed
     stream_from "room_channel"
-  end
-
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
   end
 
   def speak(data)
@@ -138,84 +115,56 @@ class RoomChannel < ApplicationCable::Channel
 end
 {% endhighlight %}
 
-This file indicates that you would like to stream messages from the room_channel and that any data passed to speak (e.g. your message content) will be saved to the database.
+Hook up the client subscription and Enter-key handler in `app/assets/javascripts/channels/room.coffee`:
 
-
-Let's create a 'messages' folder in app/views and within this folder create a partial called '_message.html.erb. Modify a message partial which we will use to display the messages, later on:
-
-{% highlight ruby %}
-#app/views/messages/_message.html.erb
-<div class="message">
-    <p><%= message.content %></p>
-</div>
-{% endhighlight %}
-
-This will display the content of your messages. Running the rails server, should show the hello world message you created earlier. In order to finish this tutorial up, we need to tell the room controller how to interact with the client side input. This can be done by modifying the room js coffee file:
-
-{% highlight ruby %}
-#app/assets/javascripts/channels/room.coffee
+{% highlight coffeescript %}
 App.room = App.cable.subscriptions.create "RoomChannel",
-  connected: ->
-    # Called when the subscription is ready for use on the server
-
-  disconnected: ->
-    # Called when the subscription has been terminated by the server
-
   received: (data) ->
     $('#messages').append data['message']
-  
+
   speak: (message) ->
     @perform 'speak', message: message
 
 $(document).on 'keypress', '[data-behavior~=room_speaker]', (event) ->
-    if event.keyCode is 13
-        App.room.speak event.target.value
-        event.target.value = ''
-        event.preventDefault()
+  if event.keyCode is 13
+    App.room.speak event.target.value
+    event.target.value = ''
+    event.preventDefault()
 {% endhighlight %}
 
-This js file does a couple of things, but primarily accepts input from the user in our view, binds the data-behavior attribute in the view to an enter/return keypress event and then calls the App.room.speak('your message here') method, which we define just before it. Perform is then called and message is passed to it in a jobs file we have yet to create. This jobs file will do the magic rendering as the input is recorded by our users.
+Enable the Action Cable consumer in `app/assets/javascripts/cable.coffee`:
 
-Before we continue, we will need to enable Action Cable in the following file:
-
-{% highlight ruby %}
-#app/assets/javascripts/cable.coffee
+{% highlight coffeescript %}
 #= require action_cable
 #= require_self
 #= require_tree ./channels
-#
+
 @App ||= {}
 App.cable = ActionCable.createConsumer()
 {% endhighlight %}
 
-This chunk of code initializes a consumer. More information on the terminology is located [here][actioncable]. I suggest reading through this. I was having trouble with this because I was making invalid requests to the site since I was operating within virtualbox. In order to allow this I had to add the following to the app/controllers/application_controller.rb:
+*VM gotcha:* If you access your Vagrant box through a custom host alias instead of `localhost`, explicitly allow that origin so Action Cable doesn't reject the WebSocket handshake, and bind Rails to `0.0.0.0`:
 
 {% highlight ruby %}
-#app/controllers/application_controller.rb
+# config/environments/development.rb (or application_controller.rb)
 ActionCable.server.config.allowed_request_origins = ['http://ruby.app:3000']
 {% endhighlight %}
 
-I setup a windows host file that creates an alias for the network IP assigned by virtual box. That way I can visit ruby.app instead of localhost or 127.0.0.1 or 193.122.12.1 in my browser. Because rails 5 is setup to point to localhost in development for Action Cable, I had to explicity allow request origins from a different name, hence the code above.
+## 5. Broadcast via Active Job
 
-Alright, let's get back on track. Next we need to update the model to ensure that the message can be rendered through a template. Remember - we already have a means to save the record; now we just need to transmit or broadcast the message to a viewer without refreshing the page. This will require that we display a transmitted message continuously as new messages are submitted through the channel. This isn't really something you would execute in a model, so we will create a MessageBroadcast Job and call it in the model after the message is committed, as follows: 
+Trigger a background broadcast job whenever a `Message` commits to the database:
 
 {% highlight ruby %}
-#app/models/message.rb
+# app/models/message.rb
 class Message < ApplicationRecord
-    after_create_commit { MessageBroadcastJob.perform_later self }
+  after_create_commit { MessageBroadcastJob.perform_later self }
 end
 {% endhighlight %}
 
-We of course, need to generate the message broadcast job we refer to in this model using a generator:
+Generate the job (`rails g job MessageBroadcast`) and render the message partial server-side before broadcasting:
 
 {% highlight ruby %}
-rails g job MessageBroadcast
-{% endhighlight %}
-
-This generates a file in the jobs folder, which should be modified as follows:
-
-{% highlight ruby %}
-#app/jobs/message_broadcast_job.rb
+# app/jobs/message_broadcast_job.rb
 class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
@@ -224,20 +173,18 @@ class MessageBroadcastJob < ApplicationJob
   end
 
   private
-    def render_message(message)
-        ApplicationController.renderer.render(partial: 'messages/message', locals: {message: message})
-    end
+
+  def render_message(message)
+    ApplicationController.renderer.render(
+      partial: 'messages/message',
+      locals: { message: message }
+    )
+  end
 end
 {% endhighlight %}
 
-This perform method is called in the room channel we created earlier and has one parameter, a message. This message is then rendered through render_message using a partial (which we created earlier). It's rails magic!
+## How the Flow Connects
 
-The flow, as I understand it, is as follows: The user enters input into the text field (client side) via App.room.speak which is sent through the Channel. This message then gets commited to the database through the model via the create methods within the channel, and then after the message is created, the broadcast job above is called which renders a "revolving door" partial template containing our message(s)! Now anyone who subscribes to the channel (e.g. at this point, it's anyone who visits this root page, should be able to see the chat conversation). At this point if you run the rails server and you also open another window (incognito if you have chrome), you can start typing back and forth (e.g. across multiple connections) in real-time! That's it.
+A user types into the input and presses Enter → `App.room.speak` sends the payload over WebSockets → `RoomChannel#speak` saves the `Message` record → `after_create_commit` enqueues `MessageBroadcastJob` → the job renders the HTML partial and broadcasts it to every connected client subscribed to `room_channel`.
 
-If you have any thoughts, please leave them below. Always looking to improve the delivery of my content and I'd like to hear if I was helpful. Again all the credit goes to DHH. Rails 5 is stellar.
-<br />
-<br />
-
-[dhh-tutorial]: https://www.youtube.com/watch?v=n0WUjGkDFS0
-[actioncable]: https://github.com/rails/rails/tree/master/actioncable
-[redis]: https://github.com/redis-store/redis-rails
+Open two browser tabs, start `rails s -b 0.0.0.0`, and messages stream across both windows in real time. Full credit to DHH for the original demo—Action Cable makes WebSockets in Rails refreshingly approachable.

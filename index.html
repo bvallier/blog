@@ -2,62 +2,98 @@
 layout: default
 ---
 
-<main class="container" role="main">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-lg-3">
-      <aside class="sidebar" role="complementary">
-        <div class="search-widget">
-          <a href="{{ site.baseurl }}/" aria-label="Home">
-            <img class="image" src="/images/brice_boston.png" alt="Brice Vallieres" height="100" width="100" loading="eager">
-          </a>
-          
-          <h3>Brice Vallieres</h3>
-          <p>Software & data analytics consultant in Cambridge, MA 🚀</p>
-          
-          <a href="https://twitter.com/bricevallieres" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false"></a>
-          <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <a class="github-button" href="https://github.com/bvallier" aria-label="Follow @bvallier on GitHub">Follow</a>
-          
-          <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a></p>
-          <a href="https://www.linkedin.com/in/bricevallieres/">LinkedIn</a>
-          
-          <u>Projects</u>
-          <a href="https://staffmapper.com?ref=blog">Staff Mapper</a><br>
-          <a href="https://tiny-pivot.com">TinyPivot</a>
+<div class="home-shell">
+  <!-- Author Masthead Intro -->
+  <section class="intro-band" aria-label="About Brice Vallieres">
+    <div class="intro-identity">
+      <img class="intro-avatar" src="/images/brice_boston.png" alt="Brice Vallieres" width="68" height="68" loading="eager">
+      <div class="intro-copy">
+        <h1 class="intro-heading">Notes on data systems, applied AI, and building independent software.</h1>
+        <p class="intro-bio">
+          I'm a data engineering leader and software builder in Cambridge, MA. I write about analytical infrastructure, practical AI, and the realities of shipping independent tools.
+        </p>
+        <div class="intro-links">
+          <a href="https://tiny-pivot.com" target="_blank" rel="noopener">TinyPivot</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="https://staffmapper.com?ref=blog" target="_blank" rel="noopener">Staff Mapper</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="https://www.linkedin.com/in/bricevallieres/" target="_blank" rel="noopener">LinkedIn</a>
+          <span aria-hidden="true">&middot;</span>
+          <a href="https://twitter.com/bricevallieres" target="_blank" rel="noopener">X</a>
         </div>
-      </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Latest Essay -->
+  {% assign lead = site.posts.first %}
+  {% if lead %}
+  {% assign lead_words = lead.content | number_of_words %}
+  {% assign lead_read = lead_words | divided_by: 220 %}
+  {% if lead_read < 1 %}{% assign lead_read = 1 %}{% endif %}
+  <section class="featured-section" aria-label="Latest essay">
+    <article class="featured-essay" itemscope itemtype="https://schema.org/BlogPosting">
+      <a class="featured-media" href="{{ lead.url | prepend: site.baseurl }}" aria-label="Read {{ lead.title }}">
+        <img src="{{ lead.image }}" alt="{{ lead.title }}" loading="eager" itemprop="image">
+      </a>
+      <div class="featured-body">
+        <div class="essay-meta">
+          <span class="meta-topic">{{ lead.topic | default: 'Essay' }}</span>
+          <span class="meta-dot" aria-hidden="true">&middot;</span>
+          <time datetime="{{ lead.date | date_to_xmlschema }}" itemprop="datePublished">
+            {{ lead.date | date: "%b %-d, %Y" }}
+          </time>
+          <span class="meta-dot" aria-hidden="true">&middot;</span>
+          <span>{{ lead_read }} min read</span>
+        </div>
+        <h2 class="featured-title" itemprop="headline">
+          <a href="{{ lead.url | prepend: site.baseurl }}">{{ lead.title }}</a>
+        </h2>
+        <p class="featured-summary" itemprop="description">{{ lead.summary }}</p>
+        <a class="read-link" href="{{ lead.url | prepend: site.baseurl }}">Read essay &rarr;</a>
+      </div>
+    </article>
+  </section>
+  {% endif %}
+
+  <!-- Archive Section -->
+  <section class="archive-section" aria-label="Essays">
+    <div class="archive-header">
+      <h2 class="archive-heading">Archive</h2>
+      <div class="filter-bar" role="group" aria-label="Filter essays by topic">
+        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter-btn" data-filter="AI & Data" aria-pressed="false">AI &amp; Data</button>
+        <button type="button" class="filter-btn" data-filter="Product" aria-pressed="false">Product</button>
+        <button type="button" class="filter-btn" data-filter="Engineering" aria-pressed="false">Engineering</button>
+      </div>
     </div>
 
-    <!-- Blog Posts -->
-    <div class="col-lg-8">
-      <section aria-label="Blog posts">
-        {% for post in site.posts %}
-        <article class="row" itemscope itemtype="https://schema.org/BlogPosting">
-          <div class="col-lg-4">
-            <a href="{{ post.url | prepend: site.baseurl }}" aria-label="Read {{ post.title }}">
-              {% if post.image %}
-              <img class="img-thumbnail" src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" itemprop="image">
-              {% else %}
-              <img class="img-thumbnail" src="https://source.unsplash.com/random/500x250?sig={{ forloop.index }}" alt="{{ post.title }}" loading="lazy">
-              {% endif %}
-            </a>
+    <div class="essay-list">
+      {% for post in site.posts offset:1 %}
+      {% assign words = post.content | number_of_words %}
+      {% assign read_time = words | divided_by: 220 %}
+      {% if read_time < 1 %}{% assign read_time = 1 %}{% endif %}
+      <article class="essay-row" data-category="{{ post.topic | default: 'Engineering' }}" itemscope itemtype="https://schema.org/BlogPosting">
+        <a class="essay-thumb" href="{{ post.url | prepend: site.baseurl }}" aria-label="Read {{ post.title }}">
+          <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" itemprop="image">
+        </a>
+        <div class="essay-body">
+          <div class="essay-meta">
+            <span class="meta-topic">{{ post.topic | default: 'Essay' }}</span>
+            <span class="meta-dot" aria-hidden="true">&middot;</span>
+            <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+              {{ post.date | date: "%b %-d, %Y" }}
+            </time>
+            <span class="meta-dot" aria-hidden="true">&middot;</span>
+            <span>{{ read_time }} min read</span>
           </div>
-
-          <div class="col-lg-8">
-            <h6>
-              <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
-                {{ post.date | date: "%b %-d, %Y" }}
-              </time>
-            </h6>
-            <a href="{{ post.url | prepend: site.baseurl }}" class="post-title">
-              <h5 itemprop="headline">{{ post.title }}</h5>
-            </a>
-            <p itemprop="description">{{ post.summary }}</p>
-          </div>
-        </article>
-        {% endfor %}
-      </section>
+          <h3 class="essay-title" itemprop="headline">
+            <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h3>
+          <p class="essay-summary" itemprop="description">{{ post.summary }}</p>
+        </div>
+      </article>
+      {% endfor %}
     </div>
-  </div>
-</main>
+  </section>
+</div>

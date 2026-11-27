@@ -1,76 +1,65 @@
 ---
 layout: post
-title:  "Staff Mapper Product Market Fit"
-author: Brice V.
-summary: Even before I had a true MVP in place, I started reaching out to customers. I felt that waiting too long to reach out and get immediate feedback on product direction from potential customers would be a mistake.
-image: '/images/product_market_fit.png'
-date:   2020-01-30 13:57:19
+title: "Finding Product-Market Fit for Staff Mapper"
+author: Brice Vallieres
+topic: "Product"
+summary: "Why I started pitching Staff Mapper before writing a full MVP, what dozens of candid rejections taught me, and how the first paying customer came together."
+image: "/images/covers/staffmapper-pmf.jpg"
+date: 2020-01-30 13:57:19
+last_modified_at: 2026-11-27
 categories: [product, ideation]
-tags: [staff mapper, ideation, product market fit]
+tags: [staff mapper, product market fit, b2b saas, customer discovery]
 ---
 
-Even before I had a true MVP in place, I started reaching out to customers. I felt that waiting too long to reach out and get immediate feedback on product direction from potential customers would be a mistake. With my other product (WorkDive), I did the opposite and learned from it. I simply built the product, pretending that the universe needed it. Looking back, there were well-established products in the time entry space and although I learned from the process, I was building a product that no one really needed at the end of the day. Sure, I had a differentiating angle with SMS time entry, but at the end of the day it would be a dog fight to get users to switch their time entry system to something nascent like WorkDive. It would have been a tough battle and I knew I should move on.
+With my previous product, WorkDive, I built first and asked questions later—only to discover a crowded market full of mature competitors. With Staff Mapper, I inverted the process. Before I had a true MVP, I started emailing my network and pitching consultancies to let real customer pain drive the roadmap.
 
-Product development on Staff Mapper started in July of 2017, and interestingly my first email outreach to my professional network about the product also began around that time. While I had just the beginnings of an actual product, I knew that I wanted my customers to drive the product development roadmap, so I started talking to dozens of consultancies, hoping to achieve 1) understanding of needs 2) and early customers.
+Product development began in July 2017, and customer outreach started the same month. Talking to dozens of professional services firms turned out to be the hardest—and most illuminating—part of building the company.
 
-I spoke with mostly professional service firms, consultancies and other firms who relied on labor as a means to revenue. This was the hardest part of the product development process in my opinon. I had many ideas about what the product was and what I thought it should be. After talking with so many people, I realized that people managemnt is hard - the needs are so diversified and unique.
+## What Prospects Actually Said
 
-Here are some things I heard while pitching the product:
+Rejection is clarifying when you write it down verbatim. Across dozens of calls and emails, here is a cross-section of what I heard:
 
-"I'd prefer something we can visualize and manipulate in salesforce. I don't want a stand alone tool, I want to use the tools we have now." -- CEO of a Salesforce consulting company
+- *"I'd rather visualize this inside Salesforce than adopt a standalone tool."* — CEO, Salesforce consultancy
+- *"We work in small agile teams, so we don't have this problem."* — Manager, valuation firm
+- *"We just finished building an in-house tool across the firm."* — Consultant, EY
+- *"We thought you were a floor-planning tool."* — Inbound lead confusing us with StaffMap.com
+- *"Could we use this to schedule hazardous waste pickups across labs in the Northeast?"* — Waste-management manager
+- *"Our culture isn't interested in Big Brother monitoring."* — Consulting director
+- *"Partners here prefer to retain individual control over their own staff."* — Practice manager
+- *"We're only a team of five."* / *"We needed something immediately and went with Everhour."*
 
-"Our staff are organized by several small agile teams, so there's no need" -- Manager at a Fair Market Value company
+And then, finally, the email that mattered:
 
-"We just implemented an in-house solution for the entire company" --Consultant at E&Y
+> "We are certainly at a point where staffing has become a burdensome process. There is a subcommittee of us trying to streamline it. Let me know if we can set up a call—certainly looking for practical solutions."
+> — Partner at a consulting firm (our eventual first customer)
 
-"We thought you were a floor planning product" -- some random contact who reached out to me about the procuct, referring to StaffMap.com
+## Four Lessons From Early Outreach
 
-"We could use the tool as a waste management company to help us coordinate waste pickup at labs all across the northeast" --manager of a waste management company
+Those conversations saved months of wasted engineering and crystallized four realities:
 
-"We're using salesforce" -- consultant
+1. **Positioning was too vague:** Being mistaken for office floor-planning or waste-logistics software meant our value proposition wasn't sharp enough.
+2. **Firm culture varies wildly:** A tool that feels like helpful visibility at one consultancy feels like micromanagement at another. Flexibility had to be built in.
+3. **Integrations matter early:** Teams rarely want another isolated silo when their time and billing already live elsewhere.
+4. **Know the real buyer:** I assumed HR would champion the product. In practice, **managing partners and the C-suite are always the buyers**—they feel the pain of unbilled bench time and burnout directly.
 
-"We could use it, but were a team of 5" -- consultant
+<figure>
+  <img src="/images/product-fit.png" alt="Hand-drawn sketch mapping product shape against varied customer needs">
+  <figcaption>An early notebook sketch mapping how a single product shape fits—or misses—different client needs.</figcaption>
+</figure>
 
-"Our culture is not interested in big brother monitoring" --consultant
+## The Pitch That Closed Deal One
 
-"The partners here would prefer to retain control over their individual staff" -- consultant
+When that interested partner brought me in to demo for the broader partnership, I stripped the pitch down to one sentence:
 
-"We need to move quickly, decided to go with Everhour" -- consultant of a long-term client
+> "If this helps you recoup a single billable hour of a consultant's time, the software pays for itself."
 
-"We are certainly at a point where staffing has become a burdensome process. There is a subcommittee of us, of which I am a part, that's trying to streamline it. Let me know if there is something I can look over, or if you want to set up a call. Certainly looking for practical solutions." -- Partner at consulting firm, eventually become our first customer
+They wanted to move forward, provided we shipped a focused core first:
 
-BAM! After more than a few conversations, I finally had a warm lead. As you can see, I had a few difficult conversations. I was glad that I hadn't invested all this time into building a product before I had these conversations. Here's what I learned about the product needs:
+- Short- and long-term availability, utilization, and PTO broadcasting
+- A long-term capacity calendar with forward-looking projections
+- One-click staff claiming (making ROI measurable)
+- Lightweight roster, skills tracking, and basic utilization reporting
 
-The product should be flexible enough to accomodate for varying cultures at these firms
+They started on a **$6/user/month** trial with a handful of test users so we could iron out edge cases together. We wired Stripe to read active user counts dynamically each month as headcount fluctuated.
 
-The product value proposition was not clear enough (e.g. StaffMap.com and Waste Management Pickup Logistics was a fundamental misunderstanding of our objectives)
-
-Some kind of integration was important to some of our customers.
-
-Needs are vastly different at each firm
-
-This really wasn't going to be easy, but I thought, let me figure out what this one interested client needs and we can go from there. After an initial demo with the partner, he offered up a broader discussion with the rest of the partners. I was suprised - I thought the buyer would be someone in Human Resources. Turns out that the c-suite / partners at consultancies will always be the buyer - they are the most interested in increasing efficiencies, recouping potential lost consultant time and reducing burn out while maintaining culture. My pitch to them was simple:
-
-"If you can recoup an hour of a consutant's time, the solution pays for itself".
-
-That was the pitch. Full stop. And frankley, our tool enabled that with ease. Later on, I heard that the demo was was well recieved - they wanted to move forward! BUT they wanted to see a few things in place first.
-
-So I built some of the main features that are still in place today:
-
-Desktop tool to broadcast staff availability, utilization (e.g. how busy a consultant is on billable projects), PTO, both in the short-term and in the long-term.
-
-Long-term calendar view of staff availability
-
-Projections of staff availability and ability to help with a project given current restraints
-
-Ability to claim a consultant's time with the click of a button (this allowed us to track ROI to our consultant)
-
-Some simple reporting metrics
-
-Ability to add their staff roster and ability for staff to upload skill sets
-
-These were the main features that was just enough for the client to pull the trigger on a monthly subscription at $6/user/month on a trial basis - this means that they loaded a few test users and evaluated how the system worked for them. It was a great way for them to gain comfort with the system and for us to work out the kinks with a live client.
-
-We handled and still handle payments through Stripe, which reads the number of active staff they have in the solution and bills them monthly accounting for fluctations in the staff count over the course of the month. The first invoice for $208 went out on June 6, 2018 after about a year of development and the first pitch.
-
-A YEAR'S WORTH OF WORK. More on this soon.
+On **June 6, 2018**—nearly a full year after my first commit and outreach email—our first invoice went out for **$208**. Not a fortune, but proof that a real firm would pay for something I built from scratch.
