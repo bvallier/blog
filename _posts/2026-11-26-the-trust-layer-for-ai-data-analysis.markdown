@@ -62,11 +62,11 @@ By category across all 5 models (30 model-tasks per arm):
 - **Relational Analytics:** `100% (30/30)` → **`100% (30/30)`** Free → **`100% (30/30)`** Pro with unweighted `AVG(rate/position)` guards and clickable Studio lineage.
 - **Hard Data Science:** `80% (24/30)` → `87% (26/30)` Free → **`100% (30/30, +20 pts!)`**, **`2.1× faster`** (`39.7s → 19.3s/task`), **`−20% fewer turns`** (`5.40 → 4.33`), and **`−32% fewer output tokens`**.
 
-### 2. Controlled Same-Model A/B: MIT KramaBench (ICLR 2026, 248 Runs)
+### 2. Controlled Same-Model A/B: MIT KramaBench (ICLR 2026, 372 Runs Across 3 Models)
 
-To test TinyPivot on a fresh, uncontaminated 2026 data-lake benchmark (not just our own 18 traps), we ran a controlled apples-to-apples A/B (`Vanilla Claude Code` with Read + Bash/Python vs. `TinyPivot Pro` on the **exact same base model**) across 4 multi-file data lakes from MIT's [**KramaBench** (ICLR 2026)](https://kramabench.org/) ([GitHub `mitdbg/Kramabench`](https://github.com/mitdbg/Kramabench) · [ICLR 2026 OpenReview Paper](https://openreview.net/forum?id=fZfUdeCC5X)): **Environment** (36 CSVs + txt), **Biomedical** (7 multi-sheet `.xlsx` workbooks + 1 CSV), **Archaeology** (3 CSVs + 2 `.xlsx`), and **Wildfire** (17 CSVs + `.xlsx` + `.json` + 2 `.gpkg` GeoPackages) — **62 tasks × 2 models × 2 arms = 248 runs**, scored verbatim with MIT's deterministic metrics (`Success`, `RAEScore`, `F1`).
+To test TinyPivot on a fresh, uncontaminated 2026 data-lake benchmark (not just our own 18 traps), we ran a controlled apples-to-apples A/B (`Vanilla` with Read + Python vs. `TinyPivot Pro` on the **exact same base model**) across 4 multi-file data lakes from MIT's [**KramaBench** (ICLR 2026)](https://kramabench.org/) ([GitHub `mitdbg/Kramabench`](https://github.com/mitdbg/Kramabench) · [ICLR 2026 OpenReview Paper](https://openreview.net/forum?id=fZfUdeCC5X)): **Environment** (36 CSVs + txt), **Biomedical** (7 multi-sheet `.xlsx` workbooks + 1 CSV), **Archaeology** (3 CSVs + 2 `.xlsx`), and **Wildfire** (17 CSVs + `.xlsx` + `.json` + 2 `.gpkg` GeoPackages) — **62 tasks × 3 models × 2 arms = 372 runs**, scored verbatim with MIT's deterministic metrics (`Success`, `RAEScore`, `F1`).
 
-| Model / Domain | Vanilla (`Read` + `Bash`/`Python`) | TinyPivot Pro (`v0.8.4`) | Delta |
+| Model / Domain | Vanilla (`Read` + `Bash`/`Python`) | TinyPivot Pro (`v0.8.4`–`v0.8.5`) | Delta |
 |---|---:|---:|---:|
 | **Claude Haiku 5.5 — Biomedical** (`n=9`, 7 `.xlsx`) | `66.7%` (`67.7s`) | **`88.9%`** (**`31.6s`**) | **`+22.2 pts` · `2.14×` faster** |
 | **Claude Haiku 5.5 — Archaeology** (`n=12`, CSV + `.xlsx`) | `41.7%` (`16.0s`) | **`50.0%`** (`17.1s`) | **`+8.3 pts`** (beats Sonnet) |
@@ -76,9 +76,14 @@ To test TinyPivot on a fresh, uncontaminated 2026 data-lake benchmark (not just 
 | **Claude Sonnet 5.5 — Environment** (`n=20`) | `90.0%` (`13.1s`) | **`95.0%`** (`17.0s`) | **`+5.0 pts`** |
 | **Claude Sonnet 5.5 — Biomedical** (`n=9`, 7 `.xlsx`) | `100.0%` (`31.3s`) | **`100.0%`** (**`26.4s`**) | **Tie · `16%` faster** |
 | **Claude Sonnet 5.5 Overall (`n=62`)** | `82.6%` (`17.5s` · `$10.63*`) | **`83.8%`** (`19.2s` · `$12.88*`) | **`+1.1 pts` (2–1 H2H)** |
-| **Combined 2-Model Overall (`n=124` paired)** | `77.3%` (`20.9s`) | **`80.9%`** (`20.6s`) | **`+3.6 pts` (10–6 H2H)** |
+| **DeepSeek V4.1 (DGX Spark local) — Environment** (`n=20`) | `68.3%` (`42.7s`) | **`75.0%`** (`68.1s`) | **`+6.7 pts`** |
+| **DeepSeek V4.1 (DGX Spark local) — Wildfire** (`n=21`) | `72.7%` (`40.7s`) | **`74.4%`** (`46.5s`) | **`+1.7 pts`** (beats `#1 RADAR` `73.7%`) |
+| **DeepSeek V4.1 (DGX Spark local) Overall (`n=62`)** | `62.8%` (`46.2s` · `$0` cloud) | **`63.9%`** (`59.9s` · `$0` cloud) | **`+1.1 pts` (10–9 H2H · `+10.7` vs `#2 TalkTask`)** |
+| **Combined 3-Model Overall (`n=186` paired)** | `72.5%` | **`75.2%`** | **`+2.8 pts` (20–15 H2H · 3/3 models up)** |
 
-Notice the model-tier finding: **`Haiku 5.5 + TinyPivot Pro` (`78.0%`, `$5.28*`) closes 57% of the gap to `Vanilla Sonnet 5.5` (`82.6%`, `$10.63*`) at half the API cost** — driven by lightweight, zero-bloat upgrades (`profile(dirPath)` 1-call folder schema discovery, direct `.xlsx` sheet loading into DuckDB, and stateful named `query` views) with zero Jupyter servers, VLMs, or multi-agent ensembles. *(For context, the #1 public leaderboard system on [kramabench.org](https://kramabench.org/) — RADAR on DeepSeek-V4-Flash — scores `83.3%` Environment, `73.7%` Wildfire, `50.0%` Archaeology, and `66.7%` Biomedical across the public dataset; our run is a 4-domain controlled A/B rather than an official 6-domain obscured submission.)*
+Two highlights stand out here:
+1. **`Haiku 5.5 + TinyPivot Pro` (`78.0%`, `$5.28*`) closes 57% of the gap to `Vanilla Sonnet 5.5` (`82.6%`, `$10.63*`) at half the API cost.**
+2. **Exact same-model-family check on DeepSeek:** Running 100% locally on DGX Spark at `$0` cloud spend, **`DeepSeek V4.1 + TinyPivot Pro` (`63.9%`) beats Published `#2 TalkTask` (`53.2%`, exact same `DeepSeek-V4.1-Flash` family) by `+10.7 pts`** and Published `#3 / #1 Obscured smolagents DR` (`54.2%`) by `+9.7 pts` — with zero Jupyter servers, VLMs, or multi-agent ensembles. *(Published `#1 RADAR` on `DeepSeek-V4-Flash` scores `71.2%` across these 4 domains and `73.7%` across all 6; our run is a 4-domain controlled A/B rather than an official 6-domain obscured submission.)*
 
 ### 3. Official 450-Task Blind Leaderboard: Adyen / Hugging Face `adyen/DABstep`
 
