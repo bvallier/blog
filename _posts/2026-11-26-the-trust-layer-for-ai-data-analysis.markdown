@@ -62,22 +62,45 @@ By category across all 5 models (30 model-tasks per arm):
 - **Relational Analytics:** `100% (30/30)` → **`100% (30/30)`** Free → **`100% (30/30)`** Pro with unweighted `AVG(rate/position)` guards and clickable Studio lineage.
 - **Hard Data Science:** `80% (24/30)` → `87% (26/30)` Free → **`100% (30/30, +20 pts!)`**, **`2.1× faster`** (`39.7s → 19.3s/task`), **`−20% fewer turns`** (`5.40 → 4.33`), and **`−32% fewer output tokens`**.
 
-### 2. Official External Benchmark: Adyen / Hugging Face `adyen/DABstep` Dev (60 Runs)
+### 2. Controlled Same-Model A/B: MIT KramaBench (ICLR 2026, 248 Runs)
 
-| Model | Vanilla Claude Code (Python/Bash) | TinyPivot Pro (DuckDB MCP) | Notes |
-|---|---|---|---|
-| **Claude Haiku 5.5** | 6/10 (60%) · Hard 4/7 | **7/10 (70%) · Hard 5/7** | **+10 pts** — solved hard fee-rule tasks `#1464` & `#1753` that vanilla Haiku missed |
-| **Claude Sonnet 5.5** | 9/10 (90%) · Hard 6/7 | **9/10 (90%) · Hard 6/7** | 90% parity; faster & cheaper on hard task `#1464` (`11.0s` vs `11.6s`) |
-| **Claude Opus 5.5** | 8/10 (80%) · Hard 6/7 | **8/10 (80%) · Hard 6/7** | Faster overall (`16.6s` vs `16.7s`); −37% faster & −23% cheaper on hard task `#2697` |
-| **Combined (30 runs/arm)** | **23/30 (76.7%) · Hard 16/21 (76.2%)** | **24/30 (80.0%) · Hard 17/21 (81.0%)** | Scored with Adyen's verbatim `question_scorer` |
+To test TinyPivot on a fresh, uncontaminated 2026 data-lake benchmark (not just our own 18 traps), we ran a controlled apples-to-apples A/B (`Vanilla Claude Code` with Read + Bash/Python vs. `TinyPivot Pro` on the **exact same base model**) across 4 multi-file data lakes from MIT's [**KramaBench** (ICLR 2026)](https://kramabench.org/) ([GitHub `mitdbg/Kramabench`](https://github.com/mitdbg/Kramabench) · [ICLR 2026 OpenReview Paper](https://openreview.net/forum?id=fZfUdeCC5X)): **Environment** (36 CSVs + txt), **Biomedical** (7 multi-sheet `.xlsx` workbooks + 1 CSV), **Archaeology** (3 CSVs + 2 `.xlsx`), and **Wildfire** (17 CSVs + `.xlsx` + `.json` + 2 `.gpkg` GeoPackages) — **62 tasks × 2 models × 2 arms = 248 runs**, scored verbatim with MIT's deterministic metrics (`Success`, `RAEScore`, `F1`).
 
-## What Optimizations Actually Moved the Needle
+| Model / Domain | Vanilla (`Read` + `Bash`/`Python`) | TinyPivot Pro (`v0.8.4`) | Delta |
+|---|---:|---:|---:|
+| **Claude Haiku 5.5 — Biomedical** (`n=9`, 7 `.xlsx`) | `66.7%` (`67.7s`) | **`88.9%`** (**`31.6s`**) | **`+22.2 pts` · `2.14×` faster** |
+| **Claude Haiku 5.5 — Archaeology** (`n=12`, CSV + `.xlsx`) | `41.7%` (`16.0s`) | **`50.0%`** (`17.1s`) | **`+8.3 pts`** (beats Sonnet) |
+| **Claude Haiku 5.5 — Environment** (`n=20`, 36 CSVs) | `78.0%` (`17.9s`) | **`83.3%`** (`22.5s`) | **`+5.3 pts`** |
+| **Claude Haiku 5.5 — Wildfire** (`n=21`, incl. `.gpkg`) | **`85.7%`** (`16.3s`) | `84.4%` (`20.1s`) | `-1.3 pts` (geospatial `.gpkg`) |
+| **Claude Haiku 5.5 Overall (`n=62`)** | `71.9%` (`24.2s` · `$4.21*`) | **`78.0%`** (**`21.9s`** · `$5.28*`) | **`+6.1 pts` · `10%` faster (8–5 H2H)** |
+| **Claude Sonnet 5.5 — Environment** (`n=20`) | `90.0%` (`13.1s`) | **`95.0%`** (`17.0s`) | **`+5.0 pts`** |
+| **Claude Sonnet 5.5 — Biomedical** (`n=9`, 7 `.xlsx`) | `100.0%` (`31.3s`) | **`100.0%`** (**`26.4s`**) | **Tie · `16%` faster** |
+| **Claude Sonnet 5.5 Overall (`n=62`)** | `82.6%` (`17.5s` · `$10.63*`) | **`83.8%`** (`19.2s` · `$12.88*`) | **`+1.1 pts` (2–1 H2H)** |
+| **Combined 2-Model Overall (`n=124` paired)** | `77.3%` (`20.9s`) | **`80.9%`** (`20.6s`) | **`+3.6 pts` (10–6 H2H)** |
 
-Running the benchmark surfaced three concrete MCP engineering bottlenecks that we fixed and re-verified:
+Notice the model-tier finding: **`Haiku 5.5 + TinyPivot Pro` (`78.0%`, `$5.28*`) closes 57% of the gap to `Vanilla Sonnet 5.5` (`82.6%`, `$10.63*`) at half the API cost** — driven by lightweight, zero-bloat upgrades (`profile(dirPath)` 1-call folder schema discovery, direct `.xlsx` sheet loading into DuckDB, and stateful named `query` views) with zero Jupyter servers, VLMs, or multi-agent ensembles. *(For context, the #1 public leaderboard system on [kramabench.org](https://kramabench.org/) — RADAR on DeepSeek-V4-Flash — scores `83.3%` Environment, `73.7%` Wildfire, `50.0%` Archaeology, and `66.7%` Biomedical across the public dataset; our run is a 4-domain controlled A/B rather than an official 6-domain obscured submission.)*
 
-1. **Exact-table analytical SQL + batch queries (`query.queries[]`):** Previously, `query({ sql })` defaulted to a 1-metric rounded ASCII chart card and hid extra columns (forcing agents into 7–11 follow-up turns!). Returning exact, full-precision (up to 14-decimal) Markdown tables automatically on analytical `query` calls while allowing up to 6 read-only `SELECT`s per batch cut turns and output tokens dramatically — and preserved exact 14-decimal precision for `DABstep`.
-2. **Pro SQL-to-`analyze` Routing Guards:** When agents skip `load_file` and query a cohort, A/B experiment, or daily time-series CSV directly with raw SQL, `TinyPivot Pro`'s zero-overhead audit layer automatically flags right-censoring, SRM/Holm, or day-of-week seasonality risks and points to the exact 1-call `analyze(method, filePath)` shortcut. That single guard flipped **both** `Sonnet 5.5` (`16/18 → 18/18`) and `Inkling 2 Mini` (`ds_seasonal_changepoint`: `FAIL 9t/56.8s → PASS 5t/27.1s`)!
-3. **Keeping TinyPivot Free strictly under 2,500 schema tokens:** All five statistical engines (`explain_change`, `ab_test` with SRM + Holm + top-1% whale trim, controlled OLS `regression`, right-censored `cohort_retention`, seasonal `anomalies`) live behind one zero-param `analyze` tool — keeping context overhead minimal for both cloud prompt caching and local models.
+### 3. Official 450-Task Blind Leaderboard: Adyen / Hugging Face `adyen/DABstep`
+
+We also ran and submitted all **450 blind questions** on the official [Adyen / Hugging Face `adyen/DABstep` Leaderboard](https://huggingface.co/spaces/adyen/DABstep) (22 MB `payments.csv` + 1,000 nested fee rules, scored blindly by Adyen and published in `adyen/DABstep` `data/task_scores/`):
+
+| Live Adyen Submission | Easy (`72`) | Hard (`378`) | Total (`450`) | Context vs Validated Top 9 |
+|---|---:|---:|---:|---|
+| **TinyPivot MCP Pro — Claude Sonnet 5.5** | **`97.22%`** (`70/72`) | **`68.78%`** (`260/378`) | **`73.33%`** (`330/450`) | **#1 Easy · #3-equiv Hard** (ahead of GPT-5 `57.7%` & Google `DS-STAR` `45.2%`) |
+| **TinyPivot MCP Pro — Claude Haiku 5.5** | `88.89%` (`64/72`) | **`38.62%`** (`146/378`) | `46.67%` (`210/450`) | **#8-equiv Hard** (`~2×` Claude 4 ReACT `19.8%`; Dev A/B `+10 pts` `60% → 70%`) |
+| **TinyPivot MCP Pro — DeepSeek V4.1** *(DGX Spark local)* | **`90.28%`** (`65/72`) | **`24.34%`** (`92/378`) | `34.89%` (`157/450`) | **Beats Claude 4 ReACT locally** at `$0` cloud spend (higher Easy % than KGMON `87.5%` & DataPilot `86.1%`) |
+
+*Honest attribution:* On `DABstep`, `Sonnet 5.5`'s absolute `97.2%` Easy / `68.8%` Hard score reflects strong base-model reasoning paired with TinyPivot's DuckDB workflow (our 10-task Dev A/B showed `90%` parity on Sonnet, `80%` parity on Opus, and `+10 pts` on Haiku `60% → 70%`). Pairing `DABstep` (third-party blind parity) with our controlled same-model **Bench v2 (`91% → 100%`)** and **MIT KramaBench (`77.3% → 80.9%`, Haiku `+6.1 pts`)** keeps the attribution clean and honest.
+
+## What Optimizations Actually Moved the Needle (Shipped in `v0.8.4`)
+
+Running these benchmarks surfaced five concrete, lightweight MCP improvements — **all with zero new npm dependencies and strictly under 2,500 Free schema tokens**:
+
+1. **Exact-table analytical SQL + batch queries (`query.queries[]`) & stateful named views:** Analytical `query` calls return full-precision Markdown tables (up to 60 narrow rows / 14 decimals) and batch up to 6 read-only `SELECT`s per call, while named `query({ sql, name })` results now persist automatically as DuckDB views across turns.
+2. **1-call local data-lake folder profiler (`profile({ dirPath })`):** Scans CSV, TSV, JSON, JSONL, Parquet, and `.xlsx` schemas via DuckDB `DESCRIBE` + ExcelJS without pasting raw rows into context, lists nearby docs, and (on Pro) surfaces cross-file shared join keys — flipping `Sonnet 5.5` on KramaBench `Environment` from `90% → 95%`.
+3. **Direct `.xlsx` workbook reading into DuckDB (`load_file({ filePath, sheet })`):** Reuses TinyPivot Core's already-bundled `exceljs` so agents query multi-sheet Excel workbooks straight in DuckDB SQL — lifting `Haiku 5.5` on KramaBench `Biomedical` by **`+22.2 pts` (`66.7% → 88.9%`) and `2.14×` faster**.
+4. **Pro SQL-to-`analyze` Routing Guards:** When agents skip `load_file` and query a cohort, A/B experiment, or daily time-series CSV directly with raw SQL, `TinyPivot Pro`'s zero-overhead audit layer automatically flags right-censoring, SRM/Holm, or day-of-week seasonality risks and points to the exact 1-call `analyze(method, filePath)` shortcut.
+5. **Headless / No-Studio mode (`--no-studio` / `TINYPIVOT_NO_STUDIO=1`):** Running hundreds of automated benchmark sessions opened dozens of Studio browser windows. Passing `--no-studio` (or `TINYPIVOT_NO_STUDIO=1`) disables the localhost Studio HTTP server completely (zero ports, zero popups), while `--no-open` (`TINYPIVOT_OPEN_STUDIO=0`) keeps Studio running quietly without auto-popping tabs.
 
 ## Unlimited Local Rows on TinyPivot Free
 
