@@ -39,7 +39,7 @@ So we threw out the hinted prompts and built two rigorous evaluations:
    - **Hard Data Science (6):** 12-segment `54/46` SRM + p-hacking, subtle 20-segment `52.5/47.5` SRM + Holm-Bonferroni, confounded OLS causal reversal, right-censored monthly cohorts, 90-day seasonal structural break (`2026-02-18`, `−16.5%`), and whale-skewed revenue A/B test.
 2. **Official External Benchmark — Adyen / Hugging Face `adyen/DABstep` Dev (60 runs):** 10 official labeled financial analytics tasks (3 easy, 7 hard) over a real **22 MB `payments.csv`** (138,236 rows), `fees.json` (1,000 nested fee rules), `merchant_data.json`, and `manual.md` — scored with Adyen's verbatim `question_scorer`.
 
-We tested across **five models** — Mac-local `Inkling 2 Mini`, my home DGX Spark cluster (`DeepSeek V4.1 Flash 1017`), `Claude Haiku 5.5`, `Claude Sonnet 5.5`, and `Claude Opus 5.5` — comparing Baseline (`bare-sql` or vanilla `Python/Bash`), **TinyPivot Free**, and **TinyPivot Pro**.
+We tested across **five models** — Mac-local `Thinking Machines Inkling 2 Mini`, my home DGX Spark cluster (`DeepSeek V4.1 Flash 1017`), `Claude Haiku 5.5`, `Claude Sonnet 5.5`, and `Claude Opus 5.5` — comparing Baseline (`bare-sql` or vanilla `Python/Bash`), **TinyPivot Free**, and **TinyPivot Pro**.
 
 ## The Results (Measured Across 330 Total Runs)
 
@@ -47,7 +47,7 @@ We tested across **five models** — Mac-local `Inkling 2 Mini`, my home DGX Spa
 
 | Model | Class | Baseline (`bare-sql` / Python) | TinyPivot Free | TinyPivot Pro | Baseline → Pro Impact |
 |---|---|---|---|---|---|
-| **Inkling 2 Mini** (fast) | Small Local (Mac) | 14/18 (78%) · 46.1s · $0.027† | 15/18 (83%) · 37.3s · $0.059† | **18/18 (100%)** · 26.0s · $0.046† | **+22 pts (Free +6) · −44% faster (3.8× Hard DS) · −50% out** |
+| **Thinking Machines Inkling 2 Mini** (fast) | Small Local (Mac) | 14/18 (78%) · 46.1s · $0.027† | 15/18 (83%) · 37.3s · $0.059† | **18/18 (100%)** · 26.0s · $0.046† | **+22 pts (Free +6) · −44% faster (3.8× Hard DS) · −50% out** |
 | **DeepSeek V4.1 Flash** | Local Cluster (DGX Spark) | 17/18 (94%) · 25.7s · $0.059† | 17/18 (94%) · 27.7s · $0.090† | **18/18 (100%)** · 15.6s · $0.055† | **+6 pts · −39% faster · −30% turns · −48% out · −7% API†** |
 | **Claude Haiku 5.5** | Fast Cloud | 15/18 (83%) · 13.1s · $0.074* | 16/18 (89%) · 13.9s · $0.083* | **18/18 (100%)** · 12.5s · $0.083* | **+17 pts (Free +6) · −5% faster (−23% Hard DS)** |
 | **Claude Sonnet 5.5** | Balanced Frontier | 18/18 (100%) · 20.0s · $1.22* | 18/18 (100%) · 22.1s · $0.88* | **18/18 (100%)** · 18.8s · $1.01* | **100% Free (−28%*) & Pro (no Bash) · −6% faster · −17% warm*** |
@@ -92,13 +92,13 @@ We also ran and submitted all **450 blind questions** on the official [Adyen / H
 
 *Honest attribution:* On `DABstep`, `Sonnet 5.5`'s absolute `97.2%` Easy / `68.8%` Hard score reflects strong base-model reasoning paired with TinyPivot's DuckDB workflow (our 10-task Dev A/B showed `90%` parity on Sonnet, `80%` parity on Opus, and `+10 pts` on Haiku `60% → 70%`). Pairing `DABstep` (third-party blind parity) with our controlled same-model **Bench v2 (`91% → 100%`)** and **MIT KramaBench (`77.3% → 80.9%`, Haiku `+6.1 pts`)** keeps the attribution clean and honest.
 
-## What Optimizations Actually Moved the Needle (Shipped in `v0.8.4`)
+## What Optimizations Actually Moved the Needle (Shipped in `v0.8.4`–`v0.8.5`)
 
-Running these benchmarks surfaced five concrete, lightweight MCP improvements — **all with zero new npm dependencies and strictly under 2,500 Free schema tokens**:
+Running these benchmarks surfaced six concrete, lightweight MCP improvements — **all with zero new npm dependencies and strictly under 2,500 Free schema tokens**:
 
 1. **Exact-table analytical SQL + batch queries (`query.queries[]`) & stateful named views:** Analytical `query` calls return full-precision Markdown tables (up to 60 narrow rows / 14 decimals) and batch up to 6 read-only `SELECT`s per call, while named `query({ sql, name })` results now persist automatically as DuckDB views across turns.
-2. **1-call local data-lake folder profiler (`profile({ dirPath })`):** Scans CSV, TSV, JSON, JSONL, Parquet, and `.xlsx` schemas via DuckDB `DESCRIBE` + ExcelJS without pasting raw rows into context, lists nearby docs, and (on Pro) surfaces cross-file shared join keys — flipping `Sonnet 5.5` on KramaBench `Environment` from `90% → 95%`.
-3. **Direct `.xlsx` workbook reading into DuckDB (`load_file({ filePath, sheet })`):** Reuses TinyPivot Core's already-bundled `exceljs` so agents query multi-sheet Excel workbooks straight in DuckDB SQL — lifting `Haiku 5.5` on KramaBench `Biomedical` by **`+22.2 pts` (`66.7% → 88.9%`) and `2.14×` faster**.
+2. **1-call local data-lake folder profiler (`profile({ dirPath })`) + partitioned file-series collapsing:** Scans CSV, TSV, JSON, JSONL, Parquet, and multi-sheet `.xlsx` schemas via DuckDB `DESCRIBE` + ExcelJS without pasting raw rows into context, collapses partitioned sibling series (`water-2021..2024.csv`) into one line with a DuckDB `union_by_name=true` glob hint, lists nearby docs, and (on Pro) surfaces cross-file shared join keys — flipping `Sonnet 5.5` on KramaBench `Environment` from `90% → 95%`.
+3. **Smart `.xlsx` header-row auto-detection + workbook preamble notes (`load_file({ filePath, sheet })`):** Reuses TinyPivot Core's already-bundled `exceljs` so agents query multi-sheet Excel workbooks straight in DuckDB SQL — automatically detecting real table headers below title/units/notes preambles (like row-6 scientific headers) and surfacing preamble notes so agents never mistake title lines for column names. Lifted `Haiku 5.5` on KramaBench `Biomedical` by **`+22.2 pts` (`66.7% → 88.9%`) and `2.14×` faster**.
 4. **Pro SQL-to-`analyze` Routing Guards:** When agents skip `load_file` and query a cohort, A/B experiment, or daily time-series CSV directly with raw SQL, `TinyPivot Pro`'s zero-overhead audit layer automatically flags right-censoring, SRM/Holm, or day-of-week seasonality risks and points to the exact 1-call `analyze(method, filePath)` shortcut.
 5. **Headless / No-Studio mode (`--no-studio` / `TINYPIVOT_NO_STUDIO=1`):** Running hundreds of automated benchmark sessions opened dozens of Studio browser windows. Passing `--no-studio` (or `TINYPIVOT_NO_STUDIO=1`) disables the localhost Studio HTTP server completely (zero ports, zero popups), while `--no-open` (`TINYPIVOT_OPEN_STUDIO=0`) keeps Studio running quietly without auto-popping tabs.
 
@@ -108,7 +108,7 @@ An analyst evaluating a trust layer on a 22 MB CSV should never see partial tota
 
 **TinyPivot Pro** gates what serious analysts and teams actually pay for: deep relational & statistical audits (join fan-out, chasm traps, partial periods, silent NULL drops, duplicate IDs, mixed currencies, extreme outliers, and Pro `analyze` routing), the full Pro Data Science shelf, local **Recursive Data Memory** (−47% tokens on repeat schemas), closed-loop claim verification, 10 editorial themes, white-label HTML & `.xlsx` exports, and read-only PostgreSQL.
 
-Read the full [Trust Layer White Paper & 5-Model + DABstep Benchmark Report](https://tiny-pivot.com/whitepaper) on [tiny-pivot.com](https://tiny-pivot.com), or try it locally in 10 seconds:
+Read the full [Trust Layer White Paper & Internal + External Benchmark Report](https://tiny-pivot.com/whitepaper) (or download the [Official PDF White Paper](https://tiny-pivot.com/TinyPivot-Trust-Layer-Whitepaper.pdf)) on [tiny-pivot.com](https://tiny-pivot.com), or try it locally in 10 seconds:
 
 ```bash
 npx @smallwebco/tinypivot-mcp init
